@@ -67,6 +67,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/*
 # drop source maps, they are large and just for debugging
 find %{buildroot}%{_datadir}/cockpit/ -name '*.map' | xargs --no-run-if-empty rm --verbose
 
+%check
+# this can't be meaningfully tested during package build
+
 %files
 %license LICENSE
 %dir %{_datadir}/cockpit/subscription-manager
