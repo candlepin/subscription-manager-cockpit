@@ -53,10 +53,10 @@ of Red Hat subscriptions: subscription-manager-gui, subscription-manager-cockpit
 %prep
 %setup -q -n %{name}
 %setup -q -a 1 -n %{name}
-
-%build
 # ignore pre-built webpack in release tarball and rebuild it
 rm -rf dist
+
+%build
 ESLINT=0 NODE_ENV=production make
 
 %install
