@@ -11,6 +11,9 @@ URL: https://www.candlepinproject.org/
 Source0: %{name}-%{version}.tar.xz
 Source1: %{name}-node-%{version}.tar.xz
 BuildArch: noarch
+%if 0%{?fedora}
+BuildRequires: nodejs-devel
+%endif
 BuildRequires: nodejs
 BuildRequires: make
 BuildRequires: libappstream-glib
