@@ -1,6 +1,17 @@
 *~
 *.retry
+*.rpm
+__pycache__/
 node_modules/
 dist/
 src/lib/
 package-lock.json
+/bots/
+/integration-tests/common/
+/subscription-manager/
+/subscription-manager-cockpit.spec
+/subscription-manager-cockpit.tar.gz
+/subscription-manager-cockpit-*.tar.xz
+/po/*.pot
+!/po/subscription-manager.pot
+/test/images/
