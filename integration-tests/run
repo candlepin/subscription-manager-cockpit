@@ -21,11 +21,14 @@ TEST_OS = rhel-8-4
 endif
 export TEST_OS
 VM_IMAGE=$(CURDIR)/integration-tests/images/$(TEST_OS).qcow2
-COCKPIT_TAR=$(CURDIR)/cockpit/subscription-manager-cockpit.tar.gz
+COCKPIT_TAR=$(CURDIR)/subscription-manager-cockpit.tar.gz
 SUBMAN_TAR=$(CURDIR)/dist/subscription-manager.tar.gz
 SMBEXT_TAR=$(CURDIR)/dist/subscription-manager-build-extra.tar.gz
 
 TEST_NODE_MODULES = node_modules/chrome-remote-interface node_modules/sizzle
+
+# the test scenario is the subscription-manager branch to test against
+TEST_SCENARIO ?= main
 
 check: prepare
 	integration-tests/common/run-tests --test-dir integration-tests
@@ -35,16 +38,23 @@ reset:
 
 prepare: reset $(VM_IMAGE) integration-test/common $(TEST_NODE_MODULES)
 
-$(COCKPIT_TAR): cockpit/node_modules
-	make -C cockpit dist-gzip
+$(COCKPIT_TAR): node_modules
+	make dist-gzip
 
-$(SUBMAN_TAR):
+subscription-manager:
+	git clone --quiet https://github.com/candlepin/subscription-manager.git subscription-manager
+	git -C subscription-manager fetch --quiet --depth=1 origin $(TEST_SCENARIO)
+	git -C subscription-manager checkout --quiet FETCH_HEAD
+	@echo "checked out subscription-manager/ ref $$(git -C subscription-manager rev-parse HEAD)"
+
+$(SUBMAN_TAR): subscription-manager
+	cd subscription-manager && \
 	fn=$$(python3 ./setup.py --fullname); \
 	python3 ./setup.py sdist && \
         mv dist/$$fn.tar.gz $(SUBMAN_TAR)
 
-$(SMBEXT_TAR):
-	tar czf $(SMBEXT_TAR) build_ext src/subscription_manager/gui/data/icons/hicolor
+$(SMBEXT_TAR): subscription-manager
+	tar czf $(SMBEXT_TAR) subscription-manager/build_ext src/subscription_manager/gui/data/icons/hicolor
 
 $(VM_IMAGE): $(COCKPIT_TAR) $(SUBMAN_TAR) $(SMBEXT_TAR) bots
 	rm -f $(VM_IMAGE)
@@ -73,14 +83,11 @@ integration-test/common:
 	git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 264
 	git archive FETCH_HEAD -- test/common | tar -x -C integration-tests --strip-components=1 -f -
 
-node_modules:
-	mkdir node_modules
-
 node_modules/%: node_modules
 	npm install $*
 
-cockpit/node_modules:
-	mkdir cockpit/node_modules
-	cd cockpit/ && npm install
+node_modules:
+	mkdir node_modules
+	npm install
 
 .PHONY: check prepare reset

@@ -11,6 +11,7 @@ tar -C / -xzf subscription-manager-cockpit.tar.gz
 tar -xzf subscription-manager.tar.gz --transform 's,[^/]*,/sm,'
 cd sm
 tar xzf ../subscription-manager-build-extra.tar.gz
+mv subscription-manager/build_ext .
 python3 ./setup.py build
 # Set $RPM_BUILD_ROOT to simulate a package build, so it works fine with the
 # new Python changes in Fedora 36: https://bugzilla.redhat.com/2026979
