@@ -42,6 +42,7 @@
         "eslint-webpack-plugin": "^2.5.3",
         "gettext-parser": "^2.0.0",
         "glob": "^7.1.2",
+        "htmlparser": "^1.7.7",
         "jasmine": "^2.7.0",
         "mini-css-extract-plugin": "^0.11.0",
         "po2json": "^0.4.5",
@@ -51,6 +52,7 @@
         "sass": "^1.35.2",
         "sass-loader": "^10.0.0",
         "sizzle": "^2.3.3",
+        "stdio": "^2.1.0",
         "strict-loader": "^1.2.0",
         "string-replace-loader": "^3.0.0",
         "style-loader": "^0.18.2",
@@ -5158,6 +5160,15 @@
       "integrity": "sha1-wc56MWjIxmFAM6S194d/OyJfnDg=",
       "dev": true
     },
+    "node_modules/htmlparser": {
+      "version": "1.7.7",
+      "resolved": "https://registry.npmjs.org/htmlparser/-/htmlparser-1.7.7.tgz",
+      "integrity": "sha1-GeezmX/2+6yZrlp9J2ZInv5+LQ4=",
+      "dev": true,
+      "engines": {
+        "node": ">=0.1.33"
+      }
+    },
     "node_modules/human-signals": {
       "version": "2.1.0",
       "resolved": "https://registry.npmjs.org/human-signals/-/human-signals-2.1.0.tgz",
@@ -8990,6 +9001,12 @@
       "version": "0.1.8",
       "resolved": "https://registry.npmjs.org/stable/-/stable-0.1.8.tgz",
       "integrity": "sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==",
+      "dev": true
+    },
+    "node_modules/stdio": {
+      "version": "2.1.1",
+      "resolved": "https://registry.npmjs.org/stdio/-/stdio-2.1.1.tgz",
+      "integrity": "sha512-ZHO7SD10nZnc2pMN85MPPTCKutXPKH+7Z50B7zt/JRNAHXLbI3BidMc9HFD/j2VupZ8lQdSVJB0ebZSVXC6uXw==",
       "dev": true
     },
     "node_modules/stream-each": {
@@ -13983,6 +14000,12 @@
       "integrity": "sha1-wc56MWjIxmFAM6S194d/OyJfnDg=",
       "dev": true
     },
+    "htmlparser": {
+      "version": "1.7.7",
+      "resolved": "https://registry.npmjs.org/htmlparser/-/htmlparser-1.7.7.tgz",
+      "integrity": "sha1-GeezmX/2+6yZrlp9J2ZInv5+LQ4=",
+      "dev": true
+    },
     "human-signals": {
       "version": "2.1.0",
       "resolved": "https://registry.npmjs.org/human-signals/-/human-signals-2.1.0.tgz",
@@ -16915,6 +16938,12 @@
       "version": "0.1.8",
       "resolved": "https://registry.npmjs.org/stable/-/stable-0.1.8.tgz",
       "integrity": "sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==",
+      "dev": true
+    },
+    "stdio": {
+      "version": "2.1.1",
+      "resolved": "https://registry.npmjs.org/stdio/-/stdio-2.1.1.tgz",
+      "integrity": "sha512-ZHO7SD10nZnc2pMN85MPPTCKutXPKH+7Z50B7zt/JRNAHXLbI3BidMc9HFD/j2VupZ8lQdSVJB0ebZSVXC6uXw==",
       "dev": true
     },
     "stream-each": {
