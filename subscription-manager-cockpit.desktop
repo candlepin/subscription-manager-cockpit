@@ -1,5 +1,5 @@
 [Desktop Entry]
-_Name=Red Hat Subscription Manager
+Name=Red Hat Subscription Manager
 Icon=subscription-manager
 Type=Application
 TryExec=/usr/libexec/cockpit-desktop
