@@ -5,9 +5,6 @@ dnf install -y cockpit-ws python3-devel openssl-devel intltool gcc
 
 cd /var/tmp
 
-rm -rf /usr/share/cockpit/subscriptions
-tar -C / -xzf subscription-manager-cockpit.tar.gz
-
 tar -xzf subscription-manager.tar.gz --transform 's,[^/]*,/sm,'
 cd sm
 tar xzf ../subscription-manager-build-extra.tar.gz

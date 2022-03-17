@@ -1,0 +1,52 @@
+Name: subscription-manager-cockpit
+Version: %{VERSION}
+Release: 1%{?dist}
+Summary: Subscription Manager Cockpit UI
+Group: System Environment/Base
+License: GPLv2
+URL: https://www.candlepinproject.org/
+
+Source0: %{name}-%{version}.tar.xz
+Source1: %{name}-node-%{version}.tar.xz
+BuildArch: noarch
+BuildRequires: nodejs
+BuildRequires: make
+BuildRequires: libappstream-glib
+BuildRequires: gettext
+%if 0%{?rhel} && 0%{?rhel} <= 8
+BuildRequires: libappstream-glib-devel
+%endif
+
+Requires: subscription-manager
+Requires: cockpit-bridge
+Requires: cockpit-shell
+Requires: rhsm-icons
+# Used by desktop UI, but not necessary for web UI
+Recommends: cockpit-ws
+
+%description
+Subscription Manager Cockpit UI
+
+%prep
+%setup -q -n %{name}
+%setup -q -a 1 -n %{name}
+
+%build
+# ignore pre-built webpack in release tarball and rebuild it
+rm -rf dist
+NODE_ENV=production make
+
+%install
+%make_install
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*
+
+# drop source maps, they are large and just for debugging
+find %{buildroot}%{_datadir}/cockpit/ -name '*.map' | xargs --no-run-if-empty rm --verbose
+
+%files
+%license LICENSE
+%dir %{_datadir}/cockpit/subscription-manager
+%{_datadir}/cockpit/subscription-manager/*
+%{_datadir}/metainfo/*
+
+%changelog
