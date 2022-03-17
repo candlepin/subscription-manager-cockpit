@@ -95,6 +95,8 @@ install: $(WEBPACK_TEST) po/LINGUAS
 	msgfmt --desktop -d po \
 		--template $(DESKTOPFILE) \
 		-o $(DESTDIR)/usr/share/applications/$(DESKTOPFILE)
+	mkdir -p $(DESTDIR)/usr/share/icons/
+	cp -r src/subscription_manager/gui/data/icons/hicolor $(DESTDIR)/usr/share/icons/
 
 # this requires a built source tree and avoids having to install anything system-wide
 devel-install: $(WEBPACK_TEST)

@@ -28,6 +28,22 @@ Recommends: cockpit-ws
 %description
 Subscription Manager Cockpit UI
 
+%package -n rhsm-icons
+Summary: Icons for Red Hat Subscription Management client tools
+
+# As these two packages previously contained the icons now contained in
+# rhsm-icons package, we need to specify the logical complement to a
+# "Requires", which is "Conflicts". With any luck the underlying
+# depsolver will cause the removal of this package if the request
+# is to downgrade either of the following to a version below these
+# requirements.
+Conflicts: rhsm-gtk < 1.26.7
+Conflicts: subscription-manager-cockpit < 1.26.7
+
+%description -n rhsm-icons
+This package contains the desktop icons for the graphical interfaces provided for management
+of Red Hat subscriptions: subscription-manager-gui, subscription-manager-cockpit-plugin.
+
 %prep
 %setup -q -n %{name}
 %setup -q -a 1 -n %{name}
@@ -51,5 +67,9 @@ find %{buildroot}%{_datadir}/cockpit/ -name '*.map' | xargs --no-run-if-empty rm
 %{_datadir}/applications/*
 %{_datadir}/cockpit/subscription-manager/*
 %{_datadir}/metainfo/*
+
+%files -n rhsm-icons
+%{_datadir}/icons/hicolor/scalable/apps/*.svg
+%{_datadir}/icons/hicolor/symbolic/apps/*.svg
 
 %changelog
