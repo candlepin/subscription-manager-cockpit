@@ -12,6 +12,7 @@ TARFILE=$(RPM_NAME)-$(VERSION).tar.xz
 NODE_CACHE=$(RPM_NAME)-node-$(VERSION).tar.xz
 SPEC=$(RPM_NAME).spec
 APPSTREAMFILE=org.candlepinproject.subscription_manager.metainfo.xml
+DESKTOPFILE=subscription-manager-cockpit.desktop
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
 SUBMAN_TAR=$(CURDIR)/dist/subscription-manager.tar.gz
 SMBEXT_TAR=$(CURDIR)/dist/subscription-manager-build-extra.tar.gz
@@ -50,7 +51,10 @@ po/$(PACKAGE_NAME).manifest.pot: $(NODE_MODULES_TEST)
 po/$(PACKAGE_NAME).metainfo.pot: $(APPSTREAMFILE)
 	xgettext --default-domain=$(PACKAGE_NAME) --output=$@ $<
 
-po/$(PACKAGE_NAME).pot: po/$(PACKAGE_NAME).html.pot po/$(PACKAGE_NAME).js.pot po/$(PACKAGE_NAME).manifest.pot po/$(PACKAGE_NAME).metainfo.pot
+po/$(PACKAGE_NAME).desktop.pot: $(DESKTOPFILE)
+	xgettext --default-domain=$(PACKAGE_NAME) --language=Desktop --output=$@ $<
+
+po/$(PACKAGE_NAME).pot: po/$(PACKAGE_NAME).html.pot po/$(PACKAGE_NAME).js.pot po/$(PACKAGE_NAME).manifest.pot po/$(PACKAGE_NAME).metainfo.pot po/$(PACKAGE_NAME).desktop.pot
 	msgcat --sort-output --output-file=$@ $^
 
 po/LINGUAS:
@@ -87,6 +91,10 @@ install: $(WEBPACK_TEST) po/LINGUAS
 	msgfmt --xml -d po \
 		--template $(APPSTREAMFILE) \
 		-o $(DESTDIR)/usr/share/metainfo/$(APPSTREAMFILE)
+	mkdir -p $(DESTDIR)/usr/share/applications/
+	msgfmt --desktop -d po \
+		--template $(DESKTOPFILE) \
+		-o $(DESTDIR)/usr/share/applications/$(DESKTOPFILE)
 
 # this requires a built source tree and avoids having to install anything system-wide
 devel-install: $(WEBPACK_TEST)
@@ -111,6 +119,7 @@ dist: $(TARFILE)
 $(TARFILE): export NODE_ENV=production
 $(TARFILE): $(WEBPACK_TEST) $(SPEC)
 	if type appstream-util >/dev/null 2>&1; then appstream-util validate-relax --nonet *.metainfo.xml; fi
+	if type desktop-file-validate >/dev/null 2>&1; then desktop-file-validate *.desktop; fi
 	touch -r package.json $(NODE_MODULES_TEST)
 	touch dist/*
 	tar --xz $(TAR_ARGS) -cf $(TARFILE) --transform 's,^,$(RPM_NAME)/,' \

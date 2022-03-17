@@ -13,6 +13,7 @@ BuildRequires: nodejs
 BuildRequires: make
 BuildRequires: libappstream-glib
 BuildRequires: gettext
+BuildRequires: desktop-file-utils
 %if 0%{?rhel} && 0%{?rhel} <= 8
 BuildRequires: libappstream-glib-devel
 %endif
@@ -39,6 +40,7 @@ NODE_ENV=production make
 %install
 %make_install
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*
+desktop-file-validate %{buildroot}/%{_datadir}/applications/*
 
 # drop source maps, they are large and just for debugging
 find %{buildroot}%{_datadir}/cockpit/ -name '*.map' | xargs --no-run-if-empty rm --verbose
@@ -46,6 +48,7 @@ find %{buildroot}%{_datadir}/cockpit/ -name '*.map' | xargs --no-run-if-empty rm
 %files
 %license LICENSE
 %dir %{_datadir}/cockpit/subscription-manager
+%{_datadir}/applications/*
 %{_datadir}/cockpit/subscription-manager/*
 %{_datadir}/metainfo/*
 
