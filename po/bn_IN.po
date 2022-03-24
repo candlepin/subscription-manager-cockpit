@@ -1,0 +1,632 @@
+# Runa Bhattacharjee <runab@fedoraproject.org>, 2011. #zanata
+# bnin <sray@redhat.com>, 2014. #zanata
+# John Sefler <jsefler@redhat.com>, 2015. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: rhsm\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-31 11:13+0200\n"
+"PO-Revision-Date: 2015-09-25 03:30-0400\n"
+"Last-Translator: John Sefler <jsefler@redhat.com>\n"
+"Language-Team: Bengali (India)\n"
+"Language: bn-IN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Zanata 3.9.6\n"
+
+#: src/insights.jsx:493
+msgid "$0 critical hit"
+msgid_plural "$0 hits, including critical"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/insights.jsx:514
+msgid "$0 hit"
+msgid_plural "$0 hits"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/insights.jsx:498
+msgid "$0 important hit"
+msgid_plural "$0 hits, including important"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/insights.jsx:508
+msgid "$0 low severity hit"
+msgid_plural "$0 low severity hits"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/insights.jsx:503
+msgid "$0 moderate hit"
+msgid_plural "$0 hits, including moderate"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/insights.jsx:149
+msgid "$0 package needs to be removed."
+msgid_plural "$0 packages need to be removed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/subscriptions-view.jsx:514
+msgid "Access denied"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-register.jsx:163
+msgid "Account"
+msgstr "অ্যাকাউন্ট"
+
+#: src/subscriptions-register.jsx:127
+msgid "Activation Key"
+msgstr ""
+
+#: src/subscriptions-register.jsx:168
+msgid "Activation key"
+msgstr ""
+
+#: src/subscriptions-view.jsx:363
+msgid "Add-ons"
+msgstr ""
+
+#: src/insights.jsx:163
+msgid "Additional packages:"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-view.jsx:187
+msgid "Arch"
+msgstr "আর্কিটেকচার"
+
+#: src/subscriptions-register.jsx:176
+msgid "Attach automatically"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:42 src/subscriptions-view.jsx:61
+#: src/subscriptions-view.jsx:67
+msgid "Auto-attach"
+msgstr "Auto-attach"
+
+#: src/subscriptions-view.jsx:55
+msgid "Auto-attaching ..."
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/insights.jsx:417
+msgid "Cancel"
+msgstr "বাতিল"
+
+#: src/insights.jsx:190 src/insights.jsx:269
+msgid "Checking installed software"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/insights.jsx:409 src/insights.jsx:428
+msgid "Close"
+msgstr "বন্ধ করুন"
+
+#: src/insights.jsx:237
+msgid "Connect"
+msgstr ""
+
+#: src/subscriptions-register.jsx:87
+msgid "Connect this system to $0."
+msgstr ""
+
+#: src/insights.jsx:224
+msgid "Connect to Red Hat Insights"
+msgstr ""
+
+#: src/insights.jsx:527
+msgid "Connected to Insights"
+msgstr ""
+
+#: src/insights.jsx:369
+msgid "Connected to Red Hat Insights"
+msgstr ""
+
+#: src/insights.jsx:83
+msgid "Connecting to Insights"
+msgstr ""
+
+#: src/subscriptions-view.jsx:422
+msgid ""
+"Content Access Mode is set to Simple Content Access. This host has access to "
+"content, regardless of subscription status."
+msgstr ""
+
+#: src/subscriptions-view.jsx:307
+msgid ""
+"Content Access Mode is set to Simple Content Access. This host has access to "
+"content, regardless of system purpose status."
+msgstr ""
+
+#: src/subscriptions-client.js:525
+msgid "Corrupted JSON with status"
+msgstr ""
+
+#: src/subscriptions-view.jsx:519
+msgid ""
+"Couldn't get system subscription status. Please ensure subscription-manager "
+msgstr ""
+
+#: src/subscriptions-register.jsx:143
+msgid "Custom URL"
+msgstr ""
+
+#: src/subscriptions-register.jsx:142
+msgid "Default"
+msgstr ""
+
+#: src/insights.jsx:177 src/insights.jsx:389 src/insights.jsx:394
+msgid "Details"
+msgstr ""
+
+#: src/insights.jsx:397 src/insights.jsx:401
+msgid "Disconnect from Insights"
+msgstr ""
+
+#: src/insights.jsx:203
+msgid "Downloading $0"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author bnin
+#: src/subscriptions-view.jsx:203
+#, fuzzy
+#| msgid "Ends:"
+msgid "Ends"
+msgstr "সমাপ্তি:"
+
+#: src/insights.jsx:399
+msgid ""
+"If you disconnect this system from Insights, it will no longer report it's "
+"Insights status in Red Hat Cloud or Satellite."
+msgstr ""
+
+#: src/insights.jsx:544 src/subscriptions-register.jsx:85
+msgid "Insights"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:226 src/subscriptions-view.jsx:230
+#, fuzzy
+#| msgid "Installed Products"
+msgid "Installed products"
+msgstr "ইনস্টল করা উৎপাদন"
+
+#: src/insights.jsx:207
+msgid "Installing $0"
+msgstr ""
+
+#: src/insights.jsx:380
+msgid "Last Insights data upload"
+msgstr ""
+
+#: org.candlepinproject.subscription_manager.metainfo.xml:8
+msgid ""
+"Manage subscriptions to a Candlepin backend, such as for Red Hat products."
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/manifest.json:0
+#, fuzzy
+#| msgid "Attaching subscriptions"
+msgid "Managing subscriptions"
+msgstr "সাবস্ক্রিপশন সংযুক্ত করা হয়েছে"
+
+#: src/subscriptions-register.jsx:159
+msgid "Method"
+msgstr ""
+
+#: src/insights.jsx:375
+msgid "Next Insights data upload"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:233
+#, fuzzy
+#| msgid "No installed products detected."
+msgid "No installed products detected"
+msgstr "ইনস্টল করা কোনো উৎপাদন সনাক্ত করা যায়নি।"
+
+#: src/insights.jsx:485
+msgid "No rule hits"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author bnin
+#: src/subscriptions-view.jsx:381
+#, fuzzy
+#| msgid "System Status Details"
+msgid "No system purpose attributes set"
+msgstr "সিস্টেম স্ট্যাটাসের বিস্তারিত"
+
+#: src/insights.jsx:539
+msgid "Not connected"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author bnin
+#: src/subscriptions-view.jsx:406
+#, fuzzy
+#| msgid "System is not registered."
+msgid "Not registered"
+msgstr "সিস্টেমটি নিবন্ধিত নয়।"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:121
+#, fuzzy
+#| msgid "Not Subscribed"
+msgid "Not subscribed"
+msgstr "সাবস্ক্রাইব করা নয়"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:123
+#, fuzzy
+#| msgid "Not Subscribed"
+msgid "Not subscribed ($0)"
+msgstr "সাবস্ক্রাইব করা নয়"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-view.jsx:462 src/subscriptions-register.jsx:117
+msgid "Organization"
+msgstr "প্রতিষ্ঠান"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author bnin
+#: src/subscriptions-register.jsx:132
+#, fuzzy
+#| msgid "Organization: "
+msgid "Organization ID"
+msgstr "প্রতিষ্ঠান: "
+
+#: src/subscriptions-view.jsx:449
+msgid "Overview"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-view.jsx:115
+#, fuzzy
+#| msgid "Partially Subscribed"
+msgid "Partially subscribed"
+msgstr "আংশিক সাবস্ক্রিপশন উপস্থিত"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-view.jsx:117
+#, fuzzy
+#| msgid "Partially Subscribed"
+msgid "Partially subscribed ($0)"
+msgstr "আংশিক সাবস্ক্রিপশন উপস্থিত"
+
+#: src/subscriptions-register.jsx:112
+msgid "Password"
+msgstr ""
+
+#: src/subscriptions-view.jsx:313 src/subscriptions-view.jsx:428
+msgid "Popover with explanation of SCA mode"
+msgstr ""
+
+#: src/insights.jsx:121
+msgid ""
+"Proactively identify and remediate threats to security, performance, "
+"availability, and stability with Red Hat Insights — with predictive "
+"analytics, avoid problems and unplanned downtime in your Red Hat environment."
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author bnin
+#: src/subscriptions-view.jsx:179
+#, fuzzy
+#| msgid "Product ID:"
+msgid "Product ID"
+msgstr "প্রোডাক্ট ID:"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author bnin
+#: src/subscriptions-view.jsx:74 src/subscriptions-view.jsx:175
+#, fuzzy
+#| msgid "Product Name:"
+msgid "Product name"
+msgstr "প্রোডাক্টের নাম:"
+
+#: src/subscriptions-register.jsx:55
+msgid "Proxy Location"
+msgstr ""
+
+#: src/subscriptions-register.jsx:67
+msgid "Proxy Password"
+msgstr ""
+
+#: src/subscriptions-register.jsx:61
+msgid "Proxy Username"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: subscription-manager-cockpit.desktop:3
+msgid "Red Hat Subscription Manager"
+msgstr "Red Hat Subscription Manager"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:408 src/index.js:64
+msgid "Register"
+msgstr "নিবন্ধন"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/index.js:100
+msgid "Register System"
+msgstr "সিস্টেম নিবন্ধন"
+
+#: src/subscriptions-client.js:336
+msgid "Registering using activation key ..."
+msgstr ""
+
+#: src/subscriptions-client.js:358
+msgid "Registering using username and password ..."
+msgstr ""
+
+#: src/insights.jsx:171
+msgid "Removals:"
+msgstr ""
+
+#: src/insights.jsx:205
+msgid "Removing $0"
+msgstr ""
+
+#: src/subscriptions-view.jsx:507
+#, fuzzy
+#| msgid "Removing subscription. Please wait."
+msgid "Retrieving subscription status..."
+msgstr "সাবস্ক্রিপশন মোছা হচ্ছে। দয়া করে অপেক্ষা করুন।"
+
+#: src/subscriptions-view.jsx:357
+msgid "Role"
+msgstr ""
+
+#: src/subscriptions-client.js:411
+msgid "Saving configuration ..."
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:345
+#, fuzzy
+#| msgid "Service Level"
+msgid "Service level"
+msgstr "পরিসেবার স্তর"
+
+#: src/subscriptions-client.js:317
+msgid "Starting registration service ..."
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author bnin
+#: src/subscriptions-view.jsx:199
+#, fuzzy
+#| msgid "Starts:"
+msgid "Starts"
+msgstr "অারম্ভ:"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:195 src/subscriptions-view.jsx:339
+#: src/subscriptions-view.jsx:374
+msgid "Status"
+msgstr "অবস্থা"
+
+#: src/subscriptions-client.js:387
+msgid "Stopping registration service ..."
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:111
+msgid "Subscribed"
+msgstr "সাবস্ক্রাইব করা"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: org.candlepinproject.subscription_manager.metainfo.xml:5
+msgid "Subscription Manager"
+msgstr "সাবস্ক্রিপশন পরিচালনা"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: org.candlepinproject.subscription_manager.metainfo.xml:6
+#, fuzzy
+#| msgid "Subscription Manager - Facts"
+msgid "Subscription Manager in Cockpit"
+msgstr "Subscription Manager - সংবাদ"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author bnin
+#: src/subscriptions-view.jsx:455
+#, fuzzy
+#| msgid "Subscription "
+msgid "Subscription status"
+msgstr "সাবস্ক্রিপশন "
+
+#: src/index.html:22 src/subscriptions-register.jsx:174 src/manifest.json:0
+msgid "Subscriptions"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-view.jsx:320 src/subscriptions-view.jsx:435
+#, fuzzy
+#| msgid "Subscription Registration"
+msgid "Subscriptions information"
+msgstr "সাবস্ক্রিপশন নিবন্ধন"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author bnin
+#: src/subscriptions-view.jsx:392
+#, fuzzy
+#| msgid "System Type:"
+msgid "System purpose"
+msgstr "সিস্টেমের ধরন:"
+
+#: src/insights.jsx:141
+msgid "The $0 package and $1 other package will be installed."
+msgid_plural "The $0 package and $1 other packages will be installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/insights.jsx:67 src/insights.jsx:277
+msgid "The $0 package is not available from any repository."
+msgstr ""
+
+#: src/insights.jsx:139 src/subscriptions-register.jsx:94
+msgid "The $0 package will be installed."
+msgstr ""
+
+#: src/subscriptions-view.jsx:515
+msgid "The current user isn't allowed to access system subscription status."
+msgstr ""
+
+#: src/insights.jsx:364
+msgid "The last Insights data upload has failed."
+msgstr ""
+
+#: src/subscriptions-view.jsx:509
+msgid ""
+"The rhsm service is unavailable. Make sure subscription-manager is installed "
+msgstr ""
+
+#: src/insights.jsx:70
+msgid ""
+"The system could not be connected to Insights because installing the $0 "
+"package requires the unexpected removal of other packages."
+msgstr ""
+
+#: src/insights.jsx:227
+msgid "This system is not connected to $0."
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-register.jsx:147
+msgid "URL"
+msgstr "URL"
+
+#: src/subscriptions-view.jsx:517
+#, fuzzy
+#| msgid "Unable to continue migration!"
+msgid "Unable to connect"
+msgstr "স্থানান্তর অবিরত রাখতে অক্ষম!"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-view.jsx:512
+#, fuzzy
+#| msgid "Unable to reach the server at %s:%s%s"
+msgid "Unable to the reach the rhsm service."
+msgstr "%s:%s%s-এ উপস্থিত সার্ভারের সাথে সংযোগ করতে সমস্যা"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-view.jsx:133 src/subscriptions-view.jsx:139
+#: src/subscriptions-client.js:541
+msgid "Unknown"
+msgstr "অজানা"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-view.jsx:128
+#, fuzzy
+#| msgid "Unknown"
+msgid "Unknown status"
+msgstr "অজানা"
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author Runa Bhattacharjee
+#: src/subscriptions-view.jsx:415
+#, fuzzy
+#| msgid "_Unregister"
+msgid "Unregister"
+msgstr "নিবন্ধন বাতিল করুন (_U)"
+
+#: src/subscriptions-view.jsx:415 src/subscriptions-client.js:449
+msgid "Unregistering"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:506
+#, fuzzy
+#| msgid "Update"
+msgid "Updating"
+msgstr "আপডেট করুন"
+
+#: src/subscriptions-client.js:431
+msgid "Updating status ..."
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:351
+msgid "Usage"
+msgstr "ব্যবহার প্রণালী"
+
+#: src/subscriptions-register.jsx:155
+msgid "Use proxy server"
+msgstr ""
+
+#: src/subscriptions-register.jsx:107
+msgid "Username"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys
+#: src/subscriptions-view.jsx:183
+msgid "Version"
+msgstr "সংস্করণ"
+
+#: src/insights.jsx:521
+msgid "View your Insights results"
+msgstr ""
+
+#: src/insights.jsx:188 src/insights.jsx:199 src/insights.jsx:267
+msgid "Waiting for other software management operations to finish"
+msgstr ""
+
+#: src/manifest.json:0
+msgid "candlepin"
+msgstr ""
+
+#: src/subscriptions-client.js:488
+msgid "not-found"
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X,
+# document keys, author bnin
+#: src/manifest.json:0
+#, fuzzy
+#| msgid "Subscriptions:"
+msgid "subscriptions"
+msgstr "সাবস্ক্রিপশন:"
+
+#: src/insights.jsx:311
+msgid "unknown"
+msgstr ""

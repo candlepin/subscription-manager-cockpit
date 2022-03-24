@@ -1,0 +1,564 @@
+# amoewaki <amoewaki@redhat.com>, 2017. #zanata
+# ljanda <ljanda@redhat.com>, 2017. #zanata
+# John Sefler <jsefler@redhat.com>, 2018. #zanata
+# ljanda <ljanda@redhat.com>, 2018. #zanata
+# myamamot <myamamot@redhat.com>, 2018. #zanata
+# Ludek Janda <ljanda@redhat.com>, 2021, 2022.
+# Sundeep Anand <suanand@redhat.com>, 2021, 2022.
+# Pino Toscano <ptoscano@redhat.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: rhsm\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-31 11:13+0200\n"
+"PO-Revision-Date: 2022-02-09 14:16+0000\n"
+"Last-Translator: Sundeep Anand <suanand@redhat.com>\n"
+"Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
+"subscription-manager/subscription-manager-main/ja/>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.10.1\n"
+
+#: src/insights.jsx:493
+msgid "$0 critical hit"
+msgid_plural "$0 hits, including critical"
+msgstr[0] "「重大な影響」を含む $0 件が該当"
+
+#: src/insights.jsx:514
+msgid "$0 hit"
+msgid_plural "$0 hits"
+msgstr[0] "$0 ヒット"
+
+#: src/insights.jsx:498
+msgid "$0 important hit"
+msgid_plural "$0 hits, including important"
+msgstr[0] "「重要な影響」を含む $0 件が該当"
+
+#: src/insights.jsx:508
+msgid "$0 low severity hit"
+msgid_plural "$0 low severity hits"
+msgstr[0] "「低度の影響」を含む $0 件が該当"
+
+#: src/insights.jsx:503
+msgid "$0 moderate hit"
+msgid_plural "$0 hits, including moderate"
+msgstr[0] "「中程度の影響」を含む $0 件が該当"
+
+#: src/insights.jsx:149
+msgid "$0 package needs to be removed."
+msgid_plural "$0 packages need to be removed."
+msgstr[0] "$0 パッケージは削除する必要があります。"
+
+#: src/subscriptions-view.jsx:514
+msgid "Access denied"
+msgstr "アクセスは拒否されました"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-register.jsx:163
+msgid "Account"
+msgstr "アカウント"
+
+#: src/subscriptions-register.jsx:127
+msgid "Activation Key"
+msgstr "アクティベーションキー"
+
+#: src/subscriptions-register.jsx:168
+msgid "Activation key"
+msgstr "アクティベーションキー"
+
+#: src/subscriptions-view.jsx:363
+msgid "Add-ons"
+msgstr "アドオン"
+
+#: src/insights.jsx:163
+msgid "Additional packages:"
+msgstr "追加のパッケージ:"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author khasida
+#: src/subscriptions-view.jsx:187
+msgid "Arch"
+msgstr "アーキテクチャー"
+
+#: src/subscriptions-register.jsx:176
+msgid "Attach automatically"
+msgstr "自動割り当て"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-view.jsx:42 src/subscriptions-view.jsx:61
+#: src/subscriptions-view.jsx:67
+msgid "Auto-attach"
+msgstr "自動割り当て"
+
+#: src/subscriptions-view.jsx:55
+msgid "Auto-attaching ..."
+msgstr "自動割り当てしています..."
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/insights.jsx:417
+msgid "Cancel"
+msgstr "取り消し"
+
+#: src/insights.jsx:190 src/insights.jsx:269
+msgid "Checking installed software"
+msgstr "インストールされたソフトウェアの確認中"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/insights.jsx:409 src/insights.jsx:428
+msgid "Close"
+msgstr "閉じる"
+
+#: src/insights.jsx:237
+msgid "Connect"
+msgstr "接続"
+
+#: src/subscriptions-register.jsx:87
+msgid "Connect this system to $0."
+msgstr "このシステムを $0 に接続します。"
+
+#: src/insights.jsx:224
+msgid "Connect to Red Hat Insights"
+msgstr "Red Hat Insights に接続"
+
+#: src/insights.jsx:527
+msgid "Connected to Insights"
+msgstr "Insights に接続済み"
+
+#: src/insights.jsx:369
+msgid "Connected to Red Hat Insights"
+msgstr "Red Hat Insights に接続済みです"
+
+#: src/insights.jsx:83
+msgid "Connecting to Insights"
+msgstr "Insights への接続"
+
+#: src/subscriptions-view.jsx:422
+msgid ""
+"Content Access Mode is set to Simple Content Access. This host has access to "
+"content, regardless of subscription status."
+msgstr ""
+"コンテンツアクセスモードは、シンプルコンテンツアクセスに設定されています。こ"
+"のホストは、サブスクリプションのステータスに関係なく、コンテンツにアクセスで"
+"きます。"
+
+#: src/subscriptions-view.jsx:307
+msgid ""
+"Content Access Mode is set to Simple Content Access. This host has access to "
+"content, regardless of system purpose status."
+msgstr ""
+"コンテンツアクセスモードは、シンプルコンテンツアクセスに設定されています。こ"
+"のホストは、システムの目的のステータスに関係なく、コンテンツにアクセスできま"
+"す。"
+
+#: src/subscriptions-client.js:525
+msgid "Corrupted JSON with status"
+msgstr "ステータスを持つ破損した JSON"
+
+#: src/subscriptions-view.jsx:519
+#, fuzzy
+#| msgid ""
+#| "Couldn't get system subscription status. Please ensure subscription-"
+#| "manager is installed."
+msgid ""
+"Couldn't get system subscription status. Please ensure subscription-manager "
+msgstr ""
+"システムサブスクリプションステータスを取得できませんでした。subscription-"
+"manager がインストールされていることを確認してください。"
+
+#: src/subscriptions-register.jsx:143
+msgid "Custom URL"
+msgstr "カスタム URL"
+
+#: src/subscriptions-register.jsx:142
+msgid "Default"
+msgstr "デフォルト"
+
+#: src/insights.jsx:177 src/insights.jsx:389 src/insights.jsx:394
+msgid "Details"
+msgstr "詳細"
+
+#: src/insights.jsx:397 src/insights.jsx:401
+msgid "Disconnect from Insights"
+msgstr "Insights からの切断"
+
+#: src/insights.jsx:203
+msgid "Downloading $0"
+msgstr "$0 をダウンロード中"
+
+#: src/subscriptions-view.jsx:203
+msgid "Ends"
+msgstr "終了"
+
+#: src/insights.jsx:399
+msgid ""
+"If you disconnect this system from Insights, it will no longer report it's "
+"Insights status in Red Hat Cloud or Satellite."
+msgstr ""
+"このシステムを Insights から切断すると、Red Hat Cloud または Satellite に "
+"Insights のステータスが報告されなくなります。"
+
+#: src/insights.jsx:544 src/subscriptions-register.jsx:85
+msgid "Insights"
+msgstr "Insights"
+
+#: src/subscriptions-view.jsx:226 src/subscriptions-view.jsx:230
+msgid "Installed products"
+msgstr "インストール済みの製品"
+
+#: src/insights.jsx:207
+msgid "Installing $0"
+msgstr "$0 をインストール中"
+
+#: src/insights.jsx:380
+msgid "Last Insights data upload"
+msgstr "最後の Insights データのアップロード"
+
+#: org.candlepinproject.subscription_manager.metainfo.xml:8
+msgid ""
+"Manage subscriptions to a Candlepin backend, such as for Red Hat products."
+msgstr ""
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/manifest.json:0
+#, fuzzy
+#| msgid "Attaching subscriptions"
+msgid "Managing subscriptions"
+msgstr "サブスクリプションを割り当てています"
+
+#: src/subscriptions-register.jsx:159
+msgid "Method"
+msgstr "メソッド"
+
+#: src/insights.jsx:375
+msgid "Next Insights data upload"
+msgstr "次の Insights データのアップロード"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-view.jsx:233
+msgid "No installed products detected"
+msgstr "インストール済みの製品は検出されませんでした"
+
+#: src/insights.jsx:485
+msgid "No rule hits"
+msgstr "ルールヒットなし"
+
+#: src/subscriptions-view.jsx:381
+msgid "No system purpose attributes set"
+msgstr "設定されているシステム目的属性なし"
+
+#: src/insights.jsx:539
+msgid "Not connected"
+msgstr "接続していません"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author noriko
+#: src/subscriptions-view.jsx:406
+msgid "Not registered"
+msgstr "登録されていません"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-view.jsx:121
+msgid "Not subscribed"
+msgstr "サブスクライブなし"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-view.jsx:123
+msgid "Not subscribed ($0)"
+msgstr "サブスクライブなし ($0)"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author khasida
+#: src/subscriptions-view.jsx:462 src/subscriptions-register.jsx:117
+msgid "Organization"
+msgstr "組織"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author noriko
+#: src/subscriptions-register.jsx:132
+#, fuzzy
+#| msgid "Organization: "
+msgid "Organization ID"
+msgstr "組織: "
+
+#: src/subscriptions-view.jsx:449
+msgid "Overview"
+msgstr "概要"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author khasida
+#: src/subscriptions-view.jsx:115
+msgid "Partially subscribed"
+msgstr "部分的にサブスクライブ済み"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author khasida
+#: src/subscriptions-view.jsx:117
+msgid "Partially subscribed ($0)"
+msgstr "部分的にサブスクライブ済み ($0)"
+
+#: src/subscriptions-register.jsx:112
+msgid "Password"
+msgstr "パスワード"
+
+#: src/subscriptions-view.jsx:313 src/subscriptions-view.jsx:428
+msgid "Popover with explanation of SCA mode"
+msgstr "SCA モードの説明のあるポップアップ"
+
+#: src/insights.jsx:121
+msgid ""
+"Proactively identify and remediate threats to security, performance, "
+"availability, and stability with Red Hat Insights — with predictive "
+"analytics, avoid problems and unplanned downtime in your Red Hat environment."
+msgstr ""
+"Red Hat Insights を使用することで、セキュリティ、パフォーマンス、可用性、安定"
+"性に対する脅威を積極的に特定し、修正することができます。予測分析により、Red "
+"Hat 環境における問題や計画外のダウンタイムを回避します。"
+
+#: src/subscriptions-view.jsx:179
+msgid "Product ID"
+msgstr "製品 ID"
+
+#: src/subscriptions-view.jsx:74 src/subscriptions-view.jsx:175
+msgid "Product name"
+msgstr "製品名"
+
+#: src/subscriptions-register.jsx:55
+msgid "Proxy Location"
+msgstr "プロキシーの場所"
+
+#: src/subscriptions-register.jsx:67
+msgid "Proxy Password"
+msgstr "プロキシーパスワード"
+
+#: src/subscriptions-register.jsx:61
+msgid "Proxy Username"
+msgstr "プロキシーユーザー名"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: subscription-manager-cockpit.desktop:3
+msgid "Red Hat Subscription Manager"
+msgstr "Red Hat サブスクリプションマネージャー"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-view.jsx:408 src/index.js:64
+msgid "Register"
+msgstr "登録"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/index.js:100
+msgid "Register System"
+msgstr "システムの登録"
+
+#: src/subscriptions-client.js:336
+msgid "Registering using activation key ..."
+msgstr "アクティベーションキーで登録中..."
+
+#: src/subscriptions-client.js:358
+msgid "Registering using username and password ..."
+msgstr "ユーザー名とパスワードで登録中..."
+
+#: src/insights.jsx:171
+msgid "Removals:"
+msgstr "削除:"
+
+#: src/insights.jsx:205
+msgid "Removing $0"
+msgstr "$0 を削除中"
+
+#: src/subscriptions-view.jsx:507
+msgid "Retrieving subscription status..."
+msgstr "サブスクリプションステータスを再取得中 ..."
+
+#: src/subscriptions-view.jsx:357
+msgid "Role"
+msgstr "ロール"
+
+#: src/subscriptions-client.js:411
+msgid "Saving configuration ..."
+msgstr "設定を保存中..."
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-view.jsx:345
+msgid "Service level"
+msgstr "サービスレベル"
+
+#: src/subscriptions-client.js:317
+msgid "Starting registration service ..."
+msgstr "登録サービスを開始中..."
+
+#: src/subscriptions-view.jsx:199
+msgid "Starts"
+msgstr "開始"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-view.jsx:195 src/subscriptions-view.jsx:339
+#: src/subscriptions-view.jsx:374
+msgid "Status"
+msgstr "状態"
+
+#: src/subscriptions-client.js:387
+msgid "Stopping registration service ..."
+msgstr "登録サービスを停止中..."
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-view.jsx:111
+msgid "Subscribed"
+msgstr "サブスクライブ済み"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: org.candlepinproject.subscription_manager.metainfo.xml:5
+msgid "Subscription Manager"
+msgstr "サブスクリプションマネージャー"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: org.candlepinproject.subscription_manager.metainfo.xml:6
+#, fuzzy
+#| msgid "Subscription Manager - Facts"
+msgid "Subscription Manager in Cockpit"
+msgstr "サブスクリプションマネージャー - 情報"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author noriko
+#: src/subscriptions-view.jsx:455
+msgid "Subscription status"
+msgstr "サブスクリプションのステータス"
+
+#: src/index.html:22 src/subscriptions-register.jsx:174 src/manifest.json:0
+msgid "Subscriptions"
+msgstr "サブスクリプション"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author khasida
+#: src/subscriptions-view.jsx:320 src/subscriptions-view.jsx:435
+msgid "Subscriptions information"
+msgstr "サブスクリプション情報"
+
+#: src/subscriptions-view.jsx:392
+msgid "System purpose"
+msgstr "システムの目的"
+
+#: src/insights.jsx:141
+msgid "The $0 package and $1 other package will be installed."
+msgid_plural "The $0 package and $1 other packages will be installed."
+msgstr[0] "$0 パッケージや $1 のその他のパッケージがインストールされます。"
+
+#: src/insights.jsx:67 src/insights.jsx:277
+msgid "The $0 package is not available from any repository."
+msgstr "$0 パッケージは、あらゆるリポジトリーから利用できません。"
+
+#: src/insights.jsx:139 src/subscriptions-register.jsx:94
+msgid "The $0 package will be installed."
+msgstr "$0 パッケージがインストールされます。"
+
+#: src/subscriptions-view.jsx:515
+msgid "The current user isn't allowed to access system subscription status."
+msgstr ""
+"現在のユーザーには、システムサブスクリプションステータスへのアクセスが許可さ"
+"れていません。"
+
+#: src/insights.jsx:364
+msgid "The last Insights data upload has failed."
+msgstr "最後の Insights データのアップロードに失敗しました。"
+
+#: src/subscriptions-view.jsx:509
+#, fuzzy
+#| msgid ""
+#| "Couldn't get system subscription status. Please ensure subscription-"
+#| "manager is installed."
+msgid ""
+"The rhsm service is unavailable. Make sure subscription-manager is installed "
+msgstr ""
+"システムサブスクリプションステータスを取得できませんでした。subscription-"
+"manager がインストールされていることを確認してください。"
+
+#: src/insights.jsx:70
+msgid ""
+"The system could not be connected to Insights because installing the $0 "
+"package requires the unexpected removal of other packages."
+msgstr ""
+"$0 パッケージをインストールすると、他のパッケージの予期せぬ削除が必要になるた"
+"め、システムが Insights に接続できませんでした。"
+
+#: src/insights.jsx:227
+msgid "This system is not connected to $0."
+msgstr "このシステムは $0 に接続されていません。"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-register.jsx:147
+msgid "URL"
+msgstr "URL"
+
+#: src/subscriptions-view.jsx:517
+msgid "Unable to connect"
+msgstr "接続できません"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author noriko
+#: src/subscriptions-view.jsx:512
+msgid "Unable to the reach the rhsm service."
+msgstr "rhsm サービスに到達できません。"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author khasida
+#: src/subscriptions-view.jsx:133 src/subscriptions-view.jsx:139
+#: src/subscriptions-client.js:541
+msgid "Unknown"
+msgstr "不明"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys, author khasida
+#: src/subscriptions-view.jsx:128
+msgid "Unknown status"
+msgstr "不明なステータス"
+
+#: src/subscriptions-view.jsx:415
+msgid "Unregister"
+msgstr "登録解除"
+
+#: src/subscriptions-view.jsx:415 src/subscriptions-client.js:449
+msgid "Unregistering"
+msgstr "登録の解除中"
+
+#: src/subscriptions-view.jsx:506
+msgid "Updating"
+msgstr "更新中"
+
+#: src/subscriptions-client.js:431
+msgid "Updating status ..."
+msgstr "ステータスを更新中..."
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-view.jsx:351
+msgid "Usage"
+msgstr "使用方法"
+
+#: src/subscriptions-register.jsx:155
+msgid "Use proxy server"
+msgstr "プロキシサーバーを使用"
+
+#: src/subscriptions-register.jsx:107
+msgid "Username"
+msgstr "ユーザー名"
+
+# translation auto-copied from project subscription-manager, version 1.9.X, document keys
+#: src/subscriptions-view.jsx:183
+msgid "Version"
+msgstr "バージョン"
+
+#: src/insights.jsx:521
+msgid "View your Insights results"
+msgstr "Insights の結果を表示"
+
+#: src/insights.jsx:188 src/insights.jsx:199 src/insights.jsx:267
+msgid "Waiting for other software management operations to finish"
+msgstr "他のソフトウェア管理オペレーションが終了するまで待機中"
+
+#: src/manifest.json:0
+msgid "candlepin"
+msgstr ""
+
+#: src/subscriptions-client.js:488
+msgid "not-found"
+msgstr "見つかりません"
+
+#: src/manifest.json:0
+#, fuzzy
+#| msgid "Subscriptions"
+msgid "subscriptions"
+msgstr "サブスクリプション"
+
+#: src/insights.jsx:311
+msgid "unknown"
+msgstr "不明"
