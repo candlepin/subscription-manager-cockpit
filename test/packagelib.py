@@ -23,9 +23,9 @@ from testlib import *
 
 class PackageCase(MachineCase):
     def setUp(self):
-        super(PackageCase, self).setUp()
+        super().setUp()
 
-        self.repo_dir = "/var/tmp/repo"
+        self.repo_dir = os.path.join(self.vm_tmpdir, "repo")
 
         if self.machine.ostree_image:
             warnings.warn("PackageCase: OSTree images can't install additional packages")
@@ -36,59 +36,76 @@ class PackageCase(MachineCase):
             self.backend = "apt"
             self.primary_arch = "all"
             self.secondary_arch = "amd64"
-        elif self.machine.image.startswith("fedora") or self.machine.image.startswith("rhel") or self.machine.image.startswith("centos-8"):
+        elif self.machine.image.startswith("fedora") or self.machine.image.startswith("rhel-") or self.machine.image.startswith("centos-"):
             self.backend = "dnf"
             self.primary_arch = "noarch"
+            self.secondary_arch = "x86_64"
+        elif self.machine.image == "arch":
+            self.backend = "alpm"
+            self.primary_arch = "any"
             self.secondary_arch = "x86_64"
         else:
             raise NotImplementedError("unknown image " + self.machine.image)
 
-        # PackageKit refuses to work when offline
-        if self.image in ["ubuntu-1804", "ubuntu-stable"]:
-            # just waiting for NM to get online does not suffice on these images. So disable NM and let PackageKit fall
-            # back to the "unix" network stack; add a bogus default route to coerce it into being "online".
-            self.machine.execute("systemctl disable --now NetworkManager; ip route add default via 172.27.0.1 dev eth0")
-        else:
-            # PackageKit refuses to work when offline; unfortunately nm-online does not wait enough
-            # https://developer.gnome.org/NetworkManager/unstable/nm-dbus-types.html#NMConnectivityState
-            self.machine.execute('''
-                while [ "$(busctl get-property org.freedesktop.NetworkManager /org/freedesktop/NetworkManager \
-                                               org.freedesktop.NetworkManager Connectivity | cut -f2 -d' ')" -lt 3 ]; do sleep 1; done
-            ''')
+        if "debian" in self.image or "ubuntu" in self.image:
+            # PackageKit refuses to work when offline, and main interface is not managed by NM on these images
+            self.machine.execute("nmcli con add type dummy con-name fake ifname fake0 ip4 1.2.3.4/24 gw4 1.2.3.1")
+            self.addCleanup(self.machine.execute, "nmcli con delete fake")
+
+        # HACK: packagekit often hangs on shutdown; https://bugzilla.redhat.com/show_bug.cgi?id=1717185
+        self.machine.execute("mkdir -p /etc/systemd/system/packagekit.service.d")
+        self.write_file("/etc/systemd/system/packagekit.service.d/timeout.conf", "[Service]\nTimeoutStopSec=5\n")
 
         # disable all existing repositories to avoid hitting the network
         if self.backend == "apt":
-            self.machine.execute("""
-                mv /etc/apt/sources.list.d /etc/apt/sources.list.d.test;
-                mkdir -p /etc/apt/sources.list.d;
-                mv /etc/apt/sources.list /etc/apt/sources.list.test;
-                touch /etc/apt/sources.list;
-                apt-get update""")
+            self.restore_dir("/var/lib/apt", reboot_safe=True)
+            self.restore_dir("/var/cache/apt", reboot_safe=True)
+            self.restore_dir("/etc/apt", reboot_safe=True)
+            self.machine.execute("echo > /etc/apt/sources.list && rm -f /etc/apt/sources.list.d/* && apt-get clean && apt-get update")
+        elif self.backend == "alpm":
+            self.restore_dir("/var/lib/pacman", reboot_safe=True)
+            self.restore_dir("/var/cache/pacman", reboot_safe=True)
+            self.restore_dir("/etc/pacman.d", reboot_safe=True)
+            self.restore_dir("/var/lib/PackageKit/alpm", reboot_safe=True)
+            self.restore_file("/etc/pacman.conf")
+            self.restore_file("/etc/pacman.d/mirrorlist")
+            self.restore_file("/usr/share/libalpm/hooks/90-packagekit-refresh.hook")
+            self.machine.execute("rm /etc/pacman.conf /etc/pacman.d/mirrorlist /var/lib/pacman/sync/* /usr/share/libalpm/hooks/90-packagekit-refresh.hook")
+            # Initial config for installation
+            empty_repo_dir = '/var/lib/cockpittest/empty'
+            config = f"""
+[options]
+Architecture = auto
+HoldPkg     = pacman glibc
 
-            self.addCleanup(self.machine.execute, """
-                rm -rf /etc/apt/sources.list.d;
-                mv /etc/apt/sources.list.d.test /etc/apt/sources.list.d;
-                mv /etc/apt/sources.list.test /etc/apt/sources.list""")
+[empty]
+SigLevel = Never
+Server = file://{empty_repo_dir}
+"""
+            # HACK: Setup empty repo for packagekit
+            self.machine.execute(f"mkdir -p {empty_repo_dir} || true")
+            self.machine.execute(f"repo-add {empty_repo_dir}/empty.db.tar.gz")
+            self.machine.write("/etc/pacman.conf", config)
+            self.machine.execute("pacman -Sy")
         else:
-            self.machine.execute("""
-                mv /etc/yum.repos.d /etc/yum.repos.d.test;
-                mkdir -p /etc/yum.repos.d;
-                rm -rf /var/cache/yum/* /var/cache/dnf/*""")
-            self.addCleanup(self.machine.execute, """
-                rm -rf /etc/yum.repos.d;
-                mv /etc/yum.repos.d.test /etc/yum.repos.d""")
+            self.restore_dir("/etc/yum.repos.d", reboot_safe=True)
+            self.restore_dir("/var/cache/dnf", reboot_safe=True)
+            self.machine.execute("rm -rf /etc/yum.repos.d/* /var/cache/yum/* /var/cache/dnf/*")
 
         # have PackageKit start from a clean slate
-        self.machine.execute("""
-            systemctl stop packagekit;
-            rm -rf /var/cache/PackageKit;
-            [ ! -e /var/lib/PackageKit/transactions.db ] || mv /var/lib/PackageKit/transactions.db /var/lib/PackageKit/transactions.db.test""")
-        self.addCleanup(self.machine.execute, "mv /var/lib/PackageKit/transactions.db.test /var/lib/PackageKit/transactions.db 2>/dev/null || true")
+        self.machine.execute("systemctl stop packagekit")
+        self.machine.execute("systemctl kill --signal=SIGKILL packagekit; rm -rf /var/cache/PackageKit")
+        self.machine.execute("systemctl reset-failed packagekit || true")
+        self.restore_file("/var/lib/PackageKit/transactions.db")
 
         if self.image in ["debian-stable", "debian-testing"]:
             # PackageKit tries to resolve some DNS names, but our test VM is offline; temporarily disable the name server to fail quickly
             self.machine.execute("mv /etc/resolv.conf /etc/resolv.conf.test")
             self.addCleanup(self.machine.execute, "mv /etc/resolv.conf.test /etc/resolv.conf")
+
+        # reset automatic updates
+        if self.backend == 'dnf':
+            self.machine.execute("systemctl disable --now dnf-automatic dnf-automatic-install dnf-automatic.service dnf-automatic-install.timer; rm -r /etc/systemd/system/dnf-automatic* && systemctl daemon-reload || true")
 
         self.updateInfo = {}
 
@@ -97,20 +114,27 @@ class PackageCase(MachineCase):
     #
 
     def createPackage(self, name, version, release, install=False,
-                      postinst=None, depends="", content=None, arch=None, **updateinfo):
+                      postinst=None, depends="", content=None, arch=None, provides=None, **updateinfo):
         '''Create a dummy package in repo_dir on self.machine
 
         If install is True, install the package. Otherwise, update the package
         index in repo_dir.
         '''
-        if self.backend == "apt":
-            self.createDeb(name, version + '-' + release, depends, postinst, install, content, arch)
+        if provides:
+            provides = f"Provides: {provides}"
         else:
-            self.createRpm(name, version, release, depends, postinst, install, content, arch)
+            provides = ""
+
+        if self.backend == "apt":
+            self.createDeb(name, version + '-' + release, depends, postinst, install, content, arch, provides)
+        elif self.backend == "alpm":
+            self.createPacmanPkg(name, version, release, depends, postinst, install, content, arch, provides)
+        else:
+            self.createRpm(name, version, release, depends, postinst, install, content, arch, provides)
         if updateinfo:
             self.updateInfo[(name, version, release)] = updateinfo
 
-    def createDeb(self, name, version, depends, postinst, install, content, arch):
+    def createDeb(self, name, version, depends, postinst, install, content, arch, provides):
         '''Create a dummy deb in repo_dir on self.machine
 
         If install is True, install the package. Otherwise, update the package
@@ -118,7 +142,7 @@ class PackageCase(MachineCase):
         '''
         if arch is None:
             arch = self.primary_arch
-        deb = "{0}/{1}_{2}_{3}.deb".format(self.repo_dir, name, version, arch)
+        deb = f"{self.repo_dir}/{name}_{version}_{arch}.deb"
         if postinst:
             postinstcode = "printf '#!/bin/sh\n{0}' > /tmp/b/DEBIAN/postinst; chmod 755 /tmp/b/DEBIAN/postinst".format(
                 postinst)
@@ -127,24 +151,24 @@ class PackageCase(MachineCase):
         if content is not None:
             for path, data in content.items():
                 dest = "/tmp/b/" + path
-                self.machine.execute("mkdir -p '{0}'".format(os.path.dirname(dest)))
+                self.machine.execute(f"mkdir -p '{os.path.dirname(dest)}'")
                 if isinstance(data, dict):
-                    self.machine.execute("cp '{0}' '{1}'".format(data["path"], dest))
+                    self.machine.execute(f"cp '{data['path']}' '{dest}'")
                 else:
                     self.machine.write(dest, data)
         cmd = '''mkdir -p /tmp/b/DEBIAN {repo}
-                 printf "Package: {name}\nVersion: {ver}\nPriority: optional\nSection: test\nMaintainer: foo\nDepends: {deps}\nArchitecture: {arch}\nDescription: dummy {name}\n" > /tmp/b/DEBIAN/control
+                 printf "Package: {name}\nVersion: {ver}\nPriority: optional\nSection: test\nMaintainer: foo\nDepends: {deps}\nArchitecture: {arch}\nDescription: dummy {name}\n{provides}\n" > /tmp/b/DEBIAN/control
                  {post}
                  touch /tmp/b/stamp-{name}-{ver}
                  dpkg -b /tmp/b {deb}
                  rm -r /tmp/b
-                 '''.format(name=name, ver=version, deps=depends, deb=deb, post=postinstcode, repo=self.repo_dir, arch=arch)
+                 '''.format(name=name, ver=version, deps=depends, deb=deb, post=postinstcode, repo=self.repo_dir, arch=arch, provides=provides)
         if install:
             cmd += "dpkg -i " + deb
         self.machine.execute(cmd)
-        self.addCleanup(self.machine.execute, "dpkg -P --force-depends %s 2>/dev/null || true" % name)
+        self.addCleanup(self.machine.execute, f"dpkg -P --force-depends --force-remove-reinstreq {name} 2>/dev/null || true")
 
-    def createRpm(self, name, version, release, requires, post, install, content, arch):
+    def createRpm(self, name, version, release, requires, post, install, content, arch, provides):
         '''Create a dummy rpm in repo_dir on self.machine
 
         If install is True, install the package. Otherwise, update the package
@@ -155,29 +179,30 @@ class PackageCase(MachineCase):
         else:
             postcode = ''
         if requires:
-            requires = "Requires: %s\n" % requires
+            requires = f"Requires: {requires}\n"
         if arch is None:
             arch = self.primary_arch
-        installcmds = "touch $RPM_BUILD_ROOT/stamp-{0}-{1}-{2}\n".format(name, version, release)
-        installedfiles = "/stamp-{0}-{1}-{2}\n".format(name, version, release)
+        installcmds = f"touch $RPM_BUILD_ROOT/stamp-{name}-{version}-{release}\n"
+        installedfiles = f"/stamp-{name}-{version}-{release}\n"
         if content is not None:
             for path, data in content.items():
-                installcmds += 'mkdir -p $(dirname "$RPM_BUILD_ROOT/{0}")\n'.format(path)
+                installcmds += f'mkdir -p $(dirname "$RPM_BUILD_ROOT/{path}")\n'
                 if isinstance(data, dict):
-                    installcmds += 'cp {1} "$RPM_BUILD_ROOT/{0}"'.format(path, data["path"])
+                    installcmds += f"cp {data['path']} \"$RPM_BUILD_ROOT/{path}\""
                 else:
                     installcmds += 'cat >"$RPM_BUILD_ROOT/{0}" <<\'EOF\'\n'.format(path) + data + '\nEOF\n'
-                installedfiles += "{0}\n".format(path)
+                installedfiles += f"{path}\n"
 
         architecture = ""
         if arch == self.primary_arch:
-            architecture = "BuildArch: {0}".format(self.primary_arch)
+            architecture = f"BuildArch: {self.primary_arch}"
         spec = """
 Summary: dummy {0}
 Name: {0}
 Version: {1}
 Release: {2}
 License: BSD
+{8}
 {7}
 {4}
 
@@ -191,7 +216,7 @@ Test package.
 {6}
 
 {3}
-""".format(name, version, release, postcode, requires, installcmds, installedfiles, architecture)
+""".format(name, version, release, postcode, requires, installcmds, installedfiles, architecture, provides)
         self.machine.write("/tmp/spec", spec)
         cmd = """
 rpmbuild --quiet -bb /tmp/spec
@@ -202,14 +227,94 @@ rm -rf ~/rpmbuild
         if install:
             cmd += "rpm -i {0}/{1}-{2}-{3}.*.rpm"
         self.machine.execute(cmd.format(self.repo_dir, name, version, release, arch))
-        self.addCleanup(self.machine.execute, "rpm -e %s 2>/dev/null || true" % name)
+        self.addCleanup(self.machine.execute, f"rpm -e --nodeps {name} 2>/dev/null || true")
+
+    def createPacmanPkg(self, name, version, release, requires, postinst, install, content, arch, provides):
+        '''Create a dummy pacman package in repo_dir on self.machine
+
+        If install is True, install the package. Otherwise, update the package
+        index in repo_dir.
+        '''
+
+        if arch is None:
+            arch = 'any'
+
+        sources = ""
+        installcmds = 'package() {\n'
+        if content is not None:
+            sources = "source=("
+            files = 0
+            for path, data in content.items():
+                p = os.path.dirname(path)
+                installcmds += f'mkdir -p $pkgdir{p}\n'
+                if isinstance(data, dict):
+                    dpath = data["path"]
+
+                    file = os.path.basename(dpath)
+                    sources += file
+                    files += 1
+                    # TODO: hardcoded /tmp
+                    self.machine.execute(f'cp {data["path"]} /tmp/{file}')
+                    installcmds += f'cp {file} $pkgdir{path}\n'
+                else:
+                    installcmds += f'cat >"$pkgdir{path}" <<\'EOF\'\n' + data + '\nEOF\n'
+
+            sources += ")"
+
+        # Always stamp a file
+        installcmds += f"touch $pkgdir/stamp-{name}-{version}-{release}\n"
+        installcmds += '}'
+
+        pkgbuild = f"""
+pkgname={name}
+pkgver={version}
+pkgdesc="dummy {name}"
+pkgrel={release}
+arch=({arch})
+depends=({requires})
+{sources}
+
+{installcmds}
+"""
+
+        if postinst:
+            postinstcode = f"""
+post_install() {{
+    {postinst}
+}}
+
+post_upgrade() {{
+    post_install $*
+}}
+"""
+            self.machine.write(f"/tmp/{name}.install", postinstcode)
+            pkgbuild += f"\ninstall={name}.install\n"
+
+        self.machine.write("/tmp/PKGBUILD", pkgbuild)
+
+        cmd = """
+        cd /tmp/
+        su builder -c "makepkg -f -d --skipinteg --noconfirm"
+"""
+
+        if install:
+            cmd += f"pacman -U --noconfirm {name}-{version}-{release}-{arch}.pkg.tar.zst\n"
+
+        cmd += f"mkdir -p {self.repo_dir}\n"
+        cmd += f"mv *.pkg.tar.zst {self.repo_dir}\n"
+        # Clean up packaging files
+        cmd += "rm PKGBUILD\n"
+        if postinst:
+            cmd += f"rm /tmp/{name}.install"
+        self.machine.execute(cmd)
+        self.addCleanup(self.machine.execute, f"pacman -R --noconfirm {name} 2>/dev/null || true")
 
     def createAptChangelogs(self):
         # apt metadata has no formal field for bugs/CVEs, they are parsed from the changelog
         for ((pkg, ver, rel), info) in self.updateInfo.items():
             changes = info.get("changes", "some changes")
             if info.get("bugs"):
-                changes += " (Closes: {0})".format(", ".join(["#" + str(b) for b in info["bugs"]]))
+                changes += f" (Closes: {', '.join([('#' + str(b)) for b in info['bugs']])})"
             if info.get("cves"):
                 changes += "\n  * " + ", ".join(info["cves"])
 
@@ -269,9 +374,25 @@ rm -rf ~/rpmbuild
                                     xz -c Packages > Packages.xz
                                     O=$(apt-ftparchive -o APT::FTPArchive::Release::Origin=cockpittest release .); echo "$O" > Release
                                     echo 'Changelogs: http://localhost:12345/changelogs/@CHANGEPATH@' >> Release
-                                    setsid python3 -m http.server 12345 >/dev/null 2>&1 < /dev/null &
                                     '''.format(self.repo_dir))
+            pid = self.machine.spawn(f"cd {self.repo_dir} && exec python3 -m http.server 12345", "changelog")
+            # pid will not be present for rebooting tests
+            self.addCleanup(self.machine.execute, "kill %i || true" % pid)
             self.machine.wait_for_cockpit_running(port=12345)  # wait for changelog HTTP server to start up
+        elif self.backend == "alpm":
+            self.machine.execute(f'''set -e;
+                                     cd {self.repo_dir}
+                                     repo-add {self.repo_dir}/testrepo.db.tar.gz *.pkg.tar.zst
+                    ''')
+
+            config = f"""
+[testrepo]
+SigLevel = Never
+Server = file://{self.repo_dir}
+            """
+            if 'testrepo' not in self.machine.execute('grep testrepo /etc/pacman.conf || true'):
+                self.machine.write("/etc/pacman.conf", config, append=True)
+
         else:
             self.machine.execute('''set -e; printf '[updates]\nname=cockpittest\nbaseurl=file://{0}\nenabled=1\ngpgcheck=0\n' > /etc/yum.repos.d/cockpittest.repo
                                     echo '{1}' > /tmp/updateinfo.xml
