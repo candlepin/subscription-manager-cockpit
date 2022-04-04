@@ -11,8 +11,8 @@ TEST_SCENARIO ?= main
 TARFILE=$(RPM_NAME)-$(VERSION).tar.xz
 NODE_CACHE=$(RPM_NAME)-node-$(VERSION).tar.xz
 SPEC=$(RPM_NAME).spec
-APPSTREAMFILE=org.candlepinproject.subscription_manager.metainfo.xml
-DESKTOPFILE=subscription-manager-cockpit.desktop
+APPSTREAMFILE=data/org.candlepinproject.subscription_manager.metainfo.xml
+DESKTOPFILE=data/subscription-manager-cockpit.desktop
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
 SUBMAN_TAR=$(CURDIR)/dist/subscription-manager.tar.gz
 SMBEXT_TAR=$(CURDIR)/dist/subscription-manager-build-extra.tar.gz
@@ -90,13 +90,13 @@ install: $(WEBPACK_TEST) po/LINGUAS
 	mkdir -p $(DESTDIR)/usr/share/metainfo/
 	msgfmt --xml -d po \
 		--template $(APPSTREAMFILE) \
-		-o $(DESTDIR)/usr/share/metainfo/$(APPSTREAMFILE)
+		-o $(DESTDIR)/usr/share/metainfo/$(notdir $(APPSTREAMFILE))
 	mkdir -p $(DESTDIR)/usr/share/applications/
 	msgfmt --desktop -d po \
 		--template $(DESKTOPFILE) \
-		-o $(DESTDIR)/usr/share/applications/$(DESKTOPFILE)
+		-o $(DESTDIR)/usr/share/applications/$(notdir $(DESKTOPFILE))
 	mkdir -p $(DESTDIR)/usr/share/icons/
-	cp -r src/subscription_manager/gui/data/icons/hicolor $(DESTDIR)/usr/share/icons/
+	cp -r data/icons/hicolor $(DESTDIR)/usr/share/icons/
 
 # this requires a built source tree and avoids having to install anything system-wide
 devel-install: $(WEBPACK_TEST)
@@ -120,8 +120,8 @@ dist: $(TARFILE)
 # node_modules/ can be reconstructed if necessary)
 $(TARFILE): export NODE_ENV=production
 $(TARFILE): $(WEBPACK_TEST) $(SPEC)
-	if type appstream-util >/dev/null 2>&1; then appstream-util validate-relax --nonet *.metainfo.xml; fi
-	if type desktop-file-validate >/dev/null 2>&1; then desktop-file-validate *.desktop; fi
+	if type appstream-util >/dev/null 2>&1; then appstream-util validate-relax --nonet data/*.metainfo.xml; fi
+	if type desktop-file-validate >/dev/null 2>&1; then desktop-file-validate data/*.desktop; fi
 	touch -r package.json $(NODE_MODULES_TEST)
 	touch dist/*
 	tar --xz $(TAR_ARGS) -cf $(TARFILE) --transform 's,^,$(RPM_NAME)/,' \
@@ -163,7 +163,7 @@ $(SUBMAN_TAR): subscription-manager
 	mv dist/$$fn.tar.gz $(SUBMAN_TAR)
 
 $(SMBEXT_TAR): subscription-manager
-	tar czf $(SMBEXT_TAR) subscription-manager/build_ext src/subscription_manager/gui/data/icons/hicolor
+	tar czf $(SMBEXT_TAR) --transform 's,data/icons,src/subscription_manager/gui/data/icons,' subscription-manager/build_ext data/icons/hicolor
 
 # build a VM with locally built distro pkgs installed
 # disable networking, VM images have mock/pbuilder with the common build dependencies pre-installed
