@@ -167,12 +167,12 @@ $(SMBEXT_TAR): subscription-manager
 
 # build a VM with locally built distro pkgs installed
 # disable networking, VM images have mock/pbuilder with the common build dependencies pre-installed
-$(VM_IMAGE): $(NODE_CACHE) $(TARFILE) $(SUBMAN_TAR) $(SMBEXT_TAR) bots integration-tests/vm.install
+$(VM_IMAGE): $(NODE_CACHE) $(TARFILE) $(SUBMAN_TAR) $(SMBEXT_TAR) bots test/vm.install
 	bots/image-customize --verbose --fresh \
 		--upload $(NODE_CACHE):/var/tmp/ --build $(TARFILE) \
 		--upload $(SUBMAN_TAR):/var/tmp/ \
 		--upload $(SMBEXT_TAR):/var/tmp/ \
-		--script $(CURDIR)/integration-tests/vm.install $(TEST_OS)
+		--script $(CURDIR)/test/vm.install $(TEST_OS)
 
 # convenience target for the above
 vm: $(VM_IMAGE)
@@ -184,12 +184,12 @@ print-vm:
 
 # convenience target to setup all the bits needed for the integration tests
 # without actually running them
-prepare-check: $(NODE_MODULES_TEST) $(VM_IMAGE) integration-tests/common
+prepare-check: $(NODE_MODULES_TEST) $(VM_IMAGE) test/common
 
 # run the browser integration tests;
 # this will run all tests/check-* and format them as TAP
 check: prepare-check
-	integration-tests/common/run-tests --test-dir integration-tests
+	test/common/run-tests
 
 # checkout Cockpit's bots for standard test VM images and API to launch them
 # must be from main, as only that has current and existing images; but testvm.py API is stable
@@ -201,12 +201,11 @@ bots:
 
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
 # when you start a new project, use the latest release, and update it from time to time
-integration-tests/common:
+test/common:
 	flock Makefile sh -ec '\
 	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 264; \
 	    git checkout --force FETCH_HEAD -- test/common; \
 	    git reset test/common'
-	mv test/common $@
 
 # checkout Cockpit's PF/React/build library; again this has no API stability guarantee, so check out a stable tag
 $(LIB_TEST):

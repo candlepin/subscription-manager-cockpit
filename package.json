@@ -8,7 +8,6 @@
   "license": "LGPL-2.1",
   "scripts": {
     "build": "webpack",
-    "jasmine": "jasmine",
     "po2json": "po2json",
     "vagrant-watch": "webpack --watch & vagrant rsync-auto",
     "watch": "webpack --watch",
@@ -43,7 +42,6 @@
     "gettext-parser": "^2.0.0",
     "glob": "^7.1.2",
     "htmlparser": "^1.7.7",
-    "jasmine": "^2.7.0",
     "mini-css-extract-plugin": "^0.11.0",
     "po2json": "^0.4.5",
     "popper.js": "^1.14.7",

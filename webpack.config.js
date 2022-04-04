@@ -42,12 +42,6 @@ var info = {
     ],
 };
 
-if (!production) {
-    info.entries["dbus-testing"] = [
-      "spec/dbus/dbus.test.js"
-    ]
-}
-
 var output = {
     path: distdir,
     filename: "[name].js",
@@ -124,38 +118,8 @@ var plugins = [
     new copy(info.files),
     new Po2JSONPlugin(),
     new miniCssExtractPlugin({ filename: "[name].css" }),
-    new ESLintPlugin({ extensions: ["js", "jsx"], exclude: ["spec", "node_modules", "src/lib"] }),
+    new ESLintPlugin({ extensions: ["js", "jsx"], exclude: ["node_modules", "src/lib"] }),
 ];
-
-if (!production) {
-    /* copy jasmine files over */
-    plugins.unshift(new copy([
-        {
-            from: './spec/dbus/override.json',
-            to: 'override.json'
-        },
-        {
-            from: './spec/dbus/DBusSpecRunner.html',
-            to: 'DBusSpecRunner.html'
-        },
-        {
-            from: './node_modules/jasmine-core/lib/jasmine-core/jasmine.css',
-            to: 'jasmine/jasmine.css'
-        },
-        {
-            from: './node_modules/jasmine-core/lib/jasmine-core/jasmine.js',
-            to: 'jasmine/jasmine.js',
-        },
-        {
-            from: './node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js',
-            to: 'jasmine/jasmine-html.js'
-        },
-        {
-            from: './node_modules/jasmine-core/lib/jasmine-core/boot.js',
-            to: 'jasmine/boot.js'
-        }
-    ]));
-}
 
 /* Only minimize when in production mode */
 if (production) {
