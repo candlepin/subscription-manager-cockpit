@@ -1,0 +1,19 @@
+[flake8]
+max-line-length = 110
+per-file-ignores =
+    test/check-*:
+        # E501: line too long (* > 110 characters)
+        E501,
+        # cannot import the cockpit modules
+        F403,
+        F405,
+        E402,
+exclude =
+    # copied from cockpit-project/cockpit.git
+    test/packagelib.py,
+    # external sources checked out during tests
+    bots/,
+    cockpit/,
+    src/lib/,
+    subscription-manager/,
+    test/common/,
