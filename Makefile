@@ -167,11 +167,12 @@ $(SMBEXT_TAR): subscription-manager
 
 # build a VM with locally built distro pkgs installed
 # disable networking, VM images have mock/pbuilder with the common build dependencies pre-installed
-$(VM_IMAGE): $(NODE_CACHE) $(TARFILE) $(SUBMAN_TAR) $(SMBEXT_TAR) bots test/vm.install
+$(VM_IMAGE): $(NODE_CACHE) $(TARFILE) $(SUBMAN_TAR) $(SMBEXT_TAR) bots test/vm.install test/vm.install-sub-man
 	bots/image-customize --verbose --fresh \
 		--upload $(NODE_CACHE):/var/tmp/ --build $(TARFILE) \
 		--upload $(SUBMAN_TAR):/var/tmp/ \
 		--upload $(SMBEXT_TAR):/var/tmp/ \
+		--script $(CURDIR)/test/vm.install-sub-man \
 		--script $(CURDIR)/test/vm.install $(TEST_OS)
 
 # convenience target for the above
