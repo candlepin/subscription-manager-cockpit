@@ -80,6 +80,12 @@ You can also run the test against a different Cockpit image, for example:
 
     TEST_OS=fedora-36 make check
 
+In addition to `TEST_OS`, `Makefile` supports also `TEST_SCENARIO` to specify
+which branch of subscription-manager.git to test. If not specified, it defaults
+to `main`. The special value `system` means that subscription-manager is tested
+as available in the test image, without trying to manually build it from its
+repository.
+
 Please see [Cockpit's test documentation](https://github.com/cockpit-project/cockpit/blob/main/test/README.md)
 for details how to run against existing VMs, interactive browser window,
 interacting with the test VM, and more.
