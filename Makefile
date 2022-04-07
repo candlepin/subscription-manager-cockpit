@@ -3,7 +3,7 @@ PACKAGE_NAME := $(shell awk '/"name":/ {gsub(/[",]/, "", $$2); print $$2}' packa
 RPM_NAME := $(PACKAGE_NAME)-cockpit
 VERSION := $(shell T=$$(git describe 2>/dev/null | awk -f get_git_version.awk) || T=1; echo $$T)
 ifeq ($(TEST_OS),)
-TEST_OS = rhel-8-4
+TEST_OS = centos-9-stream
 endif
 export TEST_OS
 # the test scenario is the subscription-manager branch to test against
