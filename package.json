@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "a plugin for cockpit to manage subscriptions",
   "main": "index.js",
-  "repository": "git@github.com:candlepin/subscription-manager.git",
+  "repository": "git@github.com:candlepin/subscription-manager-cockpit.git",
   "author": "",
   "license": "LGPL-2.1",
   "scripts": {
