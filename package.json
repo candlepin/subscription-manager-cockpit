@@ -9,7 +9,6 @@
   "scripts": {
     "build": "webpack",
     "po2json": "po2json",
-    "vagrant-watch": "webpack --watch & vagrant rsync-auto",
     "watch": "webpack --watch",
     "clean": "cd ./dist && rm -rf *",
     "eslint": "eslint --ext .jsx --ext .js src/ lib/",
