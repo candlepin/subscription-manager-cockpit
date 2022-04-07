@@ -7,6 +7,7 @@ class NoBuilder(Builder):
     Builder that does not allow building, pointing to the Makefile targets
     for equivalent results.
     """
+
     def run(self, options):
         error_out(
             "Using 'tito build' is not supported in this repository; "

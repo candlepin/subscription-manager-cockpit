@@ -1,0 +1,6 @@
+[tool.black]
+line-length = 110
+extend-exclude = '''
+# copied from cockpit-project/cockpit.git
+^/test/packagelib.py
+'''

@@ -170,7 +170,7 @@ class SubscriptionsCase(MachineCase):
 
         if m.image.startswith('rhel-'):
             m.write("/etc/insights-client/insights-client.conf",
-f"""
+                    f"""
 [insights-client]
 auto_config=False
 auto_update=False
@@ -326,7 +326,7 @@ class TestSubscriptions(SubscriptionsCase):
         b.set_input_text("#subscription-register-password", "password")
         b.set_input_text("#subscription-register-org", "snowwhite")
 
-        b.click("#subscription-auto-attach-use" )
+        b.click("#subscription-auto-attach-use")
 
         dialog_register_button_sel = "footer .pf-m-primary"
         b.click(dialog_register_button_sel)
