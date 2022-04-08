@@ -25,6 +25,14 @@ LIB_TEST=src/lib/cockpit-po-plugin.js
 # common arguments for tar, mostly to make the generated tarballs reproducible
 TAR_ARGS = --sort=name --mtime "@$(shell git show --no-patch --format='%at')" --mode=go=rX,u+rw,a-s --numeric-owner --owner=0 --group=0
 
+ifeq ($(TEST_SCENARIO),system)
+IMAGE_CUSTOMIZE_DEPENDS =
+IMAGE_CUSTOMIZE_INSTALL =
+else
+IMAGE_CUSTOMIZE_DEPENDS = $(SUBMAN_TAR) $(SMBEXT_TAR) test/vm.install-sub-man
+IMAGE_CUSTOMIZE_INSTALL = --upload $(SUBMAN_TAR):/var/tmp/ --upload $(SMBEXT_TAR):/var/tmp/ --script $(CURDIR)/test/vm.install-sub-man
+endif
+
 all: $(WEBPACK_TEST)
 
 #
@@ -167,11 +175,10 @@ $(SMBEXT_TAR): subscription-manager
 
 # build a VM with locally built distro pkgs installed
 # disable networking, VM images have mock/pbuilder with the common build dependencies pre-installed
-$(VM_IMAGE): $(NODE_CACHE) $(TARFILE) $(SUBMAN_TAR) $(SMBEXT_TAR) bots test/vm.install
+$(VM_IMAGE): $(NODE_CACHE) $(TARFILE) bots test/vm.install $(IMAGE_CUSTOMIZE_DEPENDS)
 	bots/image-customize --verbose --fresh \
 		--upload $(NODE_CACHE):/var/tmp/ --build $(TARFILE) \
-		--upload $(SUBMAN_TAR):/var/tmp/ \
-		--upload $(SMBEXT_TAR):/var/tmp/ \
+		$(IMAGE_CUSTOMIZE_INSTALL) \
 		--script $(CURDIR)/test/vm.install $(TEST_OS)
 
 # convenience target for the above
