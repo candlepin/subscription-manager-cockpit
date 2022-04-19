@@ -4,4 +4,5 @@ set -eu
 # This is the expected entry point for Cockpit CI; will be called without
 # arguments but with an appropriate $TEST_OS, and optionally $TEST_SCENARIO
 
+export RUN_TESTS_OPTIONS=--track-naughties
 make check
