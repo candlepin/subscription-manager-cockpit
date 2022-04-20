@@ -3,7 +3,7 @@ PACKAGE_NAME := $(shell awk '/"name":/ {gsub(/[",]/, "", $$2); print $$2}' packa
 RPM_NAME := $(PACKAGE_NAME)-cockpit
 VERSION := $(shell T=$$(git describe 2>/dev/null | awk -f get_git_version.awk) || T=1; echo $$T)
 ifeq ($(TEST_OS),)
-TEST_OS = rhel-8-4
+TEST_OS = centos-9-stream
 endif
 export TEST_OS
 # the test scenario is the subscription-manager branch to test against
@@ -176,7 +176,7 @@ $(SMBEXT_TAR): subscription-manager
 # build a VM with locally built distro pkgs installed
 # disable networking, VM images have mock/pbuilder with the common build dependencies pre-installed
 $(VM_IMAGE): $(NODE_CACHE) $(TARFILE) bots test/vm.install $(IMAGE_CUSTOMIZE_DEPENDS)
-	bots/image-customize --verbose --fresh \
+	bots/image-customize --verbose --fresh --memory-mb 2048 \
 		--upload $(NODE_CACHE):/var/tmp/ --build $(TARFILE) \
 		$(IMAGE_CUSTOMIZE_INSTALL) \
 		--script $(CURDIR)/test/vm.install $(TEST_OS)
