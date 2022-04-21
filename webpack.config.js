@@ -42,12 +42,6 @@ var info = {
     ],
 };
 
-var output = {
-    path: distdir,
-    filename: "[name].js",
-    sourceMapFilename: "[file].map",
-};
-
 /*
  * Note that we're avoiding the use of path.join as webpack and nodejs
  * want relative paths that start with ./ explicitly.
@@ -123,9 +117,6 @@ var plugins = [
 
 /* Only minimize when in production mode */
 if (production) {
-    /* Rename output files when minimizing */
-    output.filename = "[name].min.js";
-
     plugins.unshift(new CompressionPlugin({
         test: /\.(js|html)$/,
         minRatio: 0.9,
@@ -145,8 +136,10 @@ module.exports = {
     },
     externals: externals,
 
-    output: output,
     devtool: production ? false : "source-map",
+    // always regenerate dist/, so make rules work
+    output: { clean: true, compareBeforeEmit: false },
+
     module: {
         rules: [
             {
