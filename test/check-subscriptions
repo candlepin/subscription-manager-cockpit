@@ -107,12 +107,9 @@ PRODUCT_SHARED = {
 }
 
 
-def shell_escape(s):
-    return "'" + s.replace("'", "'\\''") + "'"
-
-
-def machine_python(machine, script, arg=""):
-    return machine.execute("python3 -c %s %s" % (shell_escape(script), shell_escape(arg)))
+def machine_python(machine, script, *args):
+    cmd = ["python3", "-c", script] + list(args)
+    return machine.execute(cmd)
 
 
 def skipUnlessDistroFamily(distro, reason):
