@@ -137,6 +137,9 @@ module.exports = {
     externals: externals,
 
     devtool: production ? false : "source-map",
+    // always regenerate dist/, so make rules work
+    output: { clean: true, compareBeforeEmit: false },
+
     module: {
         rules: [
             {
