@@ -185,7 +185,7 @@ password=foobar
 """)
 
         m.upload(["files/mock-insights"], "/var/tmp")
-        m.spawn("/var/tmp/mock-insights", "mock-insights")
+        m.spawn("env PYTHONUNBUFFERED=1 /var/tmp/mock-insights", "mock-insights.log")
 
         if m.image == "rhel-8-5":
             self.allow_journal_messages("json_object_get_string_member: assertion 'node != NULL' failed")
