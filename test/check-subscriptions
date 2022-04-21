@@ -112,6 +112,11 @@ def machine_python(machine, script, *args):
     return machine.execute(cmd)
 
 
+def machine_restorecon(machine, path, *args):
+    cmd = ["restorecon", "-R", path] + list(args)
+    return machine.execute(cmd)
+
+
 def skipUnlessDistroFamily(distro, reason):
     """
     Skip the current test function with the specified [reason]
@@ -156,9 +161,11 @@ class SubscriptionsCase(MachineCase):
         self.candlepin.download("/home/admin/candlepin/certs/candlepin-ca.crt", candlepin_ca_tmpfile)
         # make it available for the system, updating the system certificate store
         m.upload([candlepin_ca_tmpfile], f"/etc/pki/ca-trust/source/anchors/{candlepin_ca_filename}")
+        machine_restorecon(self.machine, "/etc/pki")
         m.execute("update-ca-trust extract")
         # make it available for subscription-manager too
         m.upload([candlepin_ca_tmpfile], f"/etc/rhsm/ca/{candlepin_ca_filename}")
+        machine_restorecon(self.machine, "/etc/rhsm/ca/")
 
         # Wait for the web service to be accessible
         machine_python(self.machine, WAIT_SCRIPT, CANDLEPIN_URL)
