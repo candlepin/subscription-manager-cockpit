@@ -107,12 +107,14 @@ PRODUCT_SHARED = {
 }
 
 
-def shell_escape(s):
-    return "'" + s.replace("'", "'\\''") + "'"
+def machine_python(machine, script, *args):
+    cmd = ["python3", "-c", script] + list(args)
+    return machine.execute(cmd)
 
 
-def machine_python(machine, script, arg=""):
-    return machine.execute("python3 -c %s %s" % (shell_escape(script), shell_escape(arg)))
+def machine_restorecon(machine, path, *args):
+    cmd = ["restorecon", "-R", path] + list(args)
+    return machine.execute(cmd)
 
 
 def skipUnlessDistroFamily(distro, reason):
@@ -149,7 +151,7 @@ class SubscriptionsCase(MachineCase):
             self.candlepin.download("/home/admin/candlepin/generated_certs/%s.pem" % prod_id, filename)
             m.upload([filename], "/etc/pki/product")
 
-        m.execute("mkdir -p /etc/pki/product")
+        m.execute(["mkdir", "-p", "/etc/pki/product"])
         download_product(PRODUCT_SNOWY)
         download_product(PRODUCT_SHARED)
 
@@ -159,14 +161,16 @@ class SubscriptionsCase(MachineCase):
         self.candlepin.download("/home/admin/candlepin/certs/candlepin-ca.crt", candlepin_ca_tmpfile)
         # make it available for the system, updating the system certificate store
         m.upload([candlepin_ca_tmpfile], f"/etc/pki/ca-trust/source/anchors/{candlepin_ca_filename}")
-        m.execute("update-ca-trust extract")
+        machine_restorecon(self.machine, "/etc/pki")
+        m.execute(["update-ca-trust", "extract"])
         # make it available for subscription-manager too
         m.upload([candlepin_ca_tmpfile], f"/etc/rhsm/ca/{candlepin_ca_filename}")
+        machine_restorecon(self.machine, "/etc/rhsm/ca/")
 
         # Wait for the web service to be accessible
         machine_python(self.machine, WAIT_SCRIPT, CANDLEPIN_URL)
 
-        hostname = m.execute("hostname").rstrip()
+        hostname = m.execute(["hostname"]).rstrip()
 
         if m.image.startswith('rhel-'):
             m.write("/etc/insights-client/insights-client.conf",
@@ -181,7 +185,7 @@ password=foobar
 """)
 
         m.upload(["files/mock-insights"], "/var/tmp")
-        m.spawn("/var/tmp/mock-insights", "mock-insights")
+        m.spawn("env PYTHONUNBUFFERED=1 /var/tmp/mock-insights", "mock-insights.log")
 
         if m.image == "rhel-8-5":
             self.allow_journal_messages("json_object_get_string_member: assertion 'node != NULL' failed")
@@ -381,9 +385,9 @@ class TestSubscriptions(SubscriptionsCase):
         b.wait_visible("#overview a:contains('3 hits, including important')")
 
         # test system purpose
-        m.execute("subscription-manager role --set 'Red Hat Enterprise Linux Workstation'")
-        m.execute("subscription-manager usage --set 'Development/Test'")
-        m.execute("subscription-manager service-level --set 'Standard'")
+        m.execute(["subscription-manager", "role", "--set", "Red Hat Enterprise Linux Workstation"])
+        m.execute(["subscription-manager", "usage", "--set", "Development/Test"])
+        m.execute(["subscription-manager", "service-level", "--set", "Standard"])
         b.wait_in_text("#syspurpose", "Standard")
         b.wait_in_text("#syspurpose", "Development/Test")
         b.wait_in_text("#syspurpose", "Red Hat Enterprise Linux Workstation")
@@ -408,7 +412,7 @@ class TestSubscriptions(SubscriptionsCase):
         # get distracted by SELinux.  Denials will still be logged and
         # tracked as known issues even when not enforcing.
         #
-        m.execute("setenforce 0")
+        m.execute(["setenforce", "0"])
 
         self.login_and_go("/subscriptions")
 
@@ -429,8 +433,8 @@ class TestSubscriptions(SubscriptionsCase):
         b.wait_visible("button:contains('Connected to Insights')")
 
         # Break the next upload and expect the warning triangle to tell us about it
-        m.execute("mv /etc/insights-client/machine-id /etc/insights-client/machine-id.lost")
-        m.execute("systemctl start insights-client")
+        m.execute(["mv", "/etc/insights-client/machine-id", "/etc/insights-client/machine-id.lost"])
+        m.execute(["systemctl", "start", "insights-client"])
 
         b.wait_visible("button .pf-c-button__icon svg[fill='orange']")
 
@@ -439,7 +443,7 @@ class TestSubscriptions(SubscriptionsCase):
         b.click("button.cancel")
 
         # Unbreak it and retry.
-        m.execute("mv /etc/insights-client/machine-id.lost /etc/insights-client/machine-id")
+        m.execute(["mv", "/etc/insights-client/machine-id.lost", "/etc/insights-client/machine-id"])
         m.execute("systemctl start insights-client; while systemctl --quiet is-active insights-client; do sleep 1; done",
                   timeout=360)
 
@@ -447,7 +451,7 @@ class TestSubscriptions(SubscriptionsCase):
 
         b.click("button:contains('Unregister')")
         b.wait_not_in_text("#overview", "Insights")
-        m.execute("test -f /etc/insights-client/.unregistered")
+        m.execute(["test", "-f", "/etc/insights-client/.unregistered"])
 
 
 class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
@@ -456,11 +460,11 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
         b = self.browser
 
         if m.image.startswith('rhel-'):
-            m.execute("pkcon remove -y insights-client")
+            m.execute(["pkcon", "remove", "-y", "insights-client"])
 
         self.createPackage("insights-client", "999", "1")
         self.enableRepo()
-        m.execute("pkcon refresh")
+        m.execute(["pkcon", "refresh"])
 
         self.login_and_go("/subscriptions")
 
@@ -485,9 +489,9 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
 
         # Try again with the connection dialog.
 
-        m.execute("test -f /stamp-insights-client-999-1")
-        m.execute("pkcon remove -y insights-client")
-        m.execute("pkcon refresh")
+        m.execute(["test", "-f", "/stamp-insights-client-999-1"])
+        m.execute(["pkcon", "remove", "-y", "insights-client"])
+        m.execute(["pkcon", "refresh"])
 
         b.click("button:contains('Not connected')")
         b.wait_visible('.pf-c-modal-box__body:contains("This system is not connected")')
@@ -497,7 +501,7 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
             b.wait_visible('footer:contains("not-found")')
         b.click('footer button.cancel')
 
-        m.execute("test -f /stamp-insights-client-999-1")
+        m.execute(["test", "-f", "/stamp-insights-client-999-1"])
 
 
 if __name__ == '__main__':
