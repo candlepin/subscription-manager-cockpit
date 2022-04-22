@@ -1,0 +1,33 @@
+name: stylish
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  stylish:
+    name: "black & flake8"
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+
+    steps:
+    - name: Base setup
+      run: |
+        dnf --setopt install_weak_deps=False install -y \
+            git-core \
+            python3-flake8 \
+            python3-pip
+
+    - uses: actions/checkout@v3
+
+    - uses: psf/black@stable
+      with:
+        version: "22.3.0"
+
+    - name: Run flake8
+      uses: suo/flake8-github-action@releases/v1
+      with:
+        checkName: "stylish"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
