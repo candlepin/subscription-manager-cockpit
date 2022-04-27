@@ -91,6 +91,7 @@ key_url = sys.argv[1] + "/activation_keys/{key}/pools/{pool}".format(key=key, po
 requests.post(key_url, auth=("admin","admin"))
 """
 
+# fmt: off
 CLIENT_ADDR = "10.111.112.1"
 CANDLEPIN_ADDR = "10.111.112.100"
 CANDLEPIN_HOSTNAME = "services.cockpit.lan"
@@ -105,6 +106,7 @@ PRODUCT_SHARED = {
     "id": "88888",
     "name": "Shared File System Bits (no content)"
 }
+# fmt: on
 
 
 def machine_python(machine, script, *args):
@@ -123,23 +125,27 @@ def skipUnlessDistroFamily(distro, reason):
     unless the distribution of the machine is part of the specified
     family [distro] (i.e. it starts as "distro-").
     """
-    return unittest.skipUnless(testvm.DEFAULT_IMAGE.startswith(distro + '-'), reason)
+    return unittest.skipUnless(testvm.DEFAULT_IMAGE.startswith(distro + "-"), reason)
 
 
 class SubscriptionsCase(MachineCase):
+    # fmt: off
     provision = {
         "0": {"address": CLIENT_ADDR + "/20"},
         "services": {"image": "services"}
     }
+    # fmt: on
 
     def setUp(self):
         super(SubscriptionsCase, self).setUp()
-        self.candlepin = self.machines['services']
+        self.candlepin = self.machines["services"]
         m = self.machine
 
         # wait for candlepin to be active and verify
         # this changed in https://github.com/cockpit-project/bots/pull/1768
-        self.candlepin.execute("if [ -x /root/run-candlepin ]; then /root/run-candlepin; else systemctl start tomcat; fi")
+        self.candlepin.execute(
+            "if [ -x /root/run-candlepin ]; then /root/run-candlepin; else systemctl start tomcat; fi"
+        )
 
         # make sure the cockpit machine can resolve the service machine hostname
         m.execute(f"echo '{CANDLEPIN_ADDR} {CANDLEPIN_HOSTNAME}' >> /etc/hosts")
@@ -172,9 +178,10 @@ class SubscriptionsCase(MachineCase):
 
         hostname = m.execute(["hostname"]).rstrip()
 
-        if m.image.startswith('rhel-'):
-            m.write("/etc/insights-client/insights-client.conf",
-                    f"""
+        if m.image.startswith("rhel-"):
+            m.write(
+                "/etc/insights-client/insights-client.conf",
+                f"""
 [insights-client]
 auto_config=False
 auto_update=False
@@ -182,7 +189,8 @@ base_url={hostname}:8443/r/insights
 cert_verify=/var/lib/insights/mock-certs/ca.crt
 username=admin
 password=foobar
-""")
+""",
+            )
 
         m.upload(["files/mock-insights"], "/var/tmp")
         m.spawn("env PYTHONUNBUFFERED=1 /var/tmp/mock-insights", "mock-insights.log")
@@ -192,15 +200,9 @@ password=foobar
 
     def wait_subscription(self, product, is_subscribed):
         if is_subscribed is True:
-            self.browser.wait_text(
-                "tr[data-row-id='%s'] .pf-c-label" % product["name"],
-                "Subscribed"
-            )
+            self.browser.wait_text("tr[data-row-id='%s'] .pf-c-label" % product["name"], "Subscribed")
         elif is_subscribed is False:
-            self.browser.wait_text_not(
-                "tr[data-row-id='%s'] .pf-c-label" % product["name"],
-                "Subscribed"
-            )
+            self.browser.wait_text_not("tr[data-row-id='%s'] .pf-c-label" % product["name"], "Subscribed")
 
 
 class TestSubscriptions(SubscriptionsCase):
@@ -250,7 +252,9 @@ class TestSubscriptions(SubscriptionsCase):
         b.click(dialog_register_button_sel)
 
         # old error should disappear
-        b.wait_not_in_text("body", "User doc is member of more organizations, but no organization was selected")
+        b.wait_not_in_text(
+            "body", "User doc is member of more organizations, but no organization was selected"
+        )
 
         # dialog should disappear
         b.wait_not_present(dialog_register_button_sel)
@@ -349,7 +353,9 @@ class TestSubscriptions(SubscriptionsCase):
     def testUnpriv(self):
         self.machine.execute("useradd junior; echo junior:foobar | chpasswd")
         self.login_and_go("/subscriptions", user="junior")
-        self.browser.wait_in_text(".pf-c-empty-state__body", "current user isn't allowed to access system subscription")
+        self.browser.wait_in_text(
+            ".pf-c-empty-state__body", "current user isn't allowed to access system subscription"
+        )
         self.allow_journal_messages("junior is not in the sudoers file.  This incident will be reported.")
 
     @skipUnlessDistroFamily("rhel", "Insights support is specific to RHEL")
@@ -377,9 +383,9 @@ class TestSubscriptions(SubscriptionsCase):
 
         b.click("button:contains('Not connected')")
         b.wait_visible('.pf-c-modal-box__body:contains("This system is not connected")')
-        b.click('footer button.apply')
+        b.click("footer button.apply")
         with b.wait_timeout(360):
-            b.wait_not_present('.pf-c-modal-box')
+            b.wait_not_present(".pf-c-modal-box")
 
         b.wait_visible("#overview a[href='http://cloud.redhat.com/insights/inventory/123-nice-id']")
         b.wait_visible("#overview a:contains('3 hits, including important')")
@@ -397,7 +403,7 @@ class TestSubscriptions(SubscriptionsCase):
         b.wait_visible('.pf-c-modal-box__body:contains("Last Insights data upload")')
         b.click("button.pf-c-expandable-section__toggle:contains('Disconnect from Insights')")
         b.click("button.pf-m-danger:contains('Disconnect from Insights')")
-        b.wait_not_present('.pf-c-modal-box')
+        b.wait_not_present(".pf-c-modal-box")
 
         b.wait_visible("button:contains('Not connected')")
 
@@ -444,8 +450,10 @@ class TestSubscriptions(SubscriptionsCase):
 
         # Unbreak it and retry.
         m.execute(["mv", "/etc/insights-client/machine-id.lost", "/etc/insights-client/machine-id"])
-        m.execute("systemctl start insights-client; while systemctl --quiet is-active insights-client; do sleep 1; done",
-                  timeout=360)
+        m.execute(
+            "systemctl start insights-client; while systemctl --quiet is-active insights-client; do sleep 1; done",
+            timeout=360,
+        )
 
         b.wait_not_present("button .pf-c-button__icon svg[fill='orange']")
 
@@ -459,7 +467,7 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
         m = self.machine
         b = self.browser
 
-        if m.image.startswith('rhel-'):
+        if m.image.startswith("rhel-"):
             m.execute(["pkcon", "remove", "-y", "insights-client"])
 
         self.createPackage("insights-client", "999", "1")
@@ -478,7 +486,7 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
         b.set_input_text("#subscription-register-org", "admin")
         b.set_checked("#subscription-insights", True)
         b.wait_visible('.pf-c-modal-box__body:contains("The insights-client package will be installed")')
-        b.click('footer button.apply')
+        b.click("footer button.apply")
         with b.wait_timeout(360):
             b.wait_not_present(".pf-c-modal-box")
 
@@ -496,13 +504,13 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
         b.click("button:contains('Not connected')")
         b.wait_visible('.pf-c-modal-box__body:contains("This system is not connected")')
         b.wait_visible('.pf-c-modal-box__body:contains("The insights-client package will be installed")')
-        b.click('footer button.apply')
+        b.click("footer button.apply")
         with b.wait_timeout(360):
             b.wait_visible('footer:contains("not-found")')
-        b.click('footer button.cancel')
+        b.click("footer button.cancel")
 
         m.execute(["test", "-f", "/stamp-insights-client-999-1"])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_main()
