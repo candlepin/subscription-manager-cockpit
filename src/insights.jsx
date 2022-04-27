@@ -396,7 +396,7 @@ function show_status_dialog() {
                         }
                         <ExpandableSection toggleText={_("Disconnect from Insights")}>
                             <Alert isInline variant='warning'
-                                   title={_("If you disconnect this system from Insights, it will no longer report it's Insights status in Red Hat Cloud or Satellite.")}>
+                                   title={_("If you disconnect this system from Insights, it will no longer report its Insights status in Red Hat Cloud or Satellite.")}>
                                 <Button variant='danger' onClick={left(disconnect)}>
                                     {_("Disconnect from Insights")}
                                 </Button>

@@ -506,9 +506,9 @@ class SubscriptionsView extends React.Component {
             message = _("Updating");
             description = _("Retrieving subscription status...");
         } else if (status === "service-unavailable") {
-            message = _("The rhsm service is unavailable. Make sure subscription-manager is installed " +
-                "and try reloading the page. Additionally, make sure that you have checked the " +
-                "'Reuse my password for privileged tasks' checkbox on the login page.");
+            message = _("The rhsm service is unavailable. Make sure subscription-manager is installed \
+and try reloading the page. Additionally, make sure that you have checked the \
+'Reuse my password for privileged tasks' checkbox on the login page.");
             description = _("Unable to the reach the rhsm service.");
         } else if (status === 'access-denied') {
             message = _("Access denied");
@@ -516,8 +516,8 @@ class SubscriptionsView extends React.Component {
         } else {
             message = _("Unable to connect");
             description = cockpit.format(
-                _("Couldn't get system subscription status. Please ensure subscription-manager " +
-                    "is installed. Reported status: $0 ($1)"),
+                _("Couldn't get system subscription status. Please ensure subscription-manager \
+is installed. Reported status: $0 ($1)"),
                 status_msg,
                 status,
             );
