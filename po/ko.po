@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-27 10:37+0200\n"
-"PO-Revision-Date: 2022-04-04 11:17+0000\n"
+"PO-Revision-Date: 2022-04-28 05:17+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/ko/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.12\n"
 
 #: src/insights.jsx:495
 msgid "$0 critical hit"
@@ -158,16 +158,12 @@ msgid "Corrupted JSON with status"
 msgstr "손상된 상태 포함 JSON"
 
 #: src/subscriptions-view.jsx:519
-#, fuzzy
-#| msgid ""
-#| "Couldn't get system subscription status. Please ensure subscription-"
-#| "manager "
 msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
 "is installed. Reported status: $0 ($1)"
 msgstr ""
-"시스템 서브스크립션 상태를 가져올 수 없습니다. subscription-manager를 확인하"
-"세요 "
+"시스템 서브스크립션 상태를 가져올 수 없습니다. subscription-manager가 "
+"설치되었는지 확인하세요. 보고된 상태: $0 ($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -194,16 +190,12 @@ msgid "Ends"
 msgstr "종료"
 
 #: src/insights.jsx:399
-#, fuzzy
-#| msgid ""
-#| "If you disconnect this system from Insights, it will no longer report "
-#| "it's Insights status in Red Hat Cloud or Satellite."
 msgid ""
 "If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
 msgstr ""
-"이 시스템을 Insights에서 연결 해제하면 Red Hat Cloud 또는 Satellite에서 더 이"
-"상 Insights 상태를 보고하지 않습니다."
+"만약 Insights에서 이 시스템을 연결 해제하려면, Red Hat Cloud 또는 "
+"Satellite에서 더 이상 이 Insights 상태를 보고하지 않습니다."
 
 #: src/insights.jsx:546 src/subscriptions-register.jsx:85
 msgid "Insights"
@@ -459,6 +451,9 @@ msgid ""
 "and try reloading the page. Additionally, make sure that you have checked "
 "the 'Reuse my password for privileged tasks' checkbox on the login page."
 msgstr ""
+"rhsm 서비스는 사용 할 수 없습니다. subscription-manager가 설치되어 있는지 "
+"확인한 후 해당 부분을 다시 적재하세요. 또한, 로그인 부분에서 ‘권한 작업에 내 "
+"비밀번호 재사용' 확인란을 선택했는지 확인하세요."
 
 #: src/insights.jsx:70
 msgid ""
