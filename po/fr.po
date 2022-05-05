@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-31 11:13+0200\n"
+"POT-Creation-Date: 2022-04-27 10:37+0200\n"
 "PO-Revision-Date: 2022-02-09 14:16+0000\n"
 "Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
@@ -25,31 +25,31 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.10.1\n"
 
-#: src/insights.jsx:493
+#: src/insights.jsx:495
 msgid "$0 critical hit"
 msgid_plural "$0 hits, including critical"
 msgstr[0] "$0 hit critique"
 msgstr[1] "$0 hits, y compris hits critiques"
 
-#: src/insights.jsx:514
+#: src/insights.jsx:516
 msgid "$0 hit"
 msgid_plural "$0 hits"
 msgstr[0] "$0 correspondance"
 msgstr[1] "$0 correspondances"
 
-#: src/insights.jsx:498
+#: src/insights.jsx:500
 msgid "$0 important hit"
 msgid_plural "$0 hits, including important"
 msgstr[0] "$0 hit important"
 msgstr[1] "$0 hits, y compris hits importants"
 
-#: src/insights.jsx:508
+#: src/insights.jsx:510
 msgid "$0 low severity hit"
 msgid_plural "$0 low severity hits"
 msgstr[0] "$0 hit de moindre importance"
 msgstr[1] "$0 hits de moindre importance"
 
-#: src/insights.jsx:503
+#: src/insights.jsx:505
 msgid "$0 moderate hit"
 msgid_plural "$0 hits, including moderate"
 msgstr[0] "$0 hit modéré"
@@ -131,7 +131,7 @@ msgstr "Connecter ce système à $0."
 msgid "Connect to Red Hat Insights"
 msgstr "Se connecter à Red Hat Insights"
 
-#: src/insights.jsx:527
+#: src/insights.jsx:529
 msgid "Connected to Insights"
 msgstr "Connecté à Red Hat Insights"
 
@@ -170,6 +170,7 @@ msgstr "JSON corrompu avec statut"
 #| "manager is installed."
 msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
+"is installed. Reported status: $0 ($1)"
 msgstr ""
 "Impossible d'obtenir l'état des abonnements du système. Veuillez vous "
 "assurer que subscription-manager est installé."
@@ -199,14 +200,18 @@ msgid "Ends"
 msgstr "Termine"
 
 #: src/insights.jsx:399
+#, fuzzy
+#| msgid ""
+#| "If you disconnect this system from Insights, it will no longer report "
+#| "it's Insights status in Red Hat Cloud or Satellite."
 msgid ""
-"If you disconnect this system from Insights, it will no longer report it's "
+"If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
 msgstr ""
 "Si vous déconnectez ce système de Insights, il ne signalera plus son état "
 "Insights dans Red Hat Cloud ou Satellite."
 
-#: src/insights.jsx:544 src/subscriptions-register.jsx:85
+#: src/insights.jsx:546 src/subscriptions-register.jsx:85
 msgid "Insights"
 msgstr "Insights"
 
@@ -222,7 +227,7 @@ msgstr "Installation de $0"
 msgid "Last Insights data upload"
 msgstr "Dernier téléversement des données vers Insights"
 
-#: org.candlepinproject.subscription_manager.metainfo.xml:8
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
 "Manage subscriptions to a Candlepin backend, such as for Red Hat products."
 msgstr ""
@@ -247,7 +252,7 @@ msgstr "Prochain téléversement des données vers Insights"
 msgid "No installed products detected"
 msgstr "Aucun produit installé n'a été détecté"
 
-#: src/insights.jsx:485
+#: src/insights.jsx:487
 msgid "No rule hits"
 msgstr "Aucune règle atteinte"
 
@@ -255,7 +260,7 @@ msgstr "Aucune règle atteinte"
 msgid "No system purpose attributes set"
 msgstr "Aucun attribut de finalité du système n'est défini"
 
-#: src/insights.jsx:539
+#: src/insights.jsx:541
 msgid "Not connected"
 msgstr "Non connectée"
 
@@ -340,7 +345,7 @@ msgid "Proxy Username"
 msgstr "Nom d'utilisateur proxy"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
-#: subscription-manager-cockpit.desktop:3
+#: data/subscription-manager-cockpit.desktop:3
 msgid "Red Hat Subscription Manager"
 msgstr "Gestionnaire des abonnements Red Hat"
 
@@ -411,12 +416,12 @@ msgid "Subscribed"
 msgstr "Abonné"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
-#: org.candlepinproject.subscription_manager.metainfo.xml:5
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:5
 msgid "Subscription Manager"
 msgstr "Gestion des abonnements"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
-#: org.candlepinproject.subscription_manager.metainfo.xml:6
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:6
 #, fuzzy
 #| msgid "Subscription Manager - Facts"
 msgid "Subscription Manager in Cockpit"
@@ -465,15 +470,11 @@ msgid "The last Insights data upload has failed."
 msgstr "Le dernier téléversement de données vers Insights a échoué."
 
 #: src/subscriptions-view.jsx:509
-#, fuzzy
-#| msgid ""
-#| "Couldn't get system subscription status. Please ensure subscription-"
-#| "manager is installed."
 msgid ""
 "The rhsm service is unavailable. Make sure subscription-manager is installed "
+"and try reloading the page. Additionally, make sure that you have checked "
+"the 'Reuse my password for privileged tasks' checkbox on the login page."
 msgstr ""
-"Impossible d'obtenir l'état des abonnements du système. Veuillez vous "
-"assurer que subscription-manager est installé."
 
 #: src/insights.jsx:70
 msgid ""
@@ -546,7 +547,7 @@ msgstr "Nom d’utilisateur"
 msgid "Version"
 msgstr "Version"
 
-#: src/insights.jsx:521
+#: src/insights.jsx:523
 msgid "View your Insights results"
 msgstr "Voir les résultats Insights"
 
@@ -571,3 +572,14 @@ msgstr "Abonnements"
 #: src/insights.jsx:311
 msgid "unknown"
 msgstr "inconnu"
+
+#, fuzzy
+#~| msgid ""
+#~| "Couldn't get system subscription status. Please ensure subscription-"
+#~| "manager is installed."
+#~ msgid ""
+#~ "The rhsm service is unavailable. Make sure subscription-manager is "
+#~ "installed "
+#~ msgstr ""
+#~ "Impossible d'obtenir l'état des abonnements du système. Veuillez vous "
+#~ "assurer que subscription-manager est installé."

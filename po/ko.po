@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-31 11:13+0200\n"
+"POT-Creation-Date: 2022-04-27 10:37+0200\n"
 "PO-Revision-Date: 2022-04-04 11:17+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
@@ -25,27 +25,27 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.11.2\n"
 
-#: src/insights.jsx:493
+#: src/insights.jsx:495
 msgid "$0 critical hit"
 msgid_plural "$0 hits, including critical"
 msgstr[0] "$0 심각한 영향"
 
-#: src/insights.jsx:514
+#: src/insights.jsx:516
 msgid "$0 hit"
 msgid_plural "$0 hits"
 msgstr[0] "$0 영향"
 
-#: src/insights.jsx:498
+#: src/insights.jsx:500
 msgid "$0 important hit"
 msgid_plural "$0 hits, including important"
 msgstr[0] "$0 중요한 영향"
 
-#: src/insights.jsx:508
+#: src/insights.jsx:510
 msgid "$0 low severity hit"
 msgid_plural "$0 low severity hits"
 msgstr[0] "$0 낮은 심각도"
 
-#: src/insights.jsx:503
+#: src/insights.jsx:505
 msgid "$0 moderate hit"
 msgid_plural "$0 hits, including moderate"
 msgstr[0] "$0 보통 영향"
@@ -125,7 +125,7 @@ msgstr "이 시스템을 $0에 연결합니다."
 msgid "Connect to Red Hat Insights"
 msgstr "Red Hat Insights에 연결"
 
-#: src/insights.jsx:527
+#: src/insights.jsx:529
 msgid "Connected to Insights"
 msgstr "Insights에 연결되어 있습니다"
 
@@ -158,10 +158,16 @@ msgid "Corrupted JSON with status"
 msgstr "손상된 상태 포함 JSON"
 
 #: src/subscriptions-view.jsx:519
+#, fuzzy
+#| msgid ""
+#| "Couldn't get system subscription status. Please ensure subscription-"
+#| "manager "
 msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
-msgstr "시스템 서브스크립션 상태를 가져올 수 없습니다. subscription-manager를 "
-"확인하세요 "
+"is installed. Reported status: $0 ($1)"
+msgstr ""
+"시스템 서브스크립션 상태를 가져올 수 없습니다. subscription-manager를 확인하"
+"세요 "
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -188,14 +194,18 @@ msgid "Ends"
 msgstr "종료"
 
 #: src/insights.jsx:399
+#, fuzzy
+#| msgid ""
+#| "If you disconnect this system from Insights, it will no longer report "
+#| "it's Insights status in Red Hat Cloud or Satellite."
 msgid ""
-"If you disconnect this system from Insights, it will no longer report it's "
+"If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
 msgstr ""
 "이 시스템을 Insights에서 연결 해제하면 Red Hat Cloud 또는 Satellite에서 더 이"
 "상 Insights 상태를 보고하지 않습니다."
 
-#: src/insights.jsx:544 src/subscriptions-register.jsx:85
+#: src/insights.jsx:546 src/subscriptions-register.jsx:85
 msgid "Insights"
 msgstr "Insights"
 
@@ -211,7 +221,7 @@ msgstr "$0 설치 중"
 msgid "Last Insights data upload"
 msgstr "마지막 Insights 자료 적재"
 
-#: org.candlepinproject.subscription_manager.metainfo.xml:8
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
 "Manage subscriptions to a Candlepin backend, such as for Red Hat products."
 msgstr "Red Hat 제품과 같은 Candlepin 백엔드에 대한 서브스크립션을 관리합니다."
@@ -234,7 +244,7 @@ msgstr "다음 Insights 데이터 적재"
 msgid "No installed products detected"
 msgstr "설치된 제품이 감지되지 않았습니다"
 
-#: src/insights.jsx:485
+#: src/insights.jsx:487
 msgid "No rule hits"
 msgstr "규칙 히트 없음"
 
@@ -242,7 +252,7 @@ msgstr "규칙 히트 없음"
 msgid "No system purpose attributes set"
 msgstr "시스템 목적 속성이 설정되지 않았습니다"
 
-#: src/insights.jsx:539
+#: src/insights.jsx:541
 msgid "Not connected"
 msgstr "연결되지 않음"
 
@@ -324,7 +334,7 @@ msgid "Proxy Username"
 msgstr "프록시 사용자 이름"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
-#: subscription-manager-cockpit.desktop:3
+#: data/subscription-manager-cockpit.desktop:3
 msgid "Red Hat Subscription Manager"
 msgstr "Red Hat 서브스크립션 관리자"
 
@@ -395,12 +405,12 @@ msgid "Subscribed"
 msgstr "등록됨"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
-#: org.candlepinproject.subscription_manager.metainfo.xml:5
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:5
 msgid "Subscription Manager"
 msgstr "서브스크립션 관리자"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
-#: org.candlepinproject.subscription_manager.metainfo.xml:6
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:6
 msgid "Subscription Manager in Cockpit"
 msgstr "Cockpit에서 서브스크립션 관리자"
 
@@ -446,8 +456,9 @@ msgstr "마지막 Insights 데이터 업로드에 실패했습니다."
 #: src/subscriptions-view.jsx:509
 msgid ""
 "The rhsm service is unavailable. Make sure subscription-manager is installed "
-msgstr "rhsm 서비스를 사용 할 수 없습니다. subscription-manager가 설치되어 있는지 "
-"확인하세요 "
+"and try reloading the page. Additionally, make sure that you have checked "
+"the 'Reuse my password for privileged tasks' checkbox on the login page."
+msgstr ""
 
 #: src/insights.jsx:70
 msgid ""
@@ -520,7 +531,7 @@ msgstr "사용자 이름"
 msgid "Version"
 msgstr "버전"
 
-#: src/insights.jsx:521
+#: src/insights.jsx:523
 msgid "View your Insights results"
 msgstr "Insights 결과보기"
 
@@ -543,3 +554,10 @@ msgstr "서브스크립션"
 #: src/insights.jsx:311
 msgid "unknown"
 msgstr "알 수 없음"
+
+#~ msgid ""
+#~ "The rhsm service is unavailable. Make sure subscription-manager is "
+#~ "installed "
+#~ msgstr ""
+#~ "rhsm 서비스를 사용 할 수 없습니다. subscription-manager가 설치되어 있는지 "
+#~ "확인하세요 "
