@@ -183,11 +183,11 @@ $(VM_IMAGE): $(NODE_CACHE) $(TARFILE) bots test/vm.install $(IMAGE_CUSTOMIZE_DEP
 
 # convenience target for the above
 vm: $(VM_IMAGE)
-	echo $(VM_IMAGE)
+	@echo $(VM_IMAGE)
 
 # convenience target to print the filename of the test image
 print-vm:
-	echo $(VM_IMAGE)
+	@echo $(VM_IMAGE)
 
 # convenience target to setup all the bits needed for the integration tests
 # without actually running them
