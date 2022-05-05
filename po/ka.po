@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-27 10:37+0200\n"
-"PO-Revision-Date: 2022-03-11 11:26+0000\n"
+"PO-Revision-Date: 2022-04-30 11:18+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
-"subscription-manager/subscription-manager-main/ka/>\n"
+"subscription-manager/cockpit-main/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: src/insights.jsx:495
 msgid "$0 critical hit"
@@ -101,7 +101,7 @@ msgstr "გაუქმება"
 
 #: src/insights.jsx:190 src/insights.jsx:269
 msgid "Checking installed software"
-msgstr ""
+msgstr "დაყენებული პროგრამების შემოწმება"
 
 #: src/insights.jsx:409 src/insights.jsx:428
 msgid "Close"
@@ -113,11 +113,11 @@ msgstr "დაკავშირება"
 
 #: src/subscriptions-register.jsx:87
 msgid "Connect this system to $0."
-msgstr ""
+msgstr "ამ სისტემის $0-სთან მიერთება."
 
 #: src/insights.jsx:224
 msgid "Connect to Red Hat Insights"
-msgstr ""
+msgstr "Red Hat Insights-თან მიერთება"
 
 #: src/insights.jsx:529
 msgid "Connected to Insights"
