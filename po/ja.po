@@ -6,21 +6,22 @@
 # Ludek Janda <ljanda@redhat.com>, 2021, 2022.
 # Sundeep Anand <suanand@redhat.com>, 2021, 2022.
 # Pino Toscano <ptoscano@redhat.com>, 2021.
+# Transtats <suanand@redhat.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-27 10:37+0200\n"
-"PO-Revision-Date: 2022-02-09 14:16+0000\n"
-"Last-Translator: Sundeep Anand <suanand@redhat.com>\n"
+"PO-Revision-Date: 2022-05-02 16:18+0000\n"
+"Last-Translator: Transtats <suanand@redhat.com>\n"
 "Language-Team: Japanese <https://translate.fedoraproject.org/projects/"
-"subscription-manager/subscription-manager-main/ja/>\n"
+"subscription-manager/cockpit-main/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: src/insights.jsx:495
 msgid "$0 critical hit"
@@ -157,16 +158,13 @@ msgid "Corrupted JSON with status"
 msgstr "ステータスを持つ破損した JSON"
 
 #: src/subscriptions-view.jsx:519
-#, fuzzy
-#| msgid ""
-#| "Couldn't get system subscription status. Please ensure subscription-"
-#| "manager is installed."
 msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
 "is installed. Reported status: $0 ($1)"
 msgstr ""
-"システムサブスクリプションステータスを取得できませんでした。subscription-"
-"manager がインストールされていることを確認してください。"
+"システムのサブスクリプションステータスを取得できませんでした。subscription-"
+"manager がインストールされていることを確認してください。報告ステータス: $0 "
+"($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -193,16 +191,12 @@ msgid "Ends"
 msgstr "終了"
 
 #: src/insights.jsx:399
-#, fuzzy
-#| msgid ""
-#| "If you disconnect this system from Insights, it will no longer report "
-#| "it's Insights status in Red Hat Cloud or Satellite."
 msgid ""
 "If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
 msgstr ""
-"このシステムを Insights から切断すると、Red Hat Cloud または Satellite に "
-"Insights のステータスが報告されなくなります。"
+"このシステムを Insights から切断すると、Insights のステータスが Red Hat "
+"Cloud または Satellite に報告されなくなります。"
 
 #: src/insights.jsx:546 src/subscriptions-register.jsx:85
 msgid "Insights"
@@ -223,14 +217,12 @@ msgstr "最後の Insights データのアップロード"
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
 "Manage subscriptions to a Candlepin backend, such as for Red Hat products."
-msgstr ""
+msgstr "Red Hat 製品などの Candlepin バックエンドへのサブスクリプションを管理します。"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: src/manifest.json:0
-#, fuzzy
-#| msgid "Attaching subscriptions"
 msgid "Managing subscriptions"
-msgstr "サブスクリプションを割り当てています"
+msgstr "サブスクリプションの管理"
 
 #: src/subscriptions-register.jsx:159
 msgid "Method"
@@ -279,10 +271,8 @@ msgstr "組織"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author noriko
 #: src/subscriptions-register.jsx:132
-#, fuzzy
-#| msgid "Organization: "
 msgid "Organization ID"
-msgstr "組織: "
+msgstr "組織 ID"
 
 #: src/subscriptions-view.jsx:449
 msgid "Overview"
@@ -414,10 +404,8 @@ msgstr "サブスクリプションマネージャー"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:6
-#, fuzzy
-#| msgid "Subscription Manager - Facts"
 msgid "Subscription Manager in Cockpit"
-msgstr "サブスクリプションマネージャー - 情報"
+msgstr "Cockpit のサブスクリプションマネージャー"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author noriko
 #: src/subscriptions-view.jsx:455
@@ -466,6 +454,9 @@ msgid ""
 "and try reloading the page. Additionally, make sure that you have checked "
 "the 'Reuse my password for privileged tasks' checkbox on the login page."
 msgstr ""
+"rhsm サービスは利用できません。subscription-manager がインストールされ、ペー"
+"ジを再読み込みを試行します。さらにはログインページの「Reuse my password for "
+"privileged tasks」チェックボックスにチェックを入れてください。"
 
 #: src/insights.jsx:70
 msgid ""
@@ -548,15 +539,13 @@ msgstr "他のソフトウェア管理オペレーションが終了するまで
 
 #: src/manifest.json:0
 msgid "candlepin"
-msgstr ""
+msgstr "candlepin"
 
 #: src/subscriptions-client.js:488
 msgid "not-found"
 msgstr "見つかりません"
 
 #: src/manifest.json:0
-#, fuzzy
-#| msgid "Subscriptions"
 msgid "subscriptions"
 msgstr "サブスクリプション"
 

@@ -6,21 +6,22 @@
 # Ludek Janda <ljanda@redhat.com>, 2021, 2022.
 # Sundeep Anand <suanand@redhat.com>, 2021, 2022.
 # Pino Toscano <ptoscano@redhat.com>, 2021.
+# Transtats <suanand@redhat.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-27 10:37+0200\n"
-"PO-Revision-Date: 2022-02-21 11:16+0000\n"
-"Last-Translator: Sundeep Anand <suanand@redhat.com>\n"
+"PO-Revision-Date: 2022-05-02 16:18+0000\n"
+"Last-Translator: Transtats <suanand@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
-"projects/subscription-manager/subscription-manager-main/zh_CN/>\n"
+"projects/subscription-manager/cockpit-main/zh_CN/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.12.1\n"
 
 #: src/insights.jsx:495
 msgid "$0 critical hit"
@@ -153,14 +154,10 @@ msgid "Corrupted JSON with status"
 msgstr "损坏的 JSON，状态"
 
 #: src/subscriptions-view.jsx:519
-#, fuzzy
-#| msgid ""
-#| "Couldn't get system subscription status. Please ensure subscription-"
-#| "manager is installed."
 msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
 "is installed. Reported status: $0 ($1)"
-msgstr "无法获取系统订阅状态。请确认 subscription-manager 已安装。"
+msgstr "无法获取系统订阅状态。请确保安装了 subscription-manager。报告状态：$0 ($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -187,16 +184,11 @@ msgid "Ends"
 msgstr "结束"
 
 #: src/insights.jsx:399
-#, fuzzy
-#| msgid ""
-#| "If you disconnect this system from Insights, it will no longer report "
-#| "it's Insights status in Red Hat Cloud or Satellite."
 msgid ""
 "If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
-msgstr ""
-"如果把这个系统与 Insights 断开，它将不再在 Red Hat Cloud 或 Satellite 中报告"
-"它的 Insights 状态。"
+msgstr "如果您断开此系统与 Insights 的连接，它将不会在红帽云或 Satellite 中报告其 "
+"Insights 状态。"
 
 #: src/insights.jsx:546 src/subscriptions-register.jsx:85
 msgid "Insights"
@@ -217,14 +209,12 @@ msgstr "前一个 Insights 数据上传"
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
 "Manage subscriptions to a Candlepin backend, such as for Red Hat products."
-msgstr ""
+msgstr "管理到 Candlepin 后端的订阅，如红帽产品。"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/manifest.json:0
-#, fuzzy
-#| msgid "Attaching subscriptions"
 msgid "Managing subscriptions"
-msgstr "正在附加订阅"
+msgstr "管理订阅"
 
 #: src/subscriptions-register.jsx:159
 msgid "Method"
@@ -273,10 +263,8 @@ msgstr "机构"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/subscriptions-register.jsx:132
-#, fuzzy
-#| msgid "Organization: "
 msgid "Organization ID"
-msgstr "机构： "
+msgstr "机构 ID"
 
 #: src/subscriptions-view.jsx:449
 msgid "Overview"
@@ -407,10 +395,8 @@ msgstr "Subscription Manager"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:6
-#, fuzzy
-#| msgid "Subscription Manager - Facts"
 msgid "Subscription Manager in Cockpit"
-msgstr "Subscription Manager - Fact"
+msgstr "Cockpit 中的订阅管理器"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/subscriptions-view.jsx:455
@@ -457,6 +443,9 @@ msgid ""
 "and try reloading the page. Additionally, make sure that you have checked "
 "the 'Reuse my password for privileged tasks' checkbox on the login page."
 msgstr ""
+"rhsm 服务不可用。请确定已安装 subscription-manager "
+"并尝试重新载入该页面。另外，请确保在登录页面中选择了\"Reuse my password for "
+"privileged tasks\"复选框。"
 
 #: src/insights.jsx:70
 msgid ""
@@ -537,15 +526,13 @@ msgstr "等待其他软件管理操作完成"
 
 #: src/manifest.json:0
 msgid "candlepin"
-msgstr ""
+msgstr "candlepin"
 
 #: src/subscriptions-client.js:488
 msgid "not-found"
 msgstr "未找到"
 
 #: src/manifest.json:0
-#, fuzzy
-#| msgid "Subscriptions"
 msgid "subscriptions"
 msgstr "订阅"
 
