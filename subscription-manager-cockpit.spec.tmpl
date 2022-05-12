@@ -60,13 +60,13 @@ ESLINT=0 NODE_ENV=production make
 
 %install
 %make_install
-desktop-file-validate %{buildroot}/%{_datadir}/applications/*
 
 # drop source maps, they are large and just for debugging
 find %{buildroot}%{_datadir}/cockpit/ -name '*.map' | xargs --no-run-if-empty rm --verbose
 
 %check
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*
+desktop-file-validate %{buildroot}/%{_datadir}/applications/*
 
 # this can't be meaningfully tested during package build
 
