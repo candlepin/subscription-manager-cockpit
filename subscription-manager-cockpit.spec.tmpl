@@ -51,8 +51,7 @@ This package contains the desktop icons for the graphical interfaces provided fo
 of Red Hat subscriptions: subscription-manager-gui, subscription-manager-cockpit-plugin.
 
 %prep
-%setup -q -n %{name}
-%setup -q -a 1 -n %{name}
+%autosetup -n %{name} -a 1
 # ignore pre-built webpack in release tarball and rebuild it
 rm -rf dist
 
