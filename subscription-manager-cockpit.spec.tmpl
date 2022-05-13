@@ -11,6 +11,10 @@ URL: https://www.candlepinproject.org/
 Source0: %{name}-%{version}.tar.xz
 Source1: %{name}-node-%{version}.tar.xz
 BuildArch: noarch
+ExclusiveArch: %{nodejs_arches} noarch
+%if 0%{?fedora}
+BuildRequires: nodejs-devel
+%endif
 BuildRequires: nodejs
 BuildRequires: make
 BuildRequires: libappstream-glib
@@ -47,21 +51,24 @@ This package contains the desktop icons for the graphical interfaces provided fo
 of Red Hat subscriptions: subscription-manager-gui, subscription-manager-cockpit-plugin.
 
 %prep
-%setup -q -n %{name}
-%setup -q -a 1 -n %{name}
-
-%build
+%autosetup -n %{name} -a 1
 # ignore pre-built webpack in release tarball and rebuild it
 rm -rf dist
+
+%build
 ESLINT=0 NODE_ENV=production make
 
 %install
 %make_install
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*
-desktop-file-validate %{buildroot}/%{_datadir}/applications/*
 
 # drop source maps, they are large and just for debugging
 find %{buildroot}%{_datadir}/cockpit/ -name '*.map' | xargs --no-run-if-empty rm --verbose
+
+%check
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*
+desktop-file-validate %{buildroot}/%{_datadir}/applications/*
+
+# this can't be meaningfully tested during package build
 
 %files
 %license LICENSE
