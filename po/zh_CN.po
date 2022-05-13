@@ -6,43 +6,44 @@
 # Ludek Janda <ljanda@redhat.com>, 2021, 2022.
 # Sundeep Anand <suanand@redhat.com>, 2021, 2022.
 # Pino Toscano <ptoscano@redhat.com>, 2021.
+# Transtats <suanand@redhat.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-31 11:13+0200\n"
-"PO-Revision-Date: 2022-02-21 11:16+0000\n"
-"Last-Translator: Sundeep Anand <suanand@redhat.com>\n"
+"POT-Creation-Date: 2022-04-27 10:37+0200\n"
+"PO-Revision-Date: 2022-05-05 11:42+0000\n"
+"Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
-"projects/subscription-manager/subscription-manager-main/zh_CN/>\n"
+"projects/subscription-manager/cockpit-main/zh_CN/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.12.1\n"
 
-#: src/insights.jsx:493
+#: src/insights.jsx:495
 msgid "$0 critical hit"
 msgid_plural "$0 hits, including critical"
 msgstr[0] "$0 关键匹配"
 
-#: src/insights.jsx:514
+#: src/insights.jsx:516
 msgid "$0 hit"
 msgid_plural "$0 hits"
 msgstr[0] "$0 匹配"
 
-#: src/insights.jsx:498
+#: src/insights.jsx:500
 msgid "$0 important hit"
 msgid_plural "$0 hits, including important"
 msgstr[0] "$0 重要匹配"
 
-#: src/insights.jsx:508
+#: src/insights.jsx:510
 msgid "$0 low severity hit"
 msgid_plural "$0 low severity hits"
 msgstr[0] "$0 低度匹配"
 
-#: src/insights.jsx:503
+#: src/insights.jsx:505
 msgid "$0 moderate hit"
 msgid_plural "$0 hits, including moderate"
 msgstr[0] "$0 中度匹配"
@@ -122,7 +123,7 @@ msgstr "将此系统连接到 $0。"
 msgid "Connect to Red Hat Insights"
 msgstr "连接到 Red Hat Insights"
 
-#: src/insights.jsx:527
+#: src/insights.jsx:529
 msgid "Connected to Insights"
 msgstr "连接到 Insights"
 
@@ -153,13 +154,10 @@ msgid "Corrupted JSON with status"
 msgstr "损坏的 JSON，状态"
 
 #: src/subscriptions-view.jsx:519
-#, fuzzy
-#| msgid ""
-#| "Couldn't get system subscription status. Please ensure subscription-"
-#| "manager is installed."
 msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
-msgstr "无法获取系统订阅状态。请确认 subscription-manager 已安装。"
+"is installed. Reported status: $0 ($1)"
+msgstr "无法获取系统订阅状态。请确保安装了 subscription-manager。报告状态：$0 ($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -187,13 +185,12 @@ msgstr "结束"
 
 #: src/insights.jsx:399
 msgid ""
-"If you disconnect this system from Insights, it will no longer report it's "
+"If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
-msgstr ""
-"如果把这个系统与 Insights 断开，它将不再在 Red Hat Cloud 或 Satellite 中报告"
-"它的 Insights 状态。"
+msgstr "如果您断开此系统与 Insights 的连接，它将不会在红帽云或 Satellite 中报告其 "
+"Insights 状态。"
 
-#: src/insights.jsx:544 src/subscriptions-register.jsx:85
+#: src/insights.jsx:546 src/subscriptions-register.jsx:85
 msgid "Insights"
 msgstr "Insights"
 
@@ -209,17 +206,15 @@ msgstr "正在安装 $0"
 msgid "Last Insights data upload"
 msgstr "前一个 Insights 数据上传"
 
-#: org.candlepinproject.subscription_manager.metainfo.xml:8
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
 "Manage subscriptions to a Candlepin backend, such as for Red Hat products."
-msgstr ""
+msgstr "管理到 Candlepin 后端的订阅，如红帽产品。"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/manifest.json:0
-#, fuzzy
-#| msgid "Attaching subscriptions"
 msgid "Managing subscriptions"
-msgstr "正在附加订阅"
+msgstr "管理订阅"
 
 #: src/subscriptions-register.jsx:159
 msgid "Method"
@@ -234,7 +229,7 @@ msgstr "下一个 Insights 数据上传"
 msgid "No installed products detected"
 msgstr "没有检测到安装的产品"
 
-#: src/insights.jsx:485
+#: src/insights.jsx:487
 msgid "No rule hits"
 msgstr "无规则匹配"
 
@@ -242,7 +237,7 @@ msgstr "无规则匹配"
 msgid "No system purpose attributes set"
 msgstr "未设置系统用途属性"
 
-#: src/insights.jsx:539
+#: src/insights.jsx:541
 msgid "Not connected"
 msgstr "未连接"
 
@@ -268,10 +263,8 @@ msgstr "机构"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/subscriptions-register.jsx:132
-#, fuzzy
-#| msgid "Organization: "
 msgid "Organization ID"
-msgstr "机构： "
+msgstr "机构 ID"
 
 #: src/subscriptions-view.jsx:449
 msgid "Overview"
@@ -325,7 +318,7 @@ msgid "Proxy Username"
 msgstr "代理服务器用户名"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
-#: subscription-manager-cockpit.desktop:3
+#: data/subscription-manager-cockpit.desktop:3
 msgid "Red Hat Subscription Manager"
 msgstr "红帽订阅管理器"
 
@@ -396,16 +389,14 @@ msgid "Subscribed"
 msgstr "已订阅"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
-#: org.candlepinproject.subscription_manager.metainfo.xml:5
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:5
 msgid "Subscription Manager"
-msgstr "Subscription Manager"
+msgstr "订阅管理器"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
-#: org.candlepinproject.subscription_manager.metainfo.xml:6
-#, fuzzy
-#| msgid "Subscription Manager - Facts"
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:6
 msgid "Subscription Manager in Cockpit"
-msgstr "Subscription Manager - Fact"
+msgstr "Cockpit 中的订阅管理器"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/subscriptions-view.jsx:455
@@ -447,13 +438,14 @@ msgid "The last Insights data upload has failed."
 msgstr "最后一次 Insights 数据上传失败。"
 
 #: src/subscriptions-view.jsx:509
-#, fuzzy
-#| msgid ""
-#| "Couldn't get system subscription status. Please ensure subscription-"
-#| "manager is installed."
 msgid ""
 "The rhsm service is unavailable. Make sure subscription-manager is installed "
-msgstr "无法获取系统订阅状态。请确认 subscription-manager 已安装。"
+"and try reloading the page. Additionally, make sure that you have checked "
+"the 'Reuse my password for privileged tasks' checkbox on the login page."
+msgstr ""
+"rhsm 服务不可用。请确定已安装 subscription-manager "
+"并尝试重新载入该页面。另外，请确保在登录页面中选择了\"Reuse my password for "
+"privileged tasks\"复选框。"
 
 #: src/insights.jsx:70
 msgid ""
@@ -524,7 +516,7 @@ msgstr "用户名"
 msgid "Version"
 msgstr "版本"
 
-#: src/insights.jsx:521
+#: src/insights.jsx:523
 msgid "View your Insights results"
 msgstr "查看 Insights 结果"
 
@@ -534,18 +526,25 @@ msgstr "等待其他软件管理操作完成"
 
 #: src/manifest.json:0
 msgid "candlepin"
-msgstr ""
+msgstr "candlepin"
 
 #: src/subscriptions-client.js:488
 msgid "not-found"
 msgstr "未找到"
 
 #: src/manifest.json:0
-#, fuzzy
-#| msgid "Subscriptions"
 msgid "subscriptions"
 msgstr "订阅"
 
 #: src/insights.jsx:311
 msgid "unknown"
 msgstr "未知"
+
+#, fuzzy
+#~| msgid ""
+#~| "Couldn't get system subscription status. Please ensure subscription-"
+#~| "manager is installed."
+#~ msgid ""
+#~ "The rhsm service is unavailable. Make sure subscription-manager is "
+#~ "installed "
+#~ msgstr "无法获取系统订阅状态。请确认 subscription-manager 已安装。"
