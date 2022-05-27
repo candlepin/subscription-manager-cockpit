@@ -226,7 +226,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => {
     };
 
     if (subscriptionDetails.activation_keys && !subscriptionDetails.org) {
-        const error = new Error("'Organization' is required when using activation keys...");
+        const error = new Error(_("'Organization' is required when using activation keys"));
         dfd.reject(error);
         return dfd.promise();
     }
@@ -248,7 +248,9 @@ client.registerSystem = (subscriptionDetails, update_progress) => {
         const port = match[3];
         const path = match[4];
         if (ipv6Address && address) {
-            throw 'malformed server url; ipv6 address syntax and hostname are mutually exclusive';
+            const error = new Error(_("Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"));
+            dfd.reject(error);
+            return dfd.promise();
         }
         if (ipv6Address) {
             connection_options.host = dbus_str(ipv6Address);
@@ -279,7 +281,9 @@ client.registerSystem = (subscriptionDetails, update_progress) => {
             const address = match[2];
             let port = match[3];
             if (ipv6Address && address) {
-                throw 'malformed proxy url; ipv6 address syntax and hostname are mutually exclusive';
+                const error = new Error(_("Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"));
+                dfd.reject(error);
+                return dfd.promise();
             }
             if (ipv6Address) {
                 connection_options.proxy_hostname = dbus_str(ipv6Address);
