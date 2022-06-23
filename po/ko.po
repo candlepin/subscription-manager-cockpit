@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-27 10:37+0200\n"
+"POT-Creation-Date: 2022-05-30 11:07+0200\n"
 "PO-Revision-Date: 2022-04-28 05:17+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
@@ -25,35 +25,41 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.12\n"
 
-#: src/insights.jsx:495
+#: src/insights.jsx:528
 msgid "$0 critical hit"
 msgid_plural "$0 hits, including critical"
 msgstr[0] "$0 심각한 영향"
 
-#: src/insights.jsx:516
+#: src/insights.jsx:549
 msgid "$0 hit"
 msgid_plural "$0 hits"
 msgstr[0] "$0 영향"
 
-#: src/insights.jsx:500
+#: src/insights.jsx:533
 msgid "$0 important hit"
 msgid_plural "$0 hits, including important"
 msgstr[0] "$0 중요한 영향"
 
-#: src/insights.jsx:510
+#: src/insights.jsx:543
 msgid "$0 low severity hit"
 msgid_plural "$0 low severity hits"
 msgstr[0] "$0 낮은 심각도"
 
-#: src/insights.jsx:505
+#: src/insights.jsx:538
 msgid "$0 moderate hit"
 msgid_plural "$0 hits, including moderate"
 msgstr[0] "$0 보통 영향"
 
-#: src/insights.jsx:149
+#: src/insights.jsx:166
 msgid "$0 package needs to be removed."
 msgid_plural "$0 packages need to be removed."
 msgstr[0] "$0 꾸러미들을 제거해야 합니다."
+
+#: src/subscriptions-client.js:229
+#, fuzzy
+#| msgid "Registering using activation key ..."
+msgid "'Organization' is required when using activation keys"
+msgstr "활성키를 사용하여 등록 중..."
 
 #: src/subscriptions-view.jsx:514
 msgid "Access denied"
@@ -76,7 +82,7 @@ msgstr "활성키"
 msgid "Add-ons"
 msgstr "애드온"
 
-#: src/insights.jsx:163
+#: src/insights.jsx:180
 msgid "Additional packages:"
 msgstr "추가 꾸러미:"
 
@@ -100,20 +106,20 @@ msgid "Auto-attaching ..."
 msgstr "자동 첨부 중 ..."
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
-#: src/insights.jsx:417
+#: src/insights.jsx:450
 msgid "Cancel"
 msgstr "취소"
 
-#: src/insights.jsx:190 src/insights.jsx:269
+#: src/insights.jsx:207 src/insights.jsx:302
 msgid "Checking installed software"
 msgstr "설치된 소프트웨어 확인 중"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
-#: src/insights.jsx:409 src/insights.jsx:428
+#: src/insights.jsx:442 src/insights.jsx:461
 msgid "Close"
 msgstr "닫기"
 
-#: src/insights.jsx:237
+#: src/insights.jsx:254
 msgid "Connect"
 msgstr "연결"
 
@@ -121,19 +127,19 @@ msgstr "연결"
 msgid "Connect this system to $0."
 msgstr "이 시스템을 $0에 연결합니다."
 
-#: src/insights.jsx:224
+#: src/insights.jsx:241
 msgid "Connect to Red Hat Insights"
 msgstr "Red Hat Insights에 연결"
 
-#: src/insights.jsx:529
+#: src/insights.jsx:562
 msgid "Connected to Insights"
 msgstr "Insights에 연결되어 있습니다"
 
-#: src/insights.jsx:369
+#: src/insights.jsx:402
 msgid "Connected to Red Hat Insights"
 msgstr "Red Hat Insights에 연결"
 
-#: src/insights.jsx:83
+#: src/insights.jsx:100
 msgid "Connecting to Insights"
 msgstr "Insights에 연결 중"
 
@@ -153,7 +159,7 @@ msgstr ""
 "내용 접근 방식이 단순 내용 접근으로 설정되어 있습니다. 이 호스트는 서브스크립"
 "션 상태에 관계없이 내용에 접근 할 수 있습니다."
 
-#: src/subscriptions-client.js:525
+#: src/subscriptions-client.js:529
 msgid "Corrupted JSON with status"
 msgstr "손상된 상태 포함 JSON"
 
@@ -162,8 +168,8 @@ msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
 "is installed. Reported status: $0 ($1)"
 msgstr ""
-"시스템 서브스크립션 상태를 가져올 수 없습니다. subscription-manager가 "
-"설치되었는지 확인하세요. 보고된 상태: $0 ($1)"
+"시스템 서브스크립션 상태를 가져올 수 없습니다. subscription-manager가 설치되"
+"었는지 확인하세요. 보고된 상태: $0 ($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -173,15 +179,15 @@ msgstr "사용자 설정 URL"
 msgid "Default"
 msgstr "기본값"
 
-#: src/insights.jsx:177 src/insights.jsx:389 src/insights.jsx:394
+#: src/insights.jsx:194 src/insights.jsx:422 src/insights.jsx:427
 msgid "Details"
 msgstr "세부 정보"
 
-#: src/insights.jsx:397 src/insights.jsx:401
+#: src/insights.jsx:430 src/insights.jsx:434
 msgid "Disconnect from Insights"
 msgstr "Insights에서 연결 해제"
 
-#: src/insights.jsx:203
+#: src/insights.jsx:220
 msgid "Downloading $0"
 msgstr "$0 내려받기 중"
 
@@ -189,15 +195,15 @@ msgstr "$0 내려받기 중"
 msgid "Ends"
 msgstr "종료"
 
-#: src/insights.jsx:399
+#: src/insights.jsx:432
 msgid ""
 "If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
 msgstr ""
-"만약 Insights에서 이 시스템을 연결 해제하려면, Red Hat Cloud 또는 "
-"Satellite에서 더 이상 이 Insights 상태를 보고하지 않습니다."
+"만약 Insights에서 이 시스템을 연결 해제하려면, Red Hat Cloud 또는 Satellite에"
+"서 더 이상 이 Insights 상태를 보고하지 않습니다."
 
-#: src/insights.jsx:546 src/subscriptions-register.jsx:85
+#: src/insights.jsx:579 src/subscriptions-register.jsx:85
 msgid "Insights"
 msgstr "Insights"
 
@@ -205,13 +211,23 @@ msgstr "Insights"
 msgid "Installed products"
 msgstr "설치된 제품"
 
-#: src/insights.jsx:207
+#: src/insights.jsx:224
 msgid "Installing $0"
 msgstr "$0 설치 중"
 
-#: src/insights.jsx:380
+#: src/insights.jsx:413
 msgid "Last Insights data upload"
 msgstr "마지막 Insights 자료 적재"
+
+#: src/subscriptions-client.js:284
+msgid ""
+"Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"
+msgstr ""
+
+#: src/subscriptions-client.js:251
+msgid ""
+"Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"
+msgstr ""
 
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
@@ -227,7 +243,7 @@ msgstr "서브스크립션 관리"
 msgid "Method"
 msgstr "방식"
 
-#: src/insights.jsx:375
+#: src/insights.jsx:408
 msgid "Next Insights data upload"
 msgstr "다음 Insights 데이터 적재"
 
@@ -236,7 +252,7 @@ msgstr "다음 Insights 데이터 적재"
 msgid "No installed products detected"
 msgstr "설치된 제품이 감지되지 않았습니다"
 
-#: src/insights.jsx:487
+#: src/insights.jsx:520
 msgid "No rule hits"
 msgstr "규칙 히트 없음"
 
@@ -244,7 +260,7 @@ msgstr "규칙 히트 없음"
 msgid "No system purpose attributes set"
 msgstr "시스템 목적 속성이 설정되지 않았습니다"
 
-#: src/insights.jsx:541
+#: src/insights.jsx:574
 msgid "Not connected"
 msgstr "연결되지 않음"
 
@@ -295,7 +311,7 @@ msgstr "암호"
 msgid "Popover with explanation of SCA mode"
 msgstr "SCA 방식의 설명을 갖는 팝오버(Popover)"
 
-#: src/insights.jsx:121
+#: src/insights.jsx:138
 msgid ""
 "Proactively identify and remediate threats to security, performance, "
 "availability, and stability with Red Hat Insights — with predictive "
@@ -340,19 +356,19 @@ msgstr "시스템 등록"
 msgid "Register System"
 msgstr "시스템 등록"
 
-#: src/subscriptions-client.js:336
+#: src/subscriptions-client.js:340
 msgid "Registering using activation key ..."
 msgstr "활성키를 사용하여 등록 중..."
 
-#: src/subscriptions-client.js:358
+#: src/subscriptions-client.js:362
 msgid "Registering using username and password ..."
 msgstr "사용자 이름과 암호를 사용하여 등록 중..."
 
-#: src/insights.jsx:171
+#: src/insights.jsx:188
 msgid "Removals:"
 msgstr "삭제:"
 
-#: src/insights.jsx:205
+#: src/insights.jsx:222
 msgid "Removing $0"
 msgstr "$0 삭제 중"
 
@@ -364,7 +380,7 @@ msgstr "서브스크립션 상태 검색 중 ..."
 msgid "Role"
 msgstr "역할"
 
-#: src/subscriptions-client.js:411
+#: src/subscriptions-client.js:415
 msgid "Saving configuration ..."
 msgstr "설정 저장 중..."
 
@@ -373,7 +389,7 @@ msgstr "설정 저장 중..."
 msgid "Service level"
 msgstr "서버스 수준"
 
-#: src/subscriptions-client.js:317
+#: src/subscriptions-client.js:321
 msgid "Starting registration service ..."
 msgstr "등록 서비스 시작 중..."
 
@@ -387,7 +403,7 @@ msgstr "시작"
 msgid "Status"
 msgstr "상태"
 
-#: src/subscriptions-client.js:387
+#: src/subscriptions-client.js:391
 msgid "Stopping registration service ..."
 msgstr "등록 서비스 중지 중..."
 
@@ -424,16 +440,16 @@ msgstr "서브스크립션 정보"
 msgid "System purpose"
 msgstr "시스템 목적"
 
-#: src/insights.jsx:141
+#: src/insights.jsx:158
 msgid "The $0 package and $1 other package will be installed."
 msgid_plural "The $0 package and $1 other packages will be installed."
 msgstr[0] "$0 꾸러미와 $1 다른 꾸러미들이 설치됩니다."
 
-#: src/insights.jsx:67 src/insights.jsx:277
+#: src/insights.jsx:84 src/insights.jsx:310
 msgid "The $0 package is not available from any repository."
 msgstr "$0 꾸러미는 저장소에서 사용 할 수 없습니다."
 
-#: src/insights.jsx:139 src/subscriptions-register.jsx:94
+#: src/insights.jsx:156 src/subscriptions-register.jsx:94
 msgid "The $0 package will be installed."
 msgstr "$0 꾸러미가 설치됩니다."
 
@@ -441,7 +457,7 @@ msgstr "$0 꾸러미가 설치됩니다."
 msgid "The current user isn't allowed to access system subscription status."
 msgstr "현재 사용자는 시스템 서브스크립션 상태에 접근 할 수 없습니다."
 
-#: src/insights.jsx:364
+#: src/insights.jsx:397
 msgid "The last Insights data upload has failed."
 msgstr "마지막 Insights 데이터 업로드에 실패했습니다."
 
@@ -451,11 +467,11 @@ msgid ""
 "and try reloading the page. Additionally, make sure that you have checked "
 "the 'Reuse my password for privileged tasks' checkbox on the login page."
 msgstr ""
-"rhsm 서비스는 사용 할 수 없습니다. subscription-manager가 설치되어 있는지 "
-"확인한 후 해당 부분을 다시 적재하세요. 또한, 로그인 부분에서 ‘권한 작업에 내 "
-"비밀번호 재사용' 확인란을 선택했는지 확인하세요."
+"rhsm 서비스는 사용 할 수 없습니다. subscription-manager가 설치되어 있는지 확"
+"인한 후 해당 부분을 다시 적재하세요. 또한, 로그인 부분에서 ‘권한 작업에 내 비"
+"밀번호 재사용' 확인란을 선택했는지 확인하세요."
 
-#: src/insights.jsx:70
+#: src/insights.jsx:87
 msgid ""
 "The system could not be connected to Insights because installing the $0 "
 "package requires the unexpected removal of other packages."
@@ -463,7 +479,7 @@ msgstr ""
 "$0꾸러미 설치에 다른 꾸러미를 제거해야 할 수 있으므로 시스템을 Insights에 연"
 "결 할 수 없습니다."
 
-#: src/insights.jsx:227
+#: src/insights.jsx:244
 msgid "This system is not connected to $0."
 msgstr "이 시스템은 $0에 연결되어 있지 않습니다."
 
@@ -483,7 +499,7 @@ msgstr "rhsm 서버에 연결 할 수 없습니다."
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/subscriptions-view.jsx:133 src/subscriptions-view.jsx:139
-#: src/subscriptions-client.js:541
+#: src/subscriptions-client.js:545
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -496,7 +512,7 @@ msgstr "알 수 없는 상태"
 msgid "Unregister"
 msgstr "등록 해제"
 
-#: src/subscriptions-view.jsx:415 src/subscriptions-client.js:449
+#: src/subscriptions-view.jsx:415 src/subscriptions-client.js:453
 msgid "Unregistering"
 msgstr "등록 해제 중"
 
@@ -504,7 +520,7 @@ msgstr "등록 해제 중"
 msgid "Updating"
 msgstr "업데이트 중"
 
-#: src/subscriptions-client.js:431
+#: src/subscriptions-client.js:435
 msgid "Updating status ..."
 msgstr "상태 업데이트 중 ..."
 
@@ -526,11 +542,11 @@ msgstr "사용자 이름"
 msgid "Version"
 msgstr "버전"
 
-#: src/insights.jsx:523
+#: src/insights.jsx:556
 msgid "View your Insights results"
 msgstr "Insights 결과보기"
 
-#: src/insights.jsx:188 src/insights.jsx:199 src/insights.jsx:267
+#: src/insights.jsx:205 src/insights.jsx:216 src/insights.jsx:300
 msgid "Waiting for other software management operations to finish"
 msgstr "다른 소프트웨어 관리 작업이 완료될 때 까지 대기 중"
 
@@ -538,7 +554,7 @@ msgstr "다른 소프트웨어 관리 작업이 완료될 때 까지 대기 중"
 msgid "candlepin"
 msgstr "candlepin"
 
-#: src/subscriptions-client.js:488
+#: src/subscriptions-client.js:492
 msgid "not-found"
 msgstr "찾을 수 없음"
 
@@ -546,7 +562,7 @@ msgstr "찾을 수 없음"
 msgid "subscriptions"
 msgstr "서브스크립션"
 
-#: src/insights.jsx:311
+#: src/insights.jsx:344
 msgid "unknown"
 msgstr "알 수 없음"
 

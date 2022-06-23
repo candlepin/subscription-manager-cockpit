@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-27 10:37+0200\n"
+"POT-Creation-Date: 2022-05-30 11:07+0200\n"
 "PO-Revision-Date: 2022-02-13 18:16+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/"
@@ -22,41 +22,47 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.10.1\n"
 
-#: src/insights.jsx:495
+#: src/insights.jsx:528
 msgid "$0 critical hit"
 msgid_plural "$0 hits, including critical"
 msgstr[0] "$0 kritischer Treffer"
 msgstr[1] "$0 Treffer, einschließlich kritischer Treffer"
 
-#: src/insights.jsx:516
+#: src/insights.jsx:549
 msgid "$0 hit"
 msgid_plural "$0 hits"
 msgstr[0] "$0 Treffer"
 msgstr[1] "$0 Treffer"
 
-#: src/insights.jsx:500
+#: src/insights.jsx:533
 msgid "$0 important hit"
 msgid_plural "$0 hits, including important"
 msgstr[0] "$0 wichtiger Treffer"
 msgstr[1] "$0 Treffer, einschließlich wichtiger"
 
-#: src/insights.jsx:510
+#: src/insights.jsx:543
 msgid "$0 low severity hit"
 msgid_plural "$0 low severity hits"
 msgstr[0] "$0 Treffer mit niedrigem Schweregrad"
 msgstr[1] "$0 Treffer mit niedrigen Schweregraden"
 
-#: src/insights.jsx:505
+#: src/insights.jsx:538
 msgid "$0 moderate hit"
 msgid_plural "$0 hits, including moderate"
 msgstr[0] "$0 mittlerer Treffer"
 msgstr[1] "$0 Treffer, einschließlich mäßiger Treffer"
 
-#: src/insights.jsx:149
+#: src/insights.jsx:166
 msgid "$0 package needs to be removed."
 msgid_plural "$0 packages need to be removed."
 msgstr[0] "$0-Paket muss entfernt werden."
 msgstr[1] "$0 Pakete müssen entfernt werden."
+
+#: src/subscriptions-client.js:229
+#, fuzzy
+#| msgid "Registering using activation key ..."
+msgid "'Organization' is required when using activation keys"
+msgstr "Registrierung mit Aktivierungsschlüssel ..."
 
 #: src/subscriptions-view.jsx:514
 msgid "Access denied"
@@ -79,7 +85,7 @@ msgstr "Aktivierungsschlüssel"
 msgid "Add-ons"
 msgstr "Add-ons"
 
-#: src/insights.jsx:163
+#: src/insights.jsx:180
 msgid "Additional packages:"
 msgstr "Zusatzpakete:"
 
@@ -103,20 +109,20 @@ msgid "Auto-attaching ..."
 msgstr "Automatisches Anhängen ..."
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
-#: src/insights.jsx:417
+#: src/insights.jsx:450
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/insights.jsx:190 src/insights.jsx:269
+#: src/insights.jsx:207 src/insights.jsx:302
 msgid "Checking installed software"
 msgstr "Überprüfen der installierten Software"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
-#: src/insights.jsx:409 src/insights.jsx:428
+#: src/insights.jsx:442 src/insights.jsx:461
 msgid "Close"
 msgstr "Schließen"
 
-#: src/insights.jsx:237
+#: src/insights.jsx:254
 msgid "Connect"
 msgstr "Verbinden"
 
@@ -124,19 +130,19 @@ msgstr "Verbinden"
 msgid "Connect this system to $0."
 msgstr "Verbinden Sie dieses System mit $0."
 
-#: src/insights.jsx:224
+#: src/insights.jsx:241
 msgid "Connect to Red Hat Insights"
 msgstr "Verbinden mit Red Hat Insights"
 
-#: src/insights.jsx:529
+#: src/insights.jsx:562
 msgid "Connected to Insights"
 msgstr "Verbunden mit Insights"
 
-#: src/insights.jsx:369
+#: src/insights.jsx:402
 msgid "Connected to Red Hat Insights"
 msgstr "Verbunden mit Red Hat Insights"
 
-#: src/insights.jsx:83
+#: src/insights.jsx:100
 msgid "Connecting to Insights"
 msgstr "Herstellen einer Verbindung mit Insights"
 
@@ -164,7 +170,7 @@ msgstr ""
 "Der Inhaltszugriffsmodus ist auf Einfacher Inhaltszugriff eingestellt. "
 "Dieser Host hat unabhängig vom Abonnementstatus Zugriff auf Inhalte.\n"
 
-#: src/subscriptions-client.js:525
+#: src/subscriptions-client.js:529
 msgid "Corrupted JSON with status"
 msgstr "Beschädigtes JSON mit Status"
 
@@ -188,15 +194,15 @@ msgstr "Benutzerdefinierte URL"
 msgid "Default"
 msgstr "Standard"
 
-#: src/insights.jsx:177 src/insights.jsx:389 src/insights.jsx:394
+#: src/insights.jsx:194 src/insights.jsx:422 src/insights.jsx:427
 msgid "Details"
 msgstr "Einzelheiten"
 
-#: src/insights.jsx:397 src/insights.jsx:401
+#: src/insights.jsx:430 src/insights.jsx:434
 msgid "Disconnect from Insights"
 msgstr "Von Insights trennen"
 
-#: src/insights.jsx:203
+#: src/insights.jsx:220
 msgid "Downloading $0"
 msgstr "$0 herunterladen"
 
@@ -204,7 +210,7 @@ msgstr "$0 herunterladen"
 msgid "Ends"
 msgstr "Endet"
 
-#: src/insights.jsx:399
+#: src/insights.jsx:432
 #, fuzzy
 #| msgid ""
 #| "If you disconnect this system from Insights, it will no longer report "
@@ -216,7 +222,7 @@ msgstr ""
 "Wenn Sie dieses System von Insights trennen, meldet es seinen Insights-"
 "Status nicht mehr an Red Hat Cloud oder Satellite."
 
-#: src/insights.jsx:546 src/subscriptions-register.jsx:85
+#: src/insights.jsx:579 src/subscriptions-register.jsx:85
 msgid "Insights"
 msgstr "Insights"
 
@@ -224,13 +230,23 @@ msgstr "Insights"
 msgid "Installed products"
 msgstr "Installierte Produkte"
 
-#: src/insights.jsx:207
+#: src/insights.jsx:224
 msgid "Installing $0"
 msgstr "$0 installieren"
 
-#: src/insights.jsx:380
+#: src/insights.jsx:413
 msgid "Last Insights data upload"
 msgstr "Letzter Upload von Insights-Daten"
+
+#: src/subscriptions-client.js:284
+msgid ""
+"Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"
+msgstr ""
+
+#: src/subscriptions-client.js:251
+msgid ""
+"Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"
+msgstr ""
 
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
@@ -248,7 +264,7 @@ msgstr "Subskriptionen verknüpfen"
 msgid "Method"
 msgstr "Methode"
 
-#: src/insights.jsx:375
+#: src/insights.jsx:408
 msgid "Next Insights data upload"
 msgstr "Nächster Insights-Daten-Upload"
 
@@ -257,7 +273,7 @@ msgstr "Nächster Insights-Daten-Upload"
 msgid "No installed products detected"
 msgstr "Keine installierten Produkte erkannt."
 
-#: src/insights.jsx:487
+#: src/insights.jsx:520
 msgid "No rule hits"
 msgstr "Keine Regeltreffer"
 
@@ -267,7 +283,7 @@ msgstr "Keine Regeltreffer"
 msgid "No system purpose attributes set"
 msgstr "Ändern Sie die Systemzweckrolle"
 
-#: src/insights.jsx:541
+#: src/insights.jsx:574
 msgid "Not connected"
 msgstr "Nicht verbunden"
 
@@ -328,7 +344,7 @@ msgstr "Passwort"
 msgid "Popover with explanation of SCA mode"
 msgstr ""
 
-#: src/insights.jsx:121
+#: src/insights.jsx:138
 msgid ""
 "Proactively identify and remediate threats to security, performance, "
 "availability, and stability with Red Hat Insights — with predictive "
@@ -374,19 +390,19 @@ msgstr "Registrieren"
 msgid "Register System"
 msgstr "System registrieren"
 
-#: src/subscriptions-client.js:336
+#: src/subscriptions-client.js:340
 msgid "Registering using activation key ..."
 msgstr "Registrierung mit Aktivierungsschlüssel ..."
 
-#: src/subscriptions-client.js:358
+#: src/subscriptions-client.js:362
 msgid "Registering using username and password ..."
 msgstr "Registrierung mit Benutzername und Passwort ..."
 
-#: src/insights.jsx:171
+#: src/insights.jsx:188
 msgid "Removals:"
 msgstr "Umzüge:"
 
-#: src/insights.jsx:205
+#: src/insights.jsx:222
 msgid "Removing $0"
 msgstr "$0 entfernen"
 
@@ -398,7 +414,7 @@ msgstr "Abonnementstatus abrufen..."
 msgid "Role"
 msgstr "Rolle"
 
-#: src/subscriptions-client.js:411
+#: src/subscriptions-client.js:415
 msgid "Saving configuration ..."
 msgstr "Konfiguration speichern ..."
 
@@ -409,7 +425,7 @@ msgstr "Konfiguration speichern ..."
 msgid "Service level"
 msgstr "Servicelevel"
 
-#: src/subscriptions-client.js:317
+#: src/subscriptions-client.js:321
 msgid "Starting registration service ..."
 msgstr "Registrierungsservice starten ..."
 
@@ -423,7 +439,7 @@ msgstr "Startet"
 msgid "Status"
 msgstr "Status"
 
-#: src/subscriptions-client.js:387
+#: src/subscriptions-client.js:391
 msgid "Stopping registration service ..."
 msgstr "Registrierungsdienst wird beendet..."
 
@@ -462,17 +478,17 @@ msgstr "Subskriptionsinformation"
 msgid "System purpose"
 msgstr "Systemzweck"
 
-#: src/insights.jsx:141
+#: src/insights.jsx:158
 msgid "The $0 package and $1 other package will be installed."
 msgid_plural "The $0 package and $1 other packages will be installed."
 msgstr[0] "Das Paket $0 und das andere Paket $1 werden installiert."
 msgstr[1] "Das $0-Paket und $1 andere Pakete werden installiert."
 
-#: src/insights.jsx:67 src/insights.jsx:277
+#: src/insights.jsx:84 src/insights.jsx:310
 msgid "The $0 package is not available from any repository."
 msgstr "Das $0 Paket ist in keinem Repository verfügbar."
 
-#: src/insights.jsx:139 src/subscriptions-register.jsx:94
+#: src/insights.jsx:156 src/subscriptions-register.jsx:94
 msgid "The $0 package will be installed."
 msgstr "Das $0 Paket wird installiert."
 
@@ -480,7 +496,7 @@ msgstr "Das $0 Paket wird installiert."
 msgid "The current user isn't allowed to access system subscription status."
 msgstr ""
 
-#: src/insights.jsx:364
+#: src/insights.jsx:397
 msgid "The last Insights data upload has failed."
 msgstr "Der letzte Upload von Insights-Daten ist fehlgeschlagen."
 
@@ -491,7 +507,7 @@ msgid ""
 "the 'Reuse my password for privileged tasks' checkbox on the login page."
 msgstr ""
 
-#: src/insights.jsx:70
+#: src/insights.jsx:87
 msgid ""
 "The system could not be connected to Insights because installing the $0 "
 "package requires the unexpected removal of other packages."
@@ -499,7 +515,7 @@ msgstr ""
 "Das System konnte nicht mit Insights verbunden werden, da die Installation "
 "des $0 Pakets das unerwartete Entfernen anderer Pakete erfordert."
 
-#: src/insights.jsx:227
+#: src/insights.jsx:244
 msgid "This system is not connected to $0."
 msgstr "Dieses System ist nicht mit $0 verbunden."
 
@@ -519,7 +535,7 @@ msgstr ""
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author hedda
 #: src/subscriptions-view.jsx:133 src/subscriptions-view.jsx:139
-#: src/subscriptions-client.js:541
+#: src/subscriptions-client.js:545
 msgid "Unknown"
 msgstr "Unbekannt"
 
@@ -534,7 +550,7 @@ msgstr "Unbekannt"
 msgid "Unregister"
 msgstr "Abmelden"
 
-#: src/subscriptions-view.jsx:415 src/subscriptions-client.js:449
+#: src/subscriptions-view.jsx:415 src/subscriptions-client.js:453
 msgid "Unregistering"
 msgstr "Wird abgemeldet"
 
@@ -542,7 +558,7 @@ msgstr "Wird abgemeldet"
 msgid "Updating"
 msgstr "Aktualisierung"
 
-#: src/subscriptions-client.js:431
+#: src/subscriptions-client.js:435
 msgid "Updating status ..."
 msgstr "Status wird aktualisiert..."
 
@@ -564,11 +580,11 @@ msgstr "Nutzername"
 msgid "Version"
 msgstr "Version"
 
-#: src/insights.jsx:523
+#: src/insights.jsx:556
 msgid "View your Insights results"
 msgstr "Sehen Sie sich Ihre Insights-Ergebnisse an"
 
-#: src/insights.jsx:188 src/insights.jsx:199 src/insights.jsx:267
+#: src/insights.jsx:205 src/insights.jsx:216 src/insights.jsx:300
 msgid "Waiting for other software management operations to finish"
 msgstr "Warten, bis andere Softwareverwaltungsvorgänge abgeschlossen sind"
 
@@ -576,7 +592,7 @@ msgstr "Warten, bis andere Softwareverwaltungsvorgänge abgeschlossen sind"
 msgid "candlepin"
 msgstr ""
 
-#: src/subscriptions-client.js:488
+#: src/subscriptions-client.js:492
 msgid "not-found"
 msgstr "nicht gefunden"
 
@@ -586,7 +602,7 @@ msgstr "nicht gefunden"
 msgid "subscriptions"
 msgstr "Subskriptionen"
 
-#: src/insights.jsx:311
+#: src/insights.jsx:344
 msgid "unknown"
 msgstr "Unbekannt"
 
