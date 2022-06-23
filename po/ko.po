@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2022-04-28 05:17+0000\n"
+"PO-Revision-Date: 2022-06-23 13:18+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/ko/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12\n"
+"X-Generator: Weblate 4.13\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -56,10 +56,8 @@ msgid_plural "$0 packages need to be removed."
 msgstr[0] "$0 꾸러미들을 제거해야 합니다."
 
 #: src/subscriptions-client.js:229
-#, fuzzy
-#| msgid "Registering using activation key ..."
 msgid "'Organization' is required when using activation keys"
-msgstr "활성키를 사용하여 등록 중..."
+msgstr "'조직'은 활성화 키를 사용 할 때 필요합니다."
 
 #: src/subscriptions-view.jsx:514
 msgid "Access denied"
@@ -168,8 +166,8 @@ msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
 "is installed. Reported status: $0 ($1)"
 msgstr ""
-"시스템 서브스크립션 상태를 가져올 수 없습니다. subscription-manager가 설치되"
-"었는지 확인하세요. 보고된 상태: $0 ($1)"
+"시스템 서브스크립션 상태를 가져올 수 없습니다. subscription-manager가 "
+"설치되어 있는지 확인하세요. 보고된 상태: $0 ($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -222,12 +220,12 @@ msgstr "마지막 Insights 자료 적재"
 #: src/subscriptions-client.js:284
 msgid ""
 "Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"
-msgstr ""
+msgstr "잘못된 프락시 URL; IPV6 주소 구문과 호스트이름은 상호 배타적이어야 합니다"
 
 #: src/subscriptions-client.js:251
 msgid ""
 "Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"
-msgstr ""
+msgstr "잘못된 서버 URL; IPV6 주소 구문과 호스트이름은 상호 배타적이어야 합니다"
 
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
@@ -331,15 +329,15 @@ msgstr "제품 이름"
 
 #: src/subscriptions-register.jsx:55
 msgid "Proxy Location"
-msgstr "프록시 위치"
+msgstr "프락시 위치"
 
 #: src/subscriptions-register.jsx:67
 msgid "Proxy Password"
-msgstr "프록시 암호"
+msgstr "프락시 비밀번호"
 
 #: src/subscriptions-register.jsx:61
 msgid "Proxy Username"
-msgstr "프록시 사용자 이름"
+msgstr "프락시 사용자 이름"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: data/subscription-manager-cockpit.desktop:3
@@ -531,7 +529,7 @@ msgstr "사용법"
 
 #: src/subscriptions-register.jsx:155
 msgid "Use proxy server"
-msgstr "프록시 서버 사용"
+msgstr "프락시 서버 사용"
 
 #: src/subscriptions-register.jsx:107
 msgid "Username"
