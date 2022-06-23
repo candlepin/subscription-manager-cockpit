@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2022-05-05 11:42+0000\n"
+"PO-Revision-Date: 2022-06-15 12:24+0000\n"
 "Last-Translator: Transtats <suanand@redhat.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/fr/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.12.2\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -63,10 +63,8 @@ msgstr[0] "Le paquet $0 doit être retiré."
 msgstr[1] "Les paquets $0 doivent être retirés."
 
 #: src/subscriptions-client.js:229
-#, fuzzy
-#| msgid "Registering using activation key ..."
 msgid "'Organization' is required when using activation keys"
-msgstr "Inscription à l'aide de la clé d'activation ..."
+msgstr "L'organisation est requise lors de l'utilisation de clés d'activation"
 
 #: src/subscriptions-view.jsx:514
 msgid "Access denied"
@@ -230,11 +228,15 @@ msgstr "Dernier téléversement des données vers Insights"
 msgid ""
 "Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"
 msgstr ""
+"URL proxy malformée ; la syntaxe de l'adresse IPv6 et le nom d'hôte "
+"s'excluent mutuellement"
 
 #: src/subscriptions-client.js:251
 msgid ""
 "Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"
 msgstr ""
+"URL serveur malformée ; la syntaxe de l'adresse IPv6 et le nom d'hôte "
+"s'excluent mutuellement"
 
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""

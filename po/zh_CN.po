@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2022-05-05 11:42+0000\n"
-"Last-Translator: Ludek Janda <ljanda@redhat.com>\n"
+"PO-Revision-Date: 2022-06-15 12:24+0000\n"
+"Last-Translator: Transtats <suanand@redhat.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.fedoraproject.org/"
 "projects/subscription-manager/cockpit-main/zh_CN/>\n"
 "Language: zh_CN\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12.1\n"
+"X-Generator: Weblate 4.12.2\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -54,10 +54,8 @@ msgid_plural "$0 packages need to be removed."
 msgstr[0] "$0 软件包需要删除。"
 
 #: src/subscriptions-client.js:229
-#, fuzzy
-#| msgid "Registering using activation key ..."
 msgid "'Organization' is required when using activation keys"
-msgstr "使用激活码注册..."
+msgstr "当使用激活密钥时需要“组织”"
 
 #: src/subscriptions-view.jsx:514
 msgid "Access denied"
@@ -217,12 +215,12 @@ msgstr "前一个 Insights 数据上传"
 #: src/subscriptions-client.js:284
 msgid ""
 "Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"
-msgstr ""
+msgstr "代理 URL 格式错误；IPv6 地址语法和主机名是互斥的"
 
 #: src/subscriptions-client.js:251
 msgid ""
 "Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"
-msgstr ""
+msgstr "代理 URL 格式错误；IPv6 地址语法和主机名是互斥的"
 
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
