@@ -89,3 +89,36 @@ repository.
 Please see [Cockpit's test documentation](https://github.com/cockpit-project/cockpit/blob/main/test/README.md)
 for details how to run against existing VMs, interactive browser window,
 interacting with the test VM, and more.
+
+# Tagging and creating release
+
+When you want to tag current state of repository, then you can use `tito`
+CLI tool for this purpose. It is highly recommended to remove generated
+file `subscription-manager-cockpit.spec` file before tagging repository with
+`tito tag`, because we use template file `subscription-manager-cockpit.spec.tmpl`
+and `subscription-manager-cockpit.spec` is in `.gitignore` file. The tito tool
+just do not like this conflict. Thus it is recommended to remove .spec file with
+`make clean`. Then it is possible to run
+
+    tito tag
+
+We would like to use incremental versioning of our cockpit plugin, but if you
+have to specify minor version, then you can use following command:
+
+    tito tag --use-version=<X>.<Y>
+
+When repository is tagged, then it is possible to create SRPM using:
+
+    VERSION=X make srpm
+
+or
+
+    VERSION=X.Y make srpm
+
+When SRPM is generated then it is possible to use `centpkg` or `fedpkg` CLI tool
+for creating release.
+
+# Git repositories for distributions
+
+* CentOS Stream: https://gitlab.com/redhat/centos-stream/rpms/subscription-manager-cockpit
+* Fedora: https://src.fedoraproject.org/rpms/subscription-manager-cockpit

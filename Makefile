@@ -1,7 +1,7 @@
 # extract name from package.json
 PACKAGE_NAME := $(shell awk '/"name":/ {gsub(/[",]/, "", $$2); print $$2}' package.json)
 RPM_NAME := $(PACKAGE_NAME)-cockpit
-VERSION := $(shell T=$$(git describe 2>/dev/null | awk -f get_git_version.awk) || T=1; echo $$T)
+VERSION ?= $(shell T=$$(git describe 2>/dev/null | awk -f get_git_version.awk) || T=1; echo $$T)
 ifeq ($(TEST_OS),)
 TEST_OS = centos-9-stream
 endif
