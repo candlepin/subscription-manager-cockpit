@@ -28,6 +28,9 @@ Requires: subscription-manager
 Requires: cockpit-bridge
 Requires: cockpit-shell
 Requires: rhsm-icons
+%if %{defined rhel} && %{undefined centos}
+Suggests: insights-client
+%endif
 
 %description
 Subscription Manager Cockpit UI
