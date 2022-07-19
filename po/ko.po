@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2022-06-23 13:18+0000\n"
+"PO-Revision-Date: 2022-07-19 08:19+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/ko/>\n"
@@ -418,7 +418,7 @@ msgstr "서브스크립션 관리자"
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:6
 msgid "Subscription Manager in Cockpit"
-msgstr "Cockpit에서 서브스크립션 관리자"
+msgstr "Cockpit 서브스크립션 관리자"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/subscriptions-view.jsx:455
