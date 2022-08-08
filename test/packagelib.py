@@ -16,9 +16,10 @@
 # along with Cockpit; If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import textwrap
 import warnings
 
-from testlib import *
+from testlib import MachineCase
 
 
 class PackageCase(MachineCase):
@@ -53,7 +54,6 @@ class PackageCase(MachineCase):
             self.addCleanup(self.machine.execute, "nmcli con delete fake")
 
         # HACK: packagekit often hangs on shutdown; https://bugzilla.redhat.com/show_bug.cgi?id=1717185
-        self.machine.execute("mkdir -p /etc/systemd/system/packagekit.service.d")
         self.write_file("/etc/systemd/system/packagekit.service.d/timeout.conf", "[Service]\nTimeoutStopSec=5\n")
 
         # disable all existing repositories to avoid hitting the network
@@ -71,6 +71,7 @@ class PackageCase(MachineCase):
             self.restore_file("/etc/pacman.d/mirrorlist")
             self.restore_file("/usr/share/libalpm/hooks/90-packagekit-refresh.hook")
             self.machine.execute("rm /etc/pacman.conf /etc/pacman.d/mirrorlist /var/lib/pacman/sync/* /usr/share/libalpm/hooks/90-packagekit-refresh.hook")
+            self.machine.execute("test -d /var/lib/PackageKit/alpm && rm -r /var/lib/PackageKit/alpm || true")  # Drop alpm state directory as it interferes with running offline
             # Initial config for installation
             empty_repo_dir = '/var/lib/cockpittest/empty'
             config = f"""
@@ -94,7 +95,7 @@ Server = file://{empty_repo_dir}
 
         # have PackageKit start from a clean slate
         self.machine.execute("systemctl stop packagekit")
-        self.machine.execute("systemctl kill --signal=SIGKILL packagekit; rm -rf /var/cache/PackageKit")
+        self.machine.execute("systemctl kill --signal=SIGKILL packagekit || true; rm -rf /var/cache/PackageKit")
         self.machine.execute("systemctl reset-failed packagekit || true")
         self.restore_file("/var/lib/PackageKit/transactions.db")
 
@@ -105,7 +106,9 @@ Server = file://{empty_repo_dir}
 
         # reset automatic updates
         if self.backend == 'dnf':
-            self.machine.execute("systemctl disable --now dnf-automatic dnf-automatic-install dnf-automatic.service dnf-automatic-install.timer; rm -r /etc/systemd/system/dnf-automatic* && systemctl daemon-reload || true")
+            self.machine.execute("systemctl disable --now dnf-automatic dnf-automatic-install "
+                                 "dnf-automatic.service dnf-automatic-install.timer")
+            self.machine.execute("rm -r /etc/systemd/system/dnf-automatic* && systemctl daemon-reload || true")
 
         self.updateInfo = {}
 
@@ -140,6 +143,8 @@ Server = file://{empty_repo_dir}
         If install is True, install the package. Otherwise, update the package
         index in repo_dir.
         '''
+        m = self.machine
+
         if arch is None:
             arch = self.primary_arch
         deb = f"{self.repo_dir}/{name}_{version}_{arch}.deb"
@@ -151,22 +156,34 @@ Server = file://{empty_repo_dir}
         if content is not None:
             for path, data in content.items():
                 dest = "/tmp/b/" + path
-                self.machine.execute(f"mkdir -p '{os.path.dirname(dest)}'")
+                m.execute(f"mkdir -p '{os.path.dirname(dest)}'")
                 if isinstance(data, dict):
-                    self.machine.execute(f"cp '{data['path']}' '{dest}'")
+                    m.execute(f"cp '{data['path']}' '{dest}'")
                 else:
-                    self.machine.write(dest, data)
-        cmd = '''mkdir -p /tmp/b/DEBIAN {repo}
-                 printf "Package: {name}\nVersion: {ver}\nPriority: optional\nSection: test\nMaintainer: foo\nDepends: {deps}\nArchitecture: {arch}\nDescription: dummy {name}\n{provides}\n" > /tmp/b/DEBIAN/control
-                 {post}
-                 touch /tmp/b/stamp-{name}-{ver}
-                 dpkg -b /tmp/b {deb}
-                 rm -r /tmp/b
-                 '''.format(name=name, ver=version, deps=depends, deb=deb, post=postinstcode, repo=self.repo_dir, arch=arch, provides=provides)
+                    m.write(dest, data)
+        m.execute(f"mkdir -p /tmp/b/DEBIAN {self.repo_dir}")
+        m.write("/tmp/b/DEBIAN/control", textwrap.dedent(f"""
+            Package: {name}
+            Version: {version}
+            Priority: optional
+            Section: test
+            Maintainer: foo
+            Depends: {depends}
+            Architecture: {arch}
+            Description: dummy {name}
+            {provides}
+            """))
+
+        cmd = f"""set -e
+                  {postinstcode}
+                  touch /tmp/b/stamp-{name}-{version}
+                  dpkg -b /tmp/b {deb}
+                  rm -r /tmp/b
+              """
         if install:
             cmd += "dpkg -i " + deb
-        self.machine.execute(cmd)
-        self.addCleanup(self.machine.execute, f"dpkg -P --force-depends --force-remove-reinstreq {name} 2>/dev/null || true")
+        m.execute(cmd)
+        self.addCleanup(m.execute, f"dpkg -P --force-depends --force-remove-reinstreq {name} 2>/dev/null || true")
 
     def createRpm(self, name, version, release, requires, post, install, content, arch, provides):
         '''Create a dummy rpm in repo_dir on self.machine
@@ -294,11 +311,11 @@ post_upgrade() {{
 
         cmd = """
         cd /tmp/
-        su builder -c "makepkg -f -d --skipinteg --noconfirm"
+        su builder -c "makepkg --cleanbuild --clean --force --nodeps --skipinteg --noconfirm"
 """
 
         if install:
-            cmd += f"pacman -U --noconfirm {name}-{version}-{release}-{arch}.pkg.tar.zst\n"
+            cmd += f"pacman -U --overwrite '*' --noconfirm {name}-{version}-{release}-{arch}.pkg.tar.zst\n"
 
         cmd += f"mkdir -p {self.repo_dir}\n"
         cmd += f"mv *.pkg.tar.zst {self.repo_dir}\n"
@@ -307,7 +324,7 @@ post_upgrade() {{
         if postinst:
             cmd += f"rm /tmp/{name}.install"
         self.machine.execute(cmd)
-        self.addCleanup(self.machine.execute, f"pacman -R --noconfirm {name} 2>/dev/null || true")
+        self.addCleanup(self.machine.execute, f"pacman -Rdd --noconfirm {name} 2>/dev/null || true")
 
     def createAptChangelogs(self):
         # apt metadata has no formal field for bugs/CVEs, they are parsed from the changelog
