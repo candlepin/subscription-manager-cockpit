@@ -139,6 +139,7 @@ export const blurb =
 
 export const link = (
     <Button variant="link"
+            key="link-to-redhat-insights-web-page"
             isInline
             component='a'
             href="https://www.redhat.com/en/technologies/management/insights" target="_blank" rel="noopener noreferrer"

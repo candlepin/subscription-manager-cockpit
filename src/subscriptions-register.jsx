@@ -92,7 +92,9 @@ class SubscriptionRegisterDialog extends React.Component {
                     <p>
                         { Insights.arrfmt(
                             _("The $0 package will be installed."),
-                            <strong>{subscriptionsClient.insightsPackage}</strong>
+                            <strong key={subscriptionsClient.insightsPackage}>
+                                {subscriptionsClient.insightsPackage}
+                            </strong>
                         )}
                     </p>
                 }
