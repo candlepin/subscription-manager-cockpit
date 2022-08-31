@@ -1,7 +1,3 @@
 [tool.black]
 line-length = 110
 include = '(\.py|^/test/check-.*|^/test/files/mock-insights)$'
-extend-exclude = '''
-# copied from cockpit-project/cockpit.git
-^/test/packagelib.py
-'''
