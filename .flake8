@@ -16,8 +16,6 @@ per-file-ignores =
         # E501: line too long (* > 110 characters)
         E501,
 exclude =
-    # copied from cockpit-project/cockpit.git
-    test/packagelib.py,
     # external sources checked out during tests
     bots/,
     cockpit/,
