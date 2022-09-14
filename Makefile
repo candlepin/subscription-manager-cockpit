@@ -14,6 +14,7 @@ endif
 TARFILE=$(RPM_NAME)-$(VERSION).tar.xz
 NODE_CACHE=$(RPM_NAME)-node-$(VERSION).tar.xz
 SPEC=$(RPM_NAME).spec
+PREFIX ?= /usr/local
 APPSTREAMFILE=data/org.candlepinproject.subscription_manager.metainfo.xml
 DESKTOPFILE=data/subscription-manager-cockpit.desktop
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
@@ -93,18 +94,18 @@ clean-all:
 	git clean -fdx
 
 install: $(WEBPACK_TEST) po/LINGUAS
-	mkdir -p $(DESTDIR)/usr/share/cockpit/$(PACKAGE_NAME)
-	cp -r dist/* $(DESTDIR)/usr/share/cockpit/$(PACKAGE_NAME)
-	mkdir -p $(DESTDIR)/usr/share/metainfo/
+	mkdir -p $(DESTDIR)$(PREFIX)/share/cockpit/$(PACKAGE_NAME)
+	cp -r dist/* $(DESTDIR)$(PREFIX)/share/cockpit/$(PACKAGE_NAME)
+	mkdir -p $(DESTDIR)$(PREFIX)/share/metainfo/
 	msgfmt --xml -d po \
 		--template $(APPSTREAMFILE) \
-		-o $(DESTDIR)/usr/share/metainfo/$(notdir $(APPSTREAMFILE))
-	mkdir -p $(DESTDIR)/usr/share/applications/
+		-o $(DESTDIR)$(PREFIX)/share/metainfo/$(notdir $(APPSTREAMFILE))
+	mkdir -p $(DESTDIR)$(PREFIX)/share/applications/
 	msgfmt --desktop -d po \
 		--template $(DESKTOPFILE) \
-		-o $(DESTDIR)/usr/share/applications/$(notdir $(DESKTOPFILE))
-	mkdir -p $(DESTDIR)/usr/share/icons/
-	cp -r data/icons/hicolor $(DESTDIR)/usr/share/icons/
+		-o $(DESTDIR)$(PREFIX)/share/applications/$(notdir $(DESKTOPFILE))
+	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/
+	cp -r data/icons/hicolor $(DESTDIR)$(PREFIX)/share/icons/
 
 # this requires a built source tree and avoids having to install anything system-wide
 devel-install: $(WEBPACK_TEST)
