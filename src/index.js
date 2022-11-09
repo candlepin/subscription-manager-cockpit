@@ -146,6 +146,7 @@ function initStore(rootElement) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    cockpit.translate();
     initStore(document.getElementById('app'));
     dataStore.render();
 });
