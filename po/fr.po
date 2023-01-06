@@ -10,13 +10,14 @@
 # Julien Humbert <julroy67@gmail.com>, 2022.
 # Jérôme Fenal <jfenal@free.fr>, 2022.
 # Transtats <suanand@redhat.com>, 2022.
+# blutch112 <vincent.lefebvre59@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2022-06-15 12:24+0000\n"
-"Last-Translator: Transtats <suanand@redhat.com>\n"
+"PO-Revision-Date: 2022-11-06 13:19+0000\n"
+"Last-Translator: blutch112 <vincent.lefebvre59@gmail.com>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/fr/>\n"
 "Language: fr\n"
@@ -24,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.12.2\n"
+"X-Generator: Weblate 4.14.2\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -205,8 +206,8 @@ msgid ""
 "If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
 msgstr ""
-"Si vous déconnectez ce système d'Insights, son statut Insights ne sera plus "
-"rapporté dans Red Hat Cloud ou Satellite."
+"Si vous déconnectez ce système d'Insights, il ne signalera plus son état "
+"Insights dans Red Hat Cloud ou Satellite."
 
 #: src/insights.jsx:579 src/subscriptions-register.jsx:85
 msgid "Insights"
@@ -455,8 +456,8 @@ msgstr "Objet du système"
 #: src/insights.jsx:158
 msgid "The $0 package and $1 other package will be installed."
 msgid_plural "The $0 package and $1 other packages will be installed."
-msgstr[0] "Le paquet $0 et $1 autre paquet vont être installés."
-msgstr[1] "Le paquet $0 et les $1 autres paquets vont être installés."
+msgstr[0] "Le package $0 et l'autre package $1 seront installés."
+msgstr[1] "Le package $0 et les autres packages $1 seront installés."
 
 #: src/insights.jsx:84 src/insights.jsx:310
 msgid "The $0 package is not available from any repository."
