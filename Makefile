@@ -6,8 +6,11 @@ ifeq ($(TEST_OS),)
 TEST_OS = centos-9-stream
 endif
 export TEST_OS
+SUBSCRIPTION_MANAGER_BRANCH ?= main
+ifneq ($(TEST_SCENARIO),pybridge)
 # the test scenario is the subscription-manager branch to test against
-TEST_SCENARIO ?= main
+SUBSCRIPTION_MANAGER_BRANCH = $(TEST_SCENARIO)
+endif
 TARFILE=$(RPM_NAME)-$(VERSION).tar.xz
 NODE_CACHE=$(RPM_NAME)-node-$(VERSION).tar.xz
 SPEC=$(RPM_NAME).spec
@@ -176,6 +179,21 @@ $(SUBMAN_TAR): subscription-manager
 $(SMBEXT_TAR): subscription-manager
 	tar czf $(SMBEXT_TAR) --transform 's,data/icons,src/subscription_manager/gui/data/icons,' subscription-manager/build_ext data/icons/hicolor
 
+# pybridge scenario: build and install the python bridge from cockpit repo
+ifeq ("$(TEST_SCENARIO)","pybridge")
+COCKPIT_PYBRIDGE_REF = main
+COCKPIT_WHEEL = cockpit-0-py3-none-any.whl
+
+$(COCKPIT_WHEEL):
+	# aka: pip wheel git+https://github.com/cockpit-project/cockpit.git@${COCKPIT_PYBRIDGE_REF}
+	rm -rf tmp/pybridge
+	git clone --depth 1 --branch $(COCKPIT_PYBRIDGE_REF) https://github.com/cockpit-project/cockpit tmp/pybridge
+	cp "$$(tmp/pybridge/tools/make-wheel)" $@
+
+IMAGE_CUSTOMIZE_DEPENDS += $(COCKPIT_WHEEL)
+IMAGE_CUSTOMIZE_INSTALL += --install $(COCKPIT_WHEEL)
+endif
+
 # build a VM with locally built distro pkgs installed
 # disable networking, VM images have mock/pbuilder with the common build dependencies pre-installed
 $(VM_IMAGE): $(NODE_CACHE) $(TARFILE) bots test/vm.install $(IMAGE_CUSTOMIZE_DEPENDS)
@@ -229,7 +247,7 @@ $(LIB_TEST):
 # checkout subscription-manager at the branch we want
 subscription-manager:
 	git clone --quiet https://github.com/candlepin/subscription-manager.git subscription-manager
-	git -C subscription-manager fetch --quiet --depth=1 origin $(TEST_SCENARIO)
+	git -C subscription-manager fetch --quiet --depth=1 origin $(SUBSCRIPTION_MANAGER_BRANCH)
 	git -C subscription-manager checkout --quiet FETCH_HEAD
 	@echo "checked out subscription-manager/ ref $$(git -C subscription-manager rev-parse HEAD)"
 
