@@ -82,7 +82,7 @@ po/LINGUAS:
 $(WEBPACK_TEST): $(NODE_MODULES_TEST) $(LIB_TEST) $(shell find src/ -type f) package.json webpack.config.js
 	NODE_ENV=$(NODE_ENV) node_modules/.bin/webpack
 
-watch:
+watch: $(NODE_MODULES_TEST) $(LIB_TEST)
 	NODE_ENV=$(NODE_ENV) node_modules/.bin/webpack --watch
 
 clean:
