@@ -588,8 +588,9 @@ client.getCurrentOrg = function () {
 };
 
 client.getSyspurposeStatus = () => {
-    let dfd = cockpit.defer();
-    if (isRegistering) { return dfd.promise(); }
+    if (isRegistering)
+        return Promise.resolve();
+
     return safeDBusCall(syspurposeService, () => {
         syspurposeService.GetSyspurposeStatus(userLang)
                 .then(result => {
