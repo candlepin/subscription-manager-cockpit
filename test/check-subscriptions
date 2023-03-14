@@ -493,7 +493,7 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
         # Connecting to Insights will not have worked because the
         # insights-client binary is not actually there.
 
-        b.wait_visible(".pf-c-alert:contains('not-found')")
+        b.wait_visible("body > div:last-child .pf-c-alert:contains('not-found')")
 
         # Try again with the connection dialog.
 
@@ -506,7 +506,7 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
         b.wait_visible('.pf-c-modal-box__body:contains("The insights-client package will be installed")')
         b.click("footer button.apply")
         with b.wait_timeout(360):
-            b.wait_visible('footer:contains("not-found")')
+            b.wait_visible('.pf-c-modal-box__body:contains("not-found")')
         b.click("footer button.cancel")
 
         m.execute(["test", "-f", "/stamp-insights-client-999-1"])

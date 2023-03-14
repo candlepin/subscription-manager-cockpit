@@ -17,9 +17,10 @@
  * along with Cockpit; If not, see <http://www.gnu.org/licenses/>.
  */
 
+import "cockpit-dark-theme";
 import cockpit from 'cockpit';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import 'patternfly/patternfly-4-cockpit.scss';
 
@@ -123,7 +124,8 @@ function initStore(rootElement) {
     );
 
     dataStore.render = () => {
-        ReactDOM.render(React.createElement(
+        const root = createRoot(rootElement);
+        root.render(React.createElement(
             SubscriptionsView,
             {
                 status: subscriptionsClient.subscriptionStatus.status,
@@ -139,7 +141,6 @@ function initStore(rootElement) {
                 register: openRegisterDialog,
                 unregister: unregisterSystem,
             }),
-                        rootElement
         );
     };
     subscriptionsClient.init();

@@ -10,8 +10,7 @@ crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sh
 const webpack = require("webpack");
 const CompressionPlugin = require("compression-webpack-plugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
-const glob = require("glob");
-const po2json = require("po2json");
+const CockpitPoPlugin = require("./src/lib/cockpit-po-plugin");
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 
 var externals = {
@@ -38,7 +37,6 @@ var info = {
     files: [
         "index.html",
         "manifest.json",
-        "po.js",
     ],
 };
 
@@ -57,27 +55,6 @@ function vpath(/* ... */) {
         return expanded;
     expanded = srcdir + path.sep + filename;
     return expanded;
-}
-
-class Po2JSONPlugin {
-    apply(compiler) {
-        compiler.hooks.emit.tapAsync('Po2JSONPlugin', function(compilation, callback) {
-            const files = glob.sync('po/*.po');
-            files.forEach(function(file) {
-                const dataFileName = `po.${/([^/]*).po$/.exec(file)[1]}.js`;
-                const data = `cockpit.locale(${JSON.stringify(po2json.parseFileSync(file))});`;
-                compilation.assets[dataFileName] = {
-                    source: function() {
-                        return data;
-                    },
-                    size: function() {
-                        return data.length;
-                    },
-                };
-            });
-            callback();
-        });
-    }
 }
 
 /* Qualify all the paths in entries */
@@ -110,9 +87,9 @@ var plugins = [
         }
     }),
     new copy(info.files),
-    new Po2JSONPlugin(),
     new miniCssExtractPlugin({ filename: "[name].css" }),
     new ESLintPlugin({ extensions: ["js", "jsx"], exclude: ["node_modules", "src/lib"] }),
+    new CockpitPoPlugin(),
 ];
 
 /* Only minimize when in production mode */
