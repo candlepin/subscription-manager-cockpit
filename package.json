@@ -20,7 +20,7 @@
     "@babel/preset-env": "7.12.17",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.0",
-    "chrome-remote-interface": "^0.31.0",
+    "chrome-remote-interface": "^0.32.1",
     "compression-webpack-plugin": "^6.0.0",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^5.2.0",
