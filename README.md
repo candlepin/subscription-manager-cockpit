@@ -11,9 +11,19 @@ administrating Candlepin subscriptions.
   for optionally registering to
   [Red Hat Insights](https://access.redhat.com/products/red-hat-insights)
 
+# Development dependencies
+
+On Debian/Ubuntu:
+
+    $ sudo apt install gettext nodejs npm make
+
+On Fedora:
+
+    $ sudo dnf install gettext nodejs npm make
+
+
 # Getting and building the source
 
-Make sure you have `npm` available (usually from your distribution package).
 These commands check out the source and build it into the `dist/` directory:
 
 ```
@@ -24,7 +34,7 @@ make
 
 # Installing
 
-`sudo make install` installs the package in `/usr/share/cockpit/`. This depends
+`sudo make install` installs the package in `/usr/local/share/cockpit/`. This depends
 on the `dist` target, which generates the distribution tarball.
 
 You can also run `make rpm` to build RPMs for local installation.

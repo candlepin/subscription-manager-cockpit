@@ -14,12 +14,13 @@ endif
 TARFILE=$(RPM_NAME)-$(VERSION).tar.xz
 NODE_CACHE=$(RPM_NAME)-node-$(VERSION).tar.xz
 SPEC=$(RPM_NAME).spec
+PREFIX ?= /usr/local
 APPSTREAMFILE=data/org.candlepinproject.subscription_manager.metainfo.xml
 DESKTOPFILE=data/subscription-manager-cockpit.desktop
 VM_IMAGE=$(CURDIR)/test/images/$(TEST_OS)
 SUBMAN_TAR=$(CURDIR)/dist/subscription-manager.tar.gz
 SMBEXT_TAR=$(CURDIR)/dist/subscription-manager-build-extra.tar.gz
-# stamp file to check if/when npm install ran
+# stamp file to check for node_modules/
 NODE_MODULES_TEST=package-lock.json
 # one example file in dist/ from webpack to check if that already ran
 WEBPACK_TEST=dist/manifest.json
@@ -53,11 +54,11 @@ po/$(PACKAGE_NAME).js.pot:
 		--keyword=gettextCatalog.getString:1,3c --keyword=gettextCatalog.getPlural:2,3,4c \
 		--from-code=UTF-8 $$(find src/ \( -name '*.js' -o -name '*.jsx' \) \! -path 'src/lib/*')
 
-po/$(PACKAGE_NAME).html.pot: $(NODE_MODULES_TEST)
-	po/html2po -o $@ $$(find src -name '*.html' \! -path 'src/lib/*')
+po/$(PACKAGE_NAME).html.pot: $(NODE_MODULES_TEST) $(LIB_TEST)
+	src/lib/html2po -o $@ $$(find src -name '*.html' \! -path 'src/lib/*')
 
-po/$(PACKAGE_NAME).manifest.pot: $(NODE_MODULES_TEST)
-	po/manifest2po src/manifest.json -o $@
+po/$(PACKAGE_NAME).manifest.pot: $(NODE_MODULES_TEST) $(LIB_TEST)
+	src/lib/manifest2po src/manifest.json -o $@
 
 po/$(PACKAGE_NAME).metainfo.pot: $(APPSTREAMFILE)
 	xgettext --default-domain=$(PACKAGE_NAME) --output=$@ $<
@@ -70,12 +71,6 @@ po/$(PACKAGE_NAME).pot: po/$(PACKAGE_NAME).html.pot po/$(PACKAGE_NAME).js.pot po
 
 po/LINGUAS:
 	echo $(LINGUAS) | tr ' ' '\n' > $@
-
-# Update translations against current PO template
-update-po: po/$(PACKAGE_NAME).pot
-	for lang in $(LINGUAS); do \
-		msgmerge --output-file=po/$$lang.po po/$$lang.po $<; \
-	done
 
 #
 # Build/Install/dist
@@ -99,18 +94,18 @@ clean-all:
 	git clean -fdx
 
 install: $(WEBPACK_TEST) po/LINGUAS
-	mkdir -p $(DESTDIR)/usr/share/cockpit/$(PACKAGE_NAME)
-	cp -r dist/* $(DESTDIR)/usr/share/cockpit/$(PACKAGE_NAME)
-	mkdir -p $(DESTDIR)/usr/share/metainfo/
+	mkdir -p $(DESTDIR)$(PREFIX)/share/cockpit/$(PACKAGE_NAME)
+	cp -r dist/* $(DESTDIR)$(PREFIX)/share/cockpit/$(PACKAGE_NAME)
+	mkdir -p $(DESTDIR)$(PREFIX)/share/metainfo/
 	msgfmt --xml -d po \
 		--template $(APPSTREAMFILE) \
-		-o $(DESTDIR)/usr/share/metainfo/$(notdir $(APPSTREAMFILE))
-	mkdir -p $(DESTDIR)/usr/share/applications/
+		-o $(DESTDIR)$(PREFIX)/share/metainfo/$(notdir $(APPSTREAMFILE))
+	mkdir -p $(DESTDIR)$(PREFIX)/share/applications/
 	msgfmt --desktop -d po \
 		--template $(DESKTOPFILE) \
-		-o $(DESTDIR)/usr/share/applications/$(notdir $(DESKTOPFILE))
-	mkdir -p $(DESTDIR)/usr/share/icons/
-	cp -r data/icons/hicolor $(DESTDIR)/usr/share/icons/
+		-o $(DESTDIR)$(PREFIX)/share/applications/$(notdir $(DESKTOPFILE))
+	mkdir -p $(DESTDIR)$(PREFIX)/share/icons/
+	cp -r data/icons/hicolor $(DESTDIR)$(PREFIX)/share/icons/
 
 # this requires a built source tree and avoids having to install anything system-wide
 devel-install: $(WEBPACK_TEST)
@@ -136,8 +131,6 @@ $(TARFILE): export NODE_ENV=production
 $(TARFILE): $(WEBPACK_TEST) $(SPEC)
 	if type appstream-util >/dev/null 2>&1; then appstream-util validate-relax --nonet data/*.metainfo.xml; fi
 	if type desktop-file-validate >/dev/null 2>&1; then desktop-file-validate data/*.desktop; fi
-	touch -r package.json $(NODE_MODULES_TEST)
-	touch dist/*
 	tar --xz $(TAR_ARGS) -cf $(TARFILE) --transform 's,^,$(RPM_NAME)/,' \
 		--exclude $(SPEC).tmpl --exclude node_modules \
 		$$(git ls-files) src/lib package-lock.json $(SPEC) dist/
@@ -255,7 +248,7 @@ $(NODE_MODULES_TEST): package.json
 	# if it exists already, npm install won't update it; force that so that we always get up-to-date packages
 	rm -f package-lock.json
 	# unset NODE_ENV, skips devDependencies otherwise
-	env -u NODE_ENV npm install
+	env -u NODE_ENV npm install --ignore-scripts
 	env -u NODE_ENV npm prune
 
-.PHONY: all clean install devel-install print-version dist node-cache rpm check vm update-po print-vm devel-uninstall
+.PHONY: all clean install devel-install devel-uninstall print-version dist node-cache rpm prepare-check check vm print-vm
