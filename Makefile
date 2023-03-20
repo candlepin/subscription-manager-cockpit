@@ -178,10 +178,7 @@ COCKPIT_PYBRIDGE_REF = main
 COCKPIT_WHEEL = cockpit-0-py3-none-any.whl
 
 $(COCKPIT_WHEEL):
-	# aka: pip wheel git+https://github.com/cockpit-project/cockpit.git@${COCKPIT_PYBRIDGE_REF}
-	rm -rf tmp/pybridge
-	git clone --depth 1 --branch $(COCKPIT_PYBRIDGE_REF) https://github.com/cockpit-project/cockpit tmp/pybridge
-	cp "$$(tmp/pybridge/tools/make-wheel)" $@
+	pip wheel git+https://github.com/cockpit-project/cockpit.git@${COCKPIT_PYBRIDGE_REF}
 
 IMAGE_CUSTOMIZE_DEPENDS += $(COCKPIT_WHEEL)
 IMAGE_CUSTOMIZE_INSTALL += --install $(COCKPIT_WHEEL)
