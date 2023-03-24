@@ -66,6 +66,7 @@ class SubscriptionRegisterDialog extends React.Component {
 
                     <FormGroup fieldId="subscription-proxy-password" label={_("Proxy Password")}>
                         <TextInput id="subscription-proxy-password" type="password"
+                                   autoComplete="current-password"
                                    value={this.props.proxy_password}
                                    onChange={value => this.props.onChange('proxy_password', value)} />
                     </FormGroup>
@@ -113,6 +114,7 @@ class SubscriptionRegisterDialog extends React.Component {
                     </FormGroup>
                     <FormGroup fieldId="subscription-register-password" label={_("Password")}>
                         <TextInput id="subscription-register-password" type="password"
+                                   autoComplete="current-password"
                                    value={this.props.password}
                                    onChange={value => this.props.onChange('password', value)} />
                     </FormGroup>
