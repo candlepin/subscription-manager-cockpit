@@ -211,8 +211,7 @@ Preconditions:
 2. connection_options is updated by subscriptionDetails; if an option isn't specified, it remains the default.
 3. if an option is different than what's in the config, we set the config option
  */
-client.registerSystem = (subscriptionDetails, update_progress) => {
-    const dfd = cockpit.defer();
+client.registerSystem = (subscriptionDetails, update_progress) => new Promise((resolve, reject) => {
     // Note: when values are not specified we force use of default
     // values. Otherwise old and obsolete values from rhsm.conf could be used.
     const connection_options = {
@@ -227,8 +226,8 @@ client.registerSystem = (subscriptionDetails, update_progress) => {
 
     if (subscriptionDetails.activation_keys && !subscriptionDetails.org) {
         const error = new Error(_("'Organization' is required when using activation keys"));
-        dfd.reject(error);
-        return dfd.promise();
+        reject(error);
+        return;
     }
 
     if (subscriptionDetails.url !== 'default') {
@@ -249,8 +248,8 @@ client.registerSystem = (subscriptionDetails, update_progress) => {
         const path = match[4];
         if (ipv6Address && address) {
             const error = new Error(_("Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"));
-            dfd.reject(error);
-            return dfd.promise();
+            reject(error);
+            return;
         }
         if (ipv6Address) {
             connection_options.host = dbus_str(ipv6Address);
@@ -282,8 +281,8 @@ client.registerSystem = (subscriptionDetails, update_progress) => {
             let port = match[3];
             if (ipv6Address && address) {
                 const error = new Error(_("Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"));
-                dfd.reject(error);
-                return dfd.promise();
+                reject(error);
+                return;
             }
             if (ipv6Address) {
                 connection_options.proxy_hostname = dbus_str(ipv6Address);
@@ -379,7 +378,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => {
                     console.error('error registering', error);
                     isRegistering = false;
                     registered = false;
-                    dfd.reject(parseErrorMessage(error));
+                    reject(parseErrorMessage(error));
                 })
                 .then(result => {
                     console.debug('Result of registration: ', result);
@@ -395,7 +394,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => {
                 .catch(error => {
                     console.error('error stopping registration bus', error);
                     isRegistering = false;
-                    dfd.reject(parseErrorMessage(error));
+                    reject(parseErrorMessage(error));
                 })
                 .then(() => {
                     if (registered) {
@@ -428,7 +427,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => {
                 .catch(error => {
                     console.error('error during auto-attach', error);
                     isRegistering = false;
-                    dfd.reject(parseErrorMessage(error));
+                    reject(parseErrorMessage(error));
                 })
                 .then(() => {
                     if (update_progress)
@@ -436,17 +435,12 @@ client.registerSystem = (subscriptionDetails, update_progress) => {
                     client.closeRegisterDialog = true;
                     isRegistering = false;
                     console.debug('requesting update of subscription status');
-                    requestSubscriptionStatusUpdate().always(() => {
-                        dfd.resolve();
-                    });
+                    requestSubscriptionStatusUpdate().always(resolve)
                     console.debug('requesting update of syspurpose status');
-                    requestSyspurposeStatusUpdate().always(() => {
-                        dfd.resolve();
-                    });
+                    requestSyspurposeStatusUpdate().always(resolve)
                 });
     });
-    return dfd.promise();
-};
+});
 
 client.unregisterSystem = () => {
     client.subscriptionStatus.status = "unregistering";
@@ -469,21 +463,16 @@ client.unregisterSystem = () => {
 };
 
 client.autoAttach = () => {
-    const dfd = cockpit.defer();
     console.debug('auto-attaching ...');
-    attachService.AutoAttach('', {}, userLang)
+    return attachService.AutoAttach('', {}, userLang)
+            .then(() => needRender())
             .catch(error => {
                 console.error('error during auto-attach', error);
                 client.subscriptionStatus.error = {
                     'severity': parseErrorSeverity(error),
                     'msg': parseErrorMessage(error)
                 };
-            })
-            .then(() => {
-                dfd.resolve();
-                needRender();
             });
-    return dfd.promise();
 };
 
 function statusUpdateFailed(reason) {
@@ -515,8 +504,7 @@ function requestSyspurposeUpdate() {
 
 /* get subscription summary */
 client.getSubscriptionStatus = function() {
-    let dfd = cockpit.defer();
-    safeDBusCall(entitlementService, () => {
+    const promise = safeDBusCall(entitlementService, () => {
         entitlementService.GetStatus('', userLang)
                 .then(result => {
                     let parsed = false;
@@ -536,20 +524,22 @@ client.getSubscriptionStatus = function() {
                         if (client.closeRegisterDialog) {
                             client.closeRegisterDialog = false;
                         }
-                        dfd.resolve();
                     }
-                })
-                .catch(ex => {
-                    console.debug(ex);
-                    client.subscriptionStatus.status = "unknown";
-                    client.subscriptionStatus.status_msg = _("Unknown");
-                })
-                .then(() => {
-                    getSubscriptionDetails();
-                    needRender();
                 });
     });
-    return dfd.promise();
+
+    promise
+            .then(() => {
+                getSubscriptionDetails();
+                needRender();
+            })
+            .catch(ex => {
+                console.debug(ex);
+                client.subscriptionStatus.status = "unknown";
+                client.subscriptionStatus.status_msg = _("Unknown");
+            });
+
+    return promise;
 };
 
 /**
@@ -558,8 +548,7 @@ client.getSubscriptionStatus = function() {
  * returned JSON document in client.org.
  */
 client.getCurrentOrg = function () {
-    let dfd = cockpit.defer();
-    safeDBusCall(consumerService, () => {
+    return safeDBusCall(consumerService, () => {
         console.debug('Trying to get current organization...');
         consumerService.GetOrg(userLang)
                 .then(result => {
@@ -572,10 +561,8 @@ client.getCurrentOrg = function () {
                         console.error('Error: parsing JSON with organization', err.message);
                         parsed = false;
                     }
-                    if (parsed) {
-                        dfd.resolve();
+                    if (parsed)
                         needRender();
-                    }
                 })
                 .catch(error => {
                     client.subscriptionStatus.error = {
@@ -584,48 +571,41 @@ client.getCurrentOrg = function () {
                     };
                 });
     });
-    return dfd.promise();
 };
 
 client.getSyspurposeStatus = () => {
-    let dfd = cockpit.defer();
-    if (isRegistering) { return dfd.promise(); }
+    if (isRegistering)
+        return Promise.resolve();
+
     return safeDBusCall(syspurposeService, () => {
         syspurposeService.GetSyspurposeStatus(userLang)
                 .then(result => {
                     client.syspurposeStatus.status = result;
+                    needRender();
                 })
                 .catch(ex => {
                     console.debug(ex);
                     client.syspurposeStatus.status = null; // TODO: change to something meaningful
-                })
-                .then(needRender);
+                });
     });
 };
 
 client.getSyspurpose = function() {
-    let dfd = cockpit.defer();
-
-    safeDBusCall(syspurposeService, () => {
+    return safeDBusCall(syspurposeService, () => {
         syspurposeService.GetSyspurpose(userLang)
                 .then(result => {
                     client.syspurposeStatus.info = JSON.parse(result);
-                    dfd.resolve();
+                    needRender();
                 })
                 .catch(ex => {
                     console.debug(ex);
                     client.syspurposeStatus.info = 'Unknown'; // TODO: change to something meaningful
-                })
-                .then(needRender);
+                });
     });
-
-    return dfd.promise();
 };
 
 client.readConfig = function() {
-    let dfd = cockpit.defer();
-
-    safeDBusCall(configService, () => {
+    return safeDBusCall(configService, () => {
         console.debug('Reading configuration file');
         configService.GetAll(userLang).then(config => {
             const hostname = config.server.v.hostname;
@@ -668,13 +648,8 @@ client.readConfig = function() {
                 loaded: true,
             });
             console.debug('loaded client config', client.config);
-            dfd.resolve();
-        }).catch(ex => {
-            console.debug(ex);
-        });
+        }).catch(ex => console.debug(ex));
     });
-
-    return dfd.promise();
 };
 
 client.toArray = obj => {
