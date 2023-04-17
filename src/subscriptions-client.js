@@ -599,7 +599,7 @@ client.getSyspurpose = function() {
                 })
                 .catch(ex => {
                     console.debug(ex);
-                    client.syspurposeStatus.info = 'Unknown'; // TODO: change to something meaningful
+                    client.syspurposeStatus.info = {};
                 });
     });
 };
