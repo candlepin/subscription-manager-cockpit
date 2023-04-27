@@ -32,7 +32,6 @@ class handler(BaseHTTPRequestHandler):
         return re.fullmatch(p, self.path)
 
     def do_GET(self):
-
         m = self.match("/r/insights")
         if m:
             self.send_response(200)
@@ -121,7 +120,6 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_DELETE(self):
-
         m = self.match("/r/insights/v1/systems/([^/]+)")
         if m:
             machine_id = m[1]
