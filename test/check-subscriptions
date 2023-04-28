@@ -66,14 +66,14 @@ waiting_time = 10
 sys.stderr.write("Waiting %s seconds for %s\\n" % (waiting_time, sys.argv[1]))
 sys.stderr.flush()
 time.sleep(waiting_time)
-for i in range(1,200):
-  try:
-     sys.stderr.write("Waiting for %s\\n" % sys.argv[1])
-     sys.stderr.flush()
-     res = requests.get(sys.argv[1])
-     break
-  except:
-     time.sleep(1)
+for i in range(1, 200):
+    try:
+        sys.stderr.write("Waiting for %s\\n" % sys.argv[1])
+        sys.stderr.flush()
+        res = requests.get(sys.argv[1])
+        break
+    except:
+        time.sleep(1)
 """
 
 ACTIVATION_KEY_SCRIPT = """
@@ -81,14 +81,22 @@ import sys
 import json
 import requests
 
-data = requests.get(sys.argv[1] + "/activation_keys", auth=("admin","admin")).json()
-key = [e['id'] for e in data if e['name'] == 'awesome_os_pool' and e['owner']['displayName'] == 'Admin Owner'][0]
+data = requests.get(sys.argv[1] + "/activation_keys", auth=("admin", "admin")).json()
+key = [
+    e["id"] for e in data if e["name"] == "awesome_os_pool" and e["owner"]["displayName"] == "Admin Owner"
+][0]
 
-data = requests.get(sys.argv[1] + "/pools", auth=("admin","admin")).json()
-pool = [ e['id'] for e in data if e['owner']['key'] == 'admin' and e['contractNumber'] == '0' and [p for p in e['providedProducts'] if p['productId'] == '88888'] ][0]
+data = requests.get(sys.argv[1] + "/pools", auth=("admin", "admin")).json()
+pool = [
+    e["id"]
+    for e in data
+    if e["owner"]["key"] == "admin"
+    and e["contractNumber"] == "0"
+    and [p for p in e["providedProducts"] if p["productId"] == "88888"]
+][0]
 
 key_url = sys.argv[1] + "/activation_keys/{key}/pools/{pool}".format(key=key, pool=pool)
-requests.post(key_url, auth=("admin","admin"))
+requests.post(key_url, auth=("admin", "admin"))
 """
 
 # fmt: off
