@@ -141,11 +141,9 @@ class SubscriptionsCase(MachineCase):
         self.candlepin = self.machines["services"]
         m = self.machine
 
-        # wait for candlepin to be active and verify
-        # this changed in https://github.com/cockpit-project/bots/pull/1768
-        self.candlepin.execute(
-            "if [ -x /root/run-candlepin ]; then /root/run-candlepin; else systemctl start tomcat; fi"
-        )
+        # start candlepin in the service machine;
+        # see https://github.com/cockpit-project/bots/pull/1768
+        self.candlepin.execute(["/root/run-candlepin"])
 
         # make sure the cockpit machine can resolve the service machine hostname
         m.execute(f"echo '{CANDLEPIN_ADDR} {CANDLEPIN_HOSTNAME}' >> /etc/hosts")
