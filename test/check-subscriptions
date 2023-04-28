@@ -36,11 +36,9 @@ import testvm
 #    Login: admin    password: admin
 #    org:   admin
 #
-# if you download product files onto the test machine, these will show up as installed products
-# local directory: /etc/pki/product
-# sample products used in the tests (different subscription results for doc and admin):
-# /home/admin/candlepin/generated_certs/6050.pem
-# /home/admin/candlepin/generated_certs/88888.pem
+# product certificates are installed onto the test machine to make it possible
+# to use those products; few sample products are used in the tests, because of
+# the different subscriptions for doc and admin, see the PRODUCT_* variables
 #
 # to use the candlepin image on a test machine, either add the certificate or
 # allow insecure connections (/etc/rhsm/rhsm.conf -> "insecure = 1")
@@ -51,9 +49,9 @@ import testvm
 # curl --insecure --request POST --user admin:admin \
 # https://$IP:8443/candlepin/activation_keys/ff80808155ca50b10155ca50cd280010/pools/ff80808155ca50b10155ca51f04607e5
 # register with: activation key "awesome_os_pool" and org "admin"
-# or: subscription-manager register --activationkey awesome_os_pool --org admin --serverurl https://$IP:8443/candlepin
 #
-# in order to get the right ids for the activation key and pool, see ACTIVATION_KEY_COMMAND and POOL_COMMAND
+# in order to get the right ids for the activation key and pool, see
+# ACTIVATION_KEY_SCRIPT
 
 WAIT_SCRIPT = """
 import sys
