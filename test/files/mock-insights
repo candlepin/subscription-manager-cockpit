@@ -84,7 +84,11 @@ class handler(BaseHTTPRequestHandler):
             self.end_headers()
             if platform_id == "123-nice-id":
                 self.wfile.write(
-                    b'[ { "rule": { "total_risk": 3 } }, { "rule": { "total_risk": 2 } }, { "rule": { "total_risk": 1 } }]\n'
+                    b"["
+                    b'{ "rule": { "total_risk": 3 } }, '
+                    b'{ "rule": { "total_risk": 2 } }, '
+                    b'{ "rule": { "total_risk": 1 } }'
+                    b"]\n"
                 )
             else:
                 self.wfile.write(b"[ ]\n")

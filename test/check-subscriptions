@@ -452,7 +452,8 @@ class TestSubscriptions(SubscriptionsCase):
         # Unbreak it and retry.
         m.execute(["mv", "/etc/insights-client/machine-id.lost", "/etc/insights-client/machine-id"])
         m.execute(
-            "systemctl start insights-client; while systemctl --quiet is-active insights-client; do sleep 1; done",
+            "systemctl start insights-client; "
+            "while systemctl --quiet is-active insights-client; do sleep 1; done",
             timeout=360,
         )
 
