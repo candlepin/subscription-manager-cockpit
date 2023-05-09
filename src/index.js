@@ -23,6 +23,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import 'patternfly/patternfly-4-cockpit.scss';
+import 'cockpit-dark-theme'; // once per page
 
 import subscriptionsClient from './subscriptions-client';
 import SubscriptionRegisterDialog from './subscriptions-register.jsx';
