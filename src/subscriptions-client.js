@@ -670,7 +670,7 @@ client.toArray = obj => {
 };
 
 const detectInsights = () => {
-    return cockpit.spawn([ "which", "insights-client" ], { err: "ignore" }).then(
+    return cockpit.script("type insights-client", { err: "ignore" }).then(
         () => client.insightsAvailable = true,
         () => {
             PK.detect().then(pk_available => {
