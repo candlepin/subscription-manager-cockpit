@@ -45,7 +45,7 @@ const insights_timer = service.proxy("insights-client.timer", "Timer");
 const insights_service = service.proxy("insights-client.service", "Service");
 
 export function detect() {
-    return cockpit.spawn([ "which", "insights-client" ], { err: "ignore" }).then(() => true, () => false);
+    return cockpit.script("type insights-client", { err: "ignore" }).then(() => true, () => false);
 }
 
 /*
