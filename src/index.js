@@ -24,7 +24,7 @@ import { createRoot } from 'react-dom/client';
 
 import 'patternfly/patternfly-4-cockpit.scss';
 
-import subscriptionsClient from './subscriptions-client';
+import subscriptionsClient from './subscriptions-client.js';
 import SubscriptionRegisterDialog from './subscriptions-register.jsx';
 import SubscriptionsView from './subscriptions-view.jsx';
 import * as Insights from './insights.jsx';
