@@ -36,11 +36,9 @@ import testvm
 #    Login: admin    password: admin
 #    org:   admin
 #
-# if you download product files onto the test machine, these will show up as installed products
-# local directory: /etc/pki/product
-# sample products used in the tests (different subscription results for doc and admin):
-# /home/admin/candlepin/generated_certs/6050.pem
-# /home/admin/candlepin/generated_certs/88888.pem
+# product certificates are installed onto the test machine to make it possible
+# to use those products; few sample products are used in the tests, because of
+# the different subscriptions for doc and admin, see the PRODUCT_* variables
 #
 # to use the candlepin image on a test machine, either add the certificate or
 # allow insecure connections (/etc/rhsm/rhsm.conf -> "insecure = 1")
@@ -51,9 +49,9 @@ import testvm
 # curl --insecure --request POST --user admin:admin \
 # https://$IP:8443/candlepin/activation_keys/ff80808155ca50b10155ca50cd280010/pools/ff80808155ca50b10155ca51f04607e5
 # register with: activation key "awesome_os_pool" and org "admin"
-# or: subscription-manager register --activationkey awesome_os_pool --org admin --serverurl https://$IP:8443/candlepin
 #
-# in order to get the right ids for the activation key and pool, see ACTIVATION_KEY_COMMAND and POOL_COMMAND
+# in order to get the right ids for the activation key and pool, see
+# ACTIVATION_KEY_SCRIPT
 
 WAIT_SCRIPT = """
 import sys
@@ -66,14 +64,14 @@ waiting_time = 10
 sys.stderr.write("Waiting %s seconds for %s\\n" % (waiting_time, sys.argv[1]))
 sys.stderr.flush()
 time.sleep(waiting_time)
-for i in range(1,200):
-  try:
-     sys.stderr.write("Waiting for %s\\n" % sys.argv[1])
-     sys.stderr.flush()
-     res = requests.get(sys.argv[1])
-     break
-  except:
-     time.sleep(1)
+for i in range(1, 200):
+    try:
+        sys.stderr.write("Waiting for %s\\n" % sys.argv[1])
+        sys.stderr.flush()
+        res = requests.get(sys.argv[1])
+        break
+    except:
+        time.sleep(1)
 """
 
 ACTIVATION_KEY_SCRIPT = """
@@ -81,14 +79,22 @@ import sys
 import json
 import requests
 
-data = requests.get(sys.argv[1] + "/activation_keys", auth=("admin","admin")).json()
-key = [e['id'] for e in data if e['name'] == 'awesome_os_pool' and e['owner']['displayName'] == 'Admin Owner'][0]
+data = requests.get(sys.argv[1] + "/activation_keys", auth=("admin", "admin")).json()
+key = [
+    e["id"] for e in data if e["name"] == "awesome_os_pool" and e["owner"]["displayName"] == "Admin Owner"
+][0]
 
-data = requests.get(sys.argv[1] + "/pools", auth=("admin","admin")).json()
-pool = [ e['id'] for e in data if e['owner']['key'] == 'admin' and e['contractNumber'] == '0' and [p for p in e['providedProducts'] if p['productId'] == '88888'] ][0]
+data = requests.get(sys.argv[1] + "/pools", auth=("admin", "admin")).json()
+pool = [
+    e["id"]
+    for e in data
+    if e["owner"]["key"] == "admin"
+    and e["contractNumber"] == "0"
+    and [p for p in e["providedProducts"] if p["productId"] == "88888"]
+][0]
 
 key_url = sys.argv[1] + "/activation_keys/{key}/pools/{pool}".format(key=key, pool=pool)
-requests.post(key_url, auth=("admin","admin"))
+requests.post(key_url, auth=("admin", "admin"))
 """
 
 # fmt: off
@@ -141,11 +147,9 @@ class SubscriptionsCase(MachineCase):
         self.candlepin = self.machines["services"]
         m = self.machine
 
-        # wait for candlepin to be active and verify
-        # this changed in https://github.com/cockpit-project/bots/pull/1768
-        self.candlepin.execute(
-            "if [ -x /root/run-candlepin ]; then /root/run-candlepin; else systemctl start tomcat; fi"
-        )
+        # start candlepin in the service machine;
+        # see https://github.com/cockpit-project/bots/pull/1768
+        self.candlepin.execute(["/root/run-candlepin"])
 
         # make sure the cockpit machine can resolve the service machine hostname
         m.execute(f"echo '{CANDLEPIN_ADDR} {CANDLEPIN_HOSTNAME}' >> /etc/hosts")
@@ -194,9 +198,6 @@ password=foobar
 
         m.upload(["files/mock-insights"], "/var/tmp")
         m.spawn("env PYTHONUNBUFFERED=1 /var/tmp/mock-insights", "mock-insights.log")
-
-        if m.image == "rhel-8-5":
-            self.allow_journal_messages("json_object_get_string_member: assertion 'node != NULL' failed")
 
     def wait_subscription(self, product, is_subscribed):
         if is_subscribed is True:
@@ -451,7 +452,8 @@ class TestSubscriptions(SubscriptionsCase):
         # Unbreak it and retry.
         m.execute(["mv", "/etc/insights-client/machine-id.lost", "/etc/insights-client/machine-id"])
         m.execute(
-            "systemctl start insights-client; while systemctl --quiet is-active insights-client; do sleep 1; done",
+            "systemctl start insights-client; "
+            "while systemctl --quiet is-active insights-client; do sleep 1; done",
             timeout=360,
         )
 
