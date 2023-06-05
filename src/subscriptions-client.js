@@ -17,7 +17,7 @@
  * along with Cockpit; If not, see <http://www.gnu.org/licenses/>.
  */
 
-const cockpit = require("cockpit");
+import cockpit from "cockpit";
 import * as PK from "packagekit";
 
 const _ = cockpit.gettext;

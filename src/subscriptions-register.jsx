@@ -17,10 +17,9 @@
  * along with Cockpit; If not, see <http://www.gnu.org/licenses/>.
  */
 
-var cockpit = require("cockpit");
-var _ = cockpit.gettext;
+import React from "react";
 
-var React = require("react");
+import cockpit from "cockpit";
 
 import {
     Checkbox,
@@ -33,6 +32,8 @@ import {
 
 import subscriptionsClient from './subscriptions-client';
 import * as Insights from './insights.jsx';
+
+const _ = cockpit.gettext;
 
 /* Subscriptions: registration dialog body
  * Expected props:

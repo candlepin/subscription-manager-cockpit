@@ -219,17 +219,17 @@ bots:
 
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
 # when you start a new project, use the latest release, and update it from time to time
-# 275 + test/common/packagelib.py
+# 292 + sizzle workaround for Chromium 113
 test/common:
 	flock Makefile sh -ec '\
-	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 1e5f74b9f5e486fca7aa87670983254a2288f37a; \
+	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git d9426e07a261c182d61163900740fd74d02fe99b; \
 	    git checkout --force FETCH_HEAD -- test/common; \
 	    git reset test/common'
 
 # checkout Cockpit's PF/React/build library; again this has no API stability guarantee, so check out a stable tag
 $(LIB_TEST):
 	flock Makefile sh -ec '\
-	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 283; \
+	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 290; \
 	    git checkout --force FETCH_HEAD -- pkg/lib; \
 	    git reset -- pkg/lib'
 	mv pkg/lib src/ && rmdir -p pkg
