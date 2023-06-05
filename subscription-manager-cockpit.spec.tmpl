@@ -4,8 +4,10 @@ Release: 1%{?dist}
 Summary: Subscription Manager Cockpit UI
 %if 0%{?suse_version}
 Group: System Environment/Base
-%endif
 License: LGPLv2
+%else
+License: LGPL-2.1-or-later
+%endif
 URL: https://www.candlepinproject.org/
 
 Source0: %{name}-%{version}.tar.xz
