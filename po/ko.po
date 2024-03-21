@@ -8,13 +8,13 @@
 # simmon <simmon@nplob.com>, 2021, 2022.
 # Pino Toscano <ptoscano@redhat.com>, 2021.
 # Kim InSoo <simmon@nplob.com>, 2022.
-# 김인수 <simmon@nplob.com>, 2022.
+# 김인수 <simmon@nplob.com>, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2022-11-02 10:19+0000\n"
+"PO-Revision-Date: 2024-02-12 13:35+0000\n"
 "Last-Translator: 김인수 <simmon@nplob.com>\n"
 "Language-Team: Korean <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/ko/>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.3.1\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -57,7 +57,7 @@ msgstr[0] "$0 꾸러미들을 제거해야 합니다."
 
 #: src/subscriptions-client.js:229
 msgid "'Organization' is required when using activation keys"
-msgstr "'조직'은 활성화 키를 사용 할 때 필요합니다."
+msgstr "'조직'은 활성화 키를 사용 할 때 필요합니다"
 
 #: src/subscriptions-view.jsx:514
 msgid "Access denied"
@@ -135,7 +135,7 @@ msgstr "Insights에 연결되어 있습니다"
 
 #: src/insights.jsx:402
 msgid "Connected to Red Hat Insights"
-msgstr "Red Hat Insights에 연결"
+msgstr "Red Hat Insights에 연결됨"
 
 #: src/insights.jsx:100
 msgid "Connecting to Insights"
@@ -303,7 +303,7 @@ msgstr "부분적으로 등록됨 ($0)"
 
 #: src/subscriptions-register.jsx:112
 msgid "Password"
-msgstr "암호"
+msgstr "비밀번호"
 
 #: src/subscriptions-view.jsx:313 src/subscriptions-view.jsx:428
 msgid "Popover with explanation of SCA mode"
@@ -347,7 +347,7 @@ msgstr "Red Hat 서브스크립션 관리자"
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/subscriptions-view.jsx:408 src/index.js:64
 msgid "Register"
-msgstr "시스템 등록"
+msgstr "등록"
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/index.js:100
@@ -360,7 +360,7 @@ msgstr "활성키를 사용하여 등록 중..."
 
 #: src/subscriptions-client.js:362
 msgid "Registering using username and password ..."
-msgstr "사용자 이름과 암호를 사용하여 등록 중..."
+msgstr "사용자 이름과 비밀번호를 사용하여 등록 중..."
 
 #: src/insights.jsx:188
 msgid "Removals:"
@@ -516,11 +516,11 @@ msgstr "등록 해제 중"
 
 #: src/subscriptions-view.jsx:506
 msgid "Updating"
-msgstr "업데이트 중"
+msgstr "최신화 중"
 
 #: src/subscriptions-client.js:435
 msgid "Updating status ..."
-msgstr "상태 업데이트 중 ..."
+msgstr "상태 최신화 중 ..."
 
 # translation auto-copied from project subscription-manager, version 1.11.X, document keys
 #: src/subscriptions-view.jsx:351
