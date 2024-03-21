@@ -1,22 +1,22 @@
 # ljanda <ljanda@redhat.com>, 2017. #zanata
 # ljanda <ljanda@redhat.com>, 2018. #zanata
 # John Sefler <jsefler@redhat.com>, 2019. #zanata
-# Pino Toscano <toscano.pino@tiscali.it>, 2021, 2022.
+# Pino Toscano <toscano.pino@tiscali.it>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2022-02-19 16:16+0000\n"
+"PO-Revision-Date: 2023-05-03 06:01+0000\n"
 "Last-Translator: Pino Toscano <toscano.pino@tiscali.it>\n"
 "Language-Team: Italian <https://translate.fedoraproject.org/projects/"
-"subscription-manager/subscription-manager-main/it/>\n"
+"subscription-manager/cockpit-main/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -55,10 +55,8 @@ msgstr[0] "Un pacchetto deve essere rimosso."
 msgstr[1] "$0 pacchetti devono essere rimossi."
 
 #: src/subscriptions-client.js:229
-#, fuzzy
-#| msgid "Registering using activation key ..."
 msgid "'Organization' is required when using activation keys"
-msgstr "Registrazione usando una chiave di attivazione..."
+msgstr "\"Organizzazione\" è richiesta con chiavi di attivazione"
 
 #: src/subscriptions-view.jsx:514
 msgid "Access denied"
@@ -92,17 +90,17 @@ msgstr "Arch"
 
 #: src/subscriptions-register.jsx:176
 msgid "Attach automatically"
-msgstr ""
+msgstr "Associa automaticamente"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: src/subscriptions-view.jsx:42 src/subscriptions-view.jsx:61
 #: src/subscriptions-view.jsx:67
 msgid "Auto-attach"
-msgstr "Connessione automatica"
+msgstr "Associa automaticamente"
 
 #: src/subscriptions-view.jsx:55
 msgid "Auto-attaching ..."
-msgstr ""
+msgstr "Associazione automatica..."
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: src/insights.jsx:450
@@ -173,16 +171,12 @@ msgid "Corrupted JSON with status"
 msgstr "JSON non valido con lo stato"
 
 #: src/subscriptions-view.jsx:519
-#, fuzzy
-#| msgid ""
-#| "Couldn't get system subscription status. Please ensure subscription-"
-#| "manager is installed."
 msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
 "is installed. Reported status: $0 ($1)"
 msgstr ""
 "Impossibile ottenere lo stato della sottoscrizione del sistema. Assicurati "
-"che subscription-manager sia installato."
+"che subscription-manager sia installato. Stato segnalato: $0 ($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -234,23 +228,27 @@ msgstr "Ultimo invio dei dati di Insights"
 msgid ""
 "Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"
 msgstr ""
+"URL non valido del proxy; la sintassi di un indirizzo IPv6 e un nome host "
+"non possono essere specificati insieme"
 
 #: src/subscriptions-client.js:251
 msgid ""
 "Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"
 msgstr ""
+"URL non valido del server; la sintassi di un indirizzo IPv6 e un nome host "
+"non possono essere specificati insieme"
 
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
 "Manage subscriptions to a Candlepin backend, such as for Red Hat products."
 msgstr ""
+"Gestisci le sottoscrizioni ad un server Candlepin, ad esempio per prodotti "
+"Red Hat."
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: src/manifest.json:0
-#, fuzzy
-#| msgid "Attaching subscriptions"
 msgid "Managing subscriptions"
-msgstr "Associazione sottoscrizioni"
+msgstr "Gestione sottoscrizioni"
 
 #: src/subscriptions-register.jsx:159
 msgid "Method"
@@ -270,10 +268,8 @@ msgid "No rule hits"
 msgstr ""
 
 #: src/subscriptions-view.jsx:381
-#, fuzzy
-#| msgid "Modify system purpose role"
 msgid "No system purpose attributes set"
-msgstr "Modifica il ruolo dello scopo del sistema"
+msgstr "Nessun attributo impostato dello scopo di sistema"
 
 #: src/insights.jsx:574
 msgid "Not connected"
@@ -291,10 +287,8 @@ msgstr "Non sottoscritte"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: src/subscriptions-view.jsx:123
-#, fuzzy
-#| msgid "Not subscribed"
 msgid "Not subscribed ($0)"
-msgstr "Non sottoscritte"
+msgstr "Non sottoscritte ($0)"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author fvalen
 #: src/subscriptions-view.jsx:462 src/subscriptions-register.jsx:117
@@ -303,10 +297,8 @@ msgstr "Organizzazione"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author fvalen
 #: src/subscriptions-register.jsx:132
-#, fuzzy
-#| msgid "Organization: "
 msgid "Organization ID"
-msgstr "Organizzazione: "
+msgstr "ID organizzazione"
 
 #: src/subscriptions-view.jsx:449
 msgid "Overview"
@@ -314,17 +306,13 @@ msgstr "Panoramica"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author fvalen
 #: src/subscriptions-view.jsx:115
-#, fuzzy
-#| msgid "Partially Subscribed"
 msgid "Partially subscribed"
 msgstr "Sottoscritto parzialmente"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author fvalen
 #: src/subscriptions-view.jsx:117
-#, fuzzy
-#| msgid "Partially Subscribed"
 msgid "Partially subscribed ($0)"
-msgstr "Sottoscritto parzialmente"
+msgstr "Sottoscritto parzialmente ($0)"
 
 #: src/subscriptions-register.jsx:112
 msgid "Password"
@@ -394,7 +382,7 @@ msgstr "Rimozione di $0"
 
 #: src/subscriptions-view.jsx:507
 msgid "Retrieving subscription status..."
-msgstr "Recupero dello stato della sottoscrizione ..."
+msgstr "Recupero dello stato della sottoscrizione..."
 
 #: src/subscriptions-view.jsx:357
 msgid "Role"
@@ -446,10 +434,8 @@ msgstr "Gestore sottoscrizioni - Eventi"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author fvalen
 #: src/subscriptions-view.jsx:455
-#, fuzzy
-#| msgid "Subscription "
 msgid "Subscription status"
-msgstr "Sottoscrizione "
+msgstr "Stato della sottoscrizione"
 
 #: src/index.html:22 src/subscriptions-register.jsx:174 src/manifest.json:0
 msgid "Subscriptions"
@@ -457,14 +443,12 @@ msgstr "Sottoscrizioni"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author fvalen
 #: src/subscriptions-view.jsx:320 src/subscriptions-view.jsx:435
-#, fuzzy
-#| msgid "Subscription Registration"
 msgid "Subscriptions information"
-msgstr "Registrazione sottoscrizione"
+msgstr "Informazioni delle sottoscrizioni"
 
 #: src/subscriptions-view.jsx:392
 msgid "System purpose"
-msgstr "Scopo del sistema"
+msgstr "Scopo di sistema"
 
 #: src/insights.jsx:158
 msgid "The $0 package and $1 other package will be installed."
@@ -496,6 +480,10 @@ msgid ""
 "and try reloading the page. Additionally, make sure that you have checked "
 "the 'Reuse my password for privileged tasks' checkbox on the login page."
 msgstr ""
+"Il servizio rhsm non è disponibile. Assicurati che subscription-manager sia "
+"installato e prova a ricaricare la pagina. Inoltre, assicurati di aver "
+"attivato la casella \"Riutilizza la mia password per attività privilegiate\" "
+"nella pagina di accesso."
 
 #: src/insights.jsx:87
 msgid ""
@@ -536,7 +524,7 @@ msgstr "Stato sconosciuto"
 
 #: src/subscriptions-view.jsx:415
 msgid "Unregister"
-msgstr "Rimuovi-registrazione"
+msgstr "Rimuovi registrazione"
 
 #: src/subscriptions-view.jsx:415 src/subscriptions-client.js:453
 msgid "Unregistering"
@@ -544,7 +532,7 @@ msgstr "Annullamento registrazione"
 
 #: src/subscriptions-view.jsx:506
 msgid "Updating"
-msgstr "In aggiornamento"
+msgstr "Aggiornamento"
 
 #: src/subscriptions-client.js:435
 msgid "Updating status ..."
@@ -578,17 +566,15 @@ msgstr "In attesa che finiscano le altre operazioni di gestione del software"
 
 #: src/manifest.json:0
 msgid "candlepin"
-msgstr ""
+msgstr "candlepin"
 
 #: src/subscriptions-client.js:492
 msgid "not-found"
 msgstr "not-found"
 
 #: src/manifest.json:0
-#, fuzzy
-#| msgid "Subscriptions"
 msgid "subscriptions"
-msgstr "Sottoscrizioni"
+msgstr "sottoscrizioni"
 
 #: src/insights.jsx:344
 msgid "unknown"
