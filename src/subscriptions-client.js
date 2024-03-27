@@ -136,18 +136,19 @@ function parseErrorSeverity(error) {
  * Method that calls a method on a dbus service proxy, only if it is available.
  *
  * If the service does not contain the provided method, we try to restart the rhsm service,
- * and if the restart is successful, we call the delegate method; otherwise, we fail gracefully.
+ * and if the restart is successful, we call the delegate method; otherwise, log the error
+ * and return a Promise rejection.
  *
  * @param serviceProxy a dbus service proxy
  * @param methodName a method on the provided serviceProxy
  * @param delegateMethod the method that we delegate the actual call to dbus
  */
 function safeDBusCall(serviceProxy, delegateMethod) {
-    return serviceProxy.wait()
-            .then(delegateMethod)
-            .fail(ex => {
-                console.debug(ex);
-            });
+    const promise = serviceProxy.wait()
+            .then(delegateMethod);
+    // we do want the caller to receive the rejection, so don't handle it
+    promise.catch(console.debug);
+    return promise;
 }
 
 let gettingDetails = false;
@@ -435,9 +436,9 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
                     client.closeRegisterDialog = true;
                     isRegistering = false;
                     console.debug('requesting update of subscription status');
-                    requestSubscriptionStatusUpdate().always(resolve)
+                    requestSubscriptionStatusUpdate().finally(resolve)
                     console.debug('requesting update of syspurpose status');
-                    requestSyspurposeStatusUpdate().always(resolve)
+                    requestSyspurposeStatusUpdate().finally(resolve)
                 });
     });
 });
@@ -455,7 +456,7 @@ client.unregisterSystem = () => {
                         'msg': parseErrorMessage(error)
                     };
                 })
-                .always(() => {
+                .finally(() => {
                     console.debug('requesting update');
                     requestSubscriptionStatusUpdate();
                 });

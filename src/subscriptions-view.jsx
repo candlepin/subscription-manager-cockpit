@@ -49,24 +49,17 @@ class InstalledProducts extends React.Component {
         if (!event || event.button !== 0)
             return;
         if (this.props.autoAttach) {
-            let self = this;
             this.setState({
                 attaching_in_progress: true,
                 attach_button_text: _("Auto-attaching ...")
             });
             this.props.autoAttach()
-                    .done(function () {
-                        self.setState({
+                    .finally(() =>
+                        this.setState({
                             attaching_in_progress: false,
                             attach_button_text: _("Auto-attach")
-                        });
-                    })
-                    .fail(function () {
-                        self.setState({
-                            attaching_in_progress: false,
-                            attach_button_text: _("Auto-attach")
-                        });
-                    });
+                        })
+                    );
         }
     }
 
