@@ -253,7 +253,7 @@ class TestSubscriptions(SubscriptionsCase):
         b.click(dialog_register_button_sel)
 
         # old error should disappear
-        with b.wait_timeout(360):
+        with b.wait_timeout(60):
             b.wait_not_in_text(
                 "body", "User doc is member of more organizations, but no organization was selected"
             )
@@ -301,12 +301,11 @@ class TestSubscriptions(SubscriptionsCase):
         b.click(dialog_register_button_sel)
 
         # dialog should disappear
-        with b.wait_timeout(360):
+        with b.wait_timeout(60):
             b.wait_not_present(dialog_register_button_sel)
 
         # make sure this product isn't subscribed
-        with b.wait_timeout(360):
-            self.wait_subscription(PRODUCT_SNOWY, False)
+        self.wait_subscription(PRODUCT_SNOWY, False)
 
         # find another one that is subscribed
         self.wait_subscription(PRODUCT_SHARED, True)
@@ -344,7 +343,7 @@ class TestSubscriptions(SubscriptionsCase):
         b.click(dialog_register_button_sel)
 
         # dialog should disappear
-        with b.wait_timeout(360):
+        with b.wait_timeout(60):
             b.wait_not_present(dialog_register_button_sel)
 
         # this product should not be subscribed ATM, because auto-attach was skipped
@@ -414,6 +413,7 @@ class TestSubscriptions(SubscriptionsCase):
         b.wait_visible("button:contains('Not connected')")
 
     @skipUnlessDistroFamily("rhel", "Insights support is specific to RHEL")
+    @timeout(900)
     def testSubAndInAndFail(self):
         m = self.machine
         b = self.browser
@@ -444,9 +444,17 @@ class TestSubscriptions(SubscriptionsCase):
 
         b.wait_visible("button:contains('Connected to Insights')")
 
-        # Break the next upload and expect the warning triangle to tell us about it
-        m.execute(["mv", "/etc/insights-client/machine-id", "/etc/insights-client/machine-id.lost"])
-        m.execute(["systemctl", "start", "insights-client"])
+        # Break the next upload and expect the warning triangle to
+        # tell us about it.  This will take a long time:
+        # insights-client will collect all data, and then wait twice
+        # 180 seconds to retry the upload.
+        m.execute(["systemctl", "daemon-reload"])
+        m.execute(["touch", "/etc/insights-client/mock-upload-fail"])
+        m.execute(
+            "systemctl start insights-client; "
+            "while systemctl --quiet is-active insights-client; do sleep 1; done",
+            timeout=720,
+        )
 
         b.wait_visible("button .pf-c-button__icon svg[fill='orange']")
 
@@ -455,7 +463,7 @@ class TestSubscriptions(SubscriptionsCase):
         b.click("button.cancel")
 
         # Unbreak it and retry.
-        m.execute(["mv", "/etc/insights-client/machine-id.lost", "/etc/insights-client/machine-id"])
+        m.execute(["rm", "/etc/insights-client/mock-upload-fail"])
         m.execute(
             "systemctl start insights-client; "
             "while systemctl --quiet is-active insights-client; do sleep 1; done",

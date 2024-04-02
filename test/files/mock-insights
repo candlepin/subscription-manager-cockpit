@@ -115,9 +115,13 @@ class handler(BaseHTTPRequestHandler):
 
         m = self.match("/r/insights/uploads/([^/])+")
         if m:
-            self.send_response(200)
-            self.end_headers()
-            self.wfile.write(b'{ "reports": [ "foo", "bar" ] }\n')
+            if os.path.exists("/etc/insights-client/mock-upload-fail"):
+                self.send_response(403)
+                self.end_headers()
+            else:
+                self.send_response(200)
+                self.end_headers()
+                self.wfile.write(b'{ "reports": [ "foo", "bar" ] }\n')
             return
 
         self.send_response(404)
