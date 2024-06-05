@@ -75,19 +75,11 @@ class SubscriptionRegisterDialog extends React.Component {
             );
         }
         let insights;
-        let insights_checkbox_disabled = true;
-        if (this.props.insights_available === true) {
-            insights_checkbox_disabled = false;
-        } else {
-            if (this.props.auto_attach === true) {
-                insights_checkbox_disabled = false;
-            }
-        }
         insights = [
             <FormGroup key="0" fieldId="subscription-insights" label={_("Insights")} hasNoPaddingTop>
                 <Checkbox id="subscription-insights" isChecked={this.props.insights}
                           label={ Insights.arrfmt(_("Connect this system to $0."), Insights.link) }
-                          isDisabled={ insights_checkbox_disabled }
+                          isDisabled={ false }
                           onChange={value => this.props.onChange('insights', value)}
                 />
                 {(this.props.insights && !this.props.insights_detected) &&
@@ -175,15 +167,6 @@ class SubscriptionRegisterDialog extends React.Component {
                                isChecked={this.props.register_method === 'activation-key'} />
                     </Flex>
                     { credentials }
-                </FormGroup>
-                <FormGroup className="control-label" label={_("Subscriptions")} hasNoPaddingTop>
-                    <Checkbox id="subscription-auto-attach-use" isChecked={this.props.auto_attach}
-                              label={_("Attach automatically")}
-                              onChange={value => {
-                                  this.props.onChange('auto_attach', value);
-                                  this.props.insights && !value && this.props.onChange('insights', value);
-                              }}
-                    />
                 </FormGroup>
                 { insights }
             </Form>
