@@ -30,7 +30,6 @@ function createProxy(name) {
 // creates multiple services otherwise only readies one proxy at a time
 const configService = createProxy('Config');
 const registerServer = createProxy('RegisterServer');
-const attachService = createProxy('Attach');
 const entitlementService = createProxy('Entitlement');
 const unregisterService = createProxy('Unregister');
 const productsService = createProxy('Products');
@@ -355,7 +354,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
                     else {
                         console.debug('registering using username and password');
                         const registration_options = {
-                            "enable_content": dbus_bool(subscriptionDetails.auto_attach)
+                            "enable_content": dbus_bool(true)
                         };
                         console.log('registration_options:', registration_options);
                         if (update_progress)
@@ -426,7 +425,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
                     }
                 })
                 .catch(error => {
-                    console.error('error during auto-attach', error);
+                    console.error('error during enabling content', error);
                     isRegistering = false;
                     reject(parseErrorMessage(error));
                 })
@@ -461,19 +460,6 @@ client.unregisterSystem = () => {
                     requestSubscriptionStatusUpdate();
                 });
     });
-};
-
-client.autoAttach = () => {
-    console.debug('auto-attaching ...');
-    return attachService.AutoAttach('', {}, userLang)
-            .then(() => needRender())
-            .catch(error => {
-                console.error('error during auto-attach', error);
-                client.subscriptionStatus.error = {
-                    'severity': parseErrorSeverity(error),
-                    'msg': parseErrorMessage(error)
-                };
-            });
 };
 
 function statusUpdateFailed(reason) {

@@ -37,30 +37,6 @@ let _ = cockpit.gettext;
 class InstalledProducts extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            attaching_in_progress: false,
-            attach_button_text: _("Auto-attach")
-        };
-        this.handleAutoAttach = this.handleAutoAttach.bind(this);
-    }
-
-    handleAutoAttach(event) {
-        // only consider primary mouse button
-        if (!event || event.button !== 0)
-            return;
-        if (this.props.autoAttach) {
-            this.setState({
-                attaching_in_progress: true,
-                attach_button_text: _("Auto-attaching ...")
-            });
-            this.props.autoAttach()
-                    .finally(() =>
-                        this.setState({
-                            attaching_in_progress: false,
-                            attach_button_text: _("Auto-attach")
-                        })
-                    );
-        }
     }
 
     render() {
@@ -78,18 +54,6 @@ class InstalledProducts extends React.Component {
         }
 
         let card_actions;
-        if (sca_mode === false) {
-            card_actions = (
-                <CardActions>
-                    <Button
-                            isDisabled={this.state.attaching_in_progress || this.props.status === 'unknown'}
-                            onClick={this.handleAutoAttach}>
-                        { this.state.attach_button_text }
-                    </Button>
-                </CardActions>
-            )
-        }
-
         let entries = this.props.products.map(function (itm) {
             let status_color;
             let status_text;
