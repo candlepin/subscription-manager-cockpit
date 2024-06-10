@@ -355,7 +355,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
                     else {
                         console.debug('registering using username and password');
                         const registration_options = {
-                            "enable_content": dbus_bool(subscriptionDetails.auto_attach)
+                            "enable_content": dbus_bool(subscriptionDetails.enable_content)
                         };
                         console.log('registration_options:', registration_options);
                         if (update_progress)

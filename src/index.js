@@ -81,7 +81,7 @@ function openRegisterDialog() {
             insights_available: subscriptionsClient.insightsAvailable,
             insights_detected: false,
             register_method: 'account',
-            auto_attach: true
+            enable_content: true
         });
 
         Insights.detect().then(installed => {

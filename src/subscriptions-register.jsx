@@ -79,7 +79,7 @@ class SubscriptionRegisterDialog extends React.Component {
         if (this.props.insights_available === true) {
             insights_checkbox_disabled = false;
         } else {
-            if (this.props.auto_attach === true) {
+            if (this.props.enable_content === true) {
                 insights_checkbox_disabled = false;
             }
         }
@@ -177,10 +177,10 @@ class SubscriptionRegisterDialog extends React.Component {
                     { credentials }
                 </FormGroup>
                 <FormGroup className="control-label" label={_("Subscriptions")} hasNoPaddingTop>
-                    <Checkbox id="subscription-auto-attach-use" isChecked={this.props.auto_attach}
-                              label={_("Attach automatically")}
+                    <Checkbox id="subscription-enable-content" isChecked={this.props.enable_content}
+                              label={_("Enable content")}
                               onChange={value => {
-                                  this.props.onChange('auto_attach', value);
+                                  this.props.onChange('enable_content', value);
                                   this.props.insights && !value && this.props.onChange('insights', value);
                               }}
                     />
