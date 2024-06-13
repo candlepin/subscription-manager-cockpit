@@ -77,11 +77,10 @@ function openRegisterDialog() {
             password: '',
             activation_keys: '',
             org: '',
-            insights: true,
+            insights: subscriptionsClient.insightsAvailable,
             insights_available: subscriptionsClient.insightsAvailable,
             insights_detected: false,
-            register_method: 'account',
-            enable_content: true
+            register_method: 'account'
         });
 
         Insights.detect().then(installed => {
