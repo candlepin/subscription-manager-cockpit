@@ -209,6 +209,7 @@ password=foobar
 
 class TestSubscriptions(SubscriptionsCase):
     def testRegister(self):
+        m = self.machine
         b = self.browser
 
         self.login_and_go("/subscriptions")
@@ -228,7 +229,8 @@ class TestSubscriptions(SubscriptionsCase):
         b.set_input_text("#subscription-register-password", "wrongpass")
 
         # Do not try to connect to insights
-        b.set_checked("#subscription-insights", False)
+        if m.image.startswith("rhel-"):
+            b.set_checked("#subscription-insights", False)
 
         # try to register
         dialog_register_button_sel = "footer .pf-m-primary"
@@ -272,6 +274,7 @@ class TestSubscriptions(SubscriptionsCase):
         b.wait_visible(register_button_sel)
 
     def testRegisterWithKey(self):
+        m = self.machine
         b = self.browser
 
         self.login_and_go("/subscriptions")
@@ -287,7 +290,8 @@ class TestSubscriptions(SubscriptionsCase):
         b.set_input_text("#subscription-register-url-custom", CANDLEPIN_URL)
 
         # Do not try to connect to insights
-        b.set_checked("#subscription-insights", False)
+        if m.image.startswith("rhel-"):
+             b.set_checked("#subscription-insights", False)
 
         # select registration method "activation key"
         activation_key_checkbox = "#subscription-register-activation-key-method"
@@ -319,42 +323,6 @@ class TestSubscriptions(SubscriptionsCase):
 
         # find another one that isn't subscribed too
         self.wait_subscription(PRODUCT_SHARED, False)
-
-    def testRegisterWithoutAutoAttach(self):
-        b = self.browser
-
-        self.login_and_go("/subscriptions")
-
-        # wait until we can open the registration dialog
-        register_button_sel = "button:contains('Register')"
-        b.click(register_button_sel)
-
-        b.wait_visible("#subscription-register-url")
-
-        # enter server and correct login data
-        b.set_val("#subscription-register-url", "custom")
-        b.set_input_text("#subscription-register-url-custom", CANDLEPIN_URL)
-        b.set_input_text("#subscription-register-username", "doc")
-        b.set_input_text("#subscription-register-password", "password")
-        b.set_input_text("#subscription-register-org", "snowwhite")
-
-        b.click("#subscription-auto-attach-use")
-
-        dialog_register_button_sel = "footer .pf-m-primary"
-        b.click(dialog_register_button_sel)
-
-        # dialog should disappear
-        with b.wait_timeout(60):
-            b.wait_not_present(dialog_register_button_sel)
-
-        # this product should not be subscribed ATM, because auto-attach was skipped
-        self.wait_subscription(PRODUCT_SHARED, False)
-
-        b.click("button:contains('Auto-attach')")
-
-        # find another one that is subscribed
-        with b.wait_timeout(60):
-            self.wait_subscription(PRODUCT_SHARED, True)
 
     def testUnpriv(self):
         self.machine.execute("useradd junior; echo junior:foobar | chpasswd")
@@ -476,6 +444,7 @@ class TestSubscriptions(SubscriptionsCase):
 
 
 class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
+    @skipUnlessDistroFamily("rhel", "Insights support is specific to RHEL")
     def testMissingPackages(self):
         m = self.machine
         b = self.browser
