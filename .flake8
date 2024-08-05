@@ -17,3 +17,5 @@ extend-exclude =
     src/lib/,
     subscription-manager/,
     test/common/,
+    # node modules
+    node_modules/,
