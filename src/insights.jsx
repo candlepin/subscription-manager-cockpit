@@ -520,9 +520,9 @@ export class InsightsStatus extends React.Component {
 
             let url;
             try {
-                url = "http://cloud.redhat.com/insights/inventory/" + this.state.host_details.results[0].id;
+                url = "https://console.redhat.com/insights/inventory/" + this.state.host_details.results[0].id;
             } catch (err) {
-                url = "http://cloud.redhat.com/insights";
+                url = "https://console.redhat.com/insights";
             }
 
             let text;
