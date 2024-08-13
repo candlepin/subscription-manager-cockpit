@@ -264,7 +264,7 @@ class TestSubscriptions(SubscriptionsCase):
         b.wait_in_text("body", "User huey is member of more organizations, but no organization was selected")
 
         # now specify the org
-        b.set_input_text("#subscription-register-org", "snowwhite")
+        b.set_input_text("#subscription-register-org", "donaldduck")
 
         # try to register again
         b.click(dialog_register_button_sel)
