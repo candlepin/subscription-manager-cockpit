@@ -88,7 +88,7 @@ class SubscriptionsCase(MachineCase):
         self.candlepin.execute(["/root/run-candlepin"])
 
         # make sure the cockpit machine can resolve the service machine hostname
-        m.execute(f"echo '{CANDLEPIN_ADDR} {CANDLEPIN_HOSTNAME}' >> /etc/hosts")
+        m.write("/etc/hosts", f"{CANDLEPIN_ADDR} {CANDLEPIN_HOSTNAME}\n", append=True)
 
         # download product info from the candlepin machine
         def download_product(product):
