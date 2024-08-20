@@ -46,7 +46,7 @@ from testlib import *
 CLIENT_ADDR = "10.111.112.1"
 CANDLEPIN_ADDR = "10.111.112.100"
 CANDLEPIN_HOSTNAME = "services.cockpit.lan"
-CANDLEPIN_URL = "https://%s:8443/candlepin" % CANDLEPIN_HOSTNAME
+CANDLEPIN_URL = f"https://{CANDLEPIN_HOSTNAME}:8443/candlepin"
 
 PRODUCT_DONALDY = {
     "id": "7050",
@@ -93,8 +93,8 @@ class SubscriptionsCase(MachineCase):
         # download product info from the candlepin machine
         def download_product(product):
             prod_id = product["id"]
-            filename = os.path.join(self.tmpdir, "%s.pem" % prod_id)
-            self.candlepin.download("/home/admin/candlepin/generated_certs/%s.pem" % prod_id, filename)
+            filename = os.path.join(self.tmpdir, f"{prod_id}.pem")
+            self.candlepin.download(f"/home/admin/candlepin/generated_certs/{prod_id}.pem", filename)
             m.upload([filename], "/etc/pki/product-default")
 
         m.execute(["mkdir", "-p", "/etc/pki/product-default"])
