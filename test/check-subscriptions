@@ -148,9 +148,9 @@ class SubscriptionsCase(MachineCase):
             prod_id = product["id"]
             filename = os.path.join(self.tmpdir, "%s.pem" % prod_id)
             self.candlepin.download("/home/admin/candlepin/generated_certs/%s.pem" % prod_id, filename)
-            m.upload([filename], "/etc/pki/product")
+            m.upload([filename], "/etc/pki/product-default")
 
-        m.execute(["mkdir", "-p", "/etc/pki/product"])
+        m.execute(["mkdir", "-p", "/etc/pki/product-default"])
         download_product(PRODUCT_DONALDY)
         download_product(PRODUCT_SHARED)
 
