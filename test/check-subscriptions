@@ -17,6 +17,7 @@
 # along with Cockpit; If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import time
 import uuid
 
 from packagelib import *
@@ -40,27 +41,6 @@ from testlib import *
 #
 # to use the candlepin image on a test machine, either add the certificate or
 # allow insecure connections (/etc/rhsm/rhsm.conf -> "insecure = 1")
-
-WAIT_SCRIPT = """
-import sys
-import time
-import requests
-
-# minimum waiting time for Candlepin to answer (in seconds)
-waiting_time = 10
-
-sys.stderr.write("Waiting %s seconds for %s\\n" % (waiting_time, sys.argv[1]))
-sys.stderr.flush()
-time.sleep(waiting_time)
-for i in range(1, 200):
-    try:
-        sys.stderr.write("Waiting for %s\\n" % sys.argv[1])
-        sys.stderr.flush()
-        res = requests.get(sys.argv[1])
-        break
-    except:
-        time.sleep(1)
-"""
 
 # fmt: off
 CLIENT_ADDR = "10.111.112.1"
@@ -133,8 +113,10 @@ class SubscriptionsCase(MachineCase):
         m.upload([candlepin_ca_tmpfile], f"/etc/rhsm/ca/{candlepin_ca_filename}")
         machine_restorecon(self.machine, "/etc/rhsm/ca/")
 
-        # Wait for the web service to be accessible
-        machine_python(self.machine, WAIT_SCRIPT, CANDLEPIN_URL)
+        # Wait for the web service to be accessible, with an initial delay
+        # to give more time to Candlepin to start
+        time.sleep(10)
+        m.execute(f"until curl --fail --silent --show-error {CANDLEPIN_URL}/status; do sleep 1; done")
 
         # Setup the repositories properly using the Candlepin RPM GPG key
         m.execute(
