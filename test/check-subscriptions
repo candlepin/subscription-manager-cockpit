@@ -60,11 +60,6 @@ PRODUCT_SHARED = {
 # fmt: on
 
 
-def machine_python(machine, script, *args):
-    cmd = ["python3", "-c", script] + list(args)
-    return machine.execute(cmd)
-
-
 def machine_restorecon(machine, path, *args):
     cmd = ["restorecon", "-R", path] + list(args)
     return machine.execute(cmd)
