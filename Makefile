@@ -219,10 +219,10 @@ bots:
 
 # checkout Cockpit's test API; this has no API stability guarantee, so check out a stable tag
 # when you start a new project, use the latest release, and update it from time to time
-# 323
+# 327
 test/common:
 	flock Makefile sh -ec '\
-	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 79623a0a425600da302f66a2752afe35c96f6cf3; \
+	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git bfc4a81e06a66695892e99b90661e0af7c533975; \
 	    git checkout --force FETCH_HEAD -- test/common; \
 	    git reset test/common'
 
