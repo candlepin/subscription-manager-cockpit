@@ -120,7 +120,7 @@ export function unregister() {
         return cockpit.spawn([ "insights-client", "--unregister" ], { superuser: true, err: "out" })
                 .catch(catch_error);
     } else {
-        return cockpit.resolve();
+        return Promise.resolve();
     }
 }
 
