@@ -4,6 +4,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2024.
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2024.
+# Ricky Tigg <ricky.tigg@gmail.com>, 2024.
 #
 # #-#-#-#-#  subscription-manager.metainfo.pot (PACKAGE VERSION)  #-#-#-#-#
 # SOME DESCRIPTIVE TITLE.
@@ -21,8 +22,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
 "PO-Revision-Date: 2024-12-18 19:38+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/fi/>\n"
 "Language: fi\n"
@@ -205,7 +205,7 @@ msgstr ""
 
 #: src/insights.jsx:579 src/subscriptions-register.jsx:85
 msgid "Insights"
-msgstr ""
+msgstr "Insights"
 
 #: src/subscriptions-view.jsx:226 src/subscriptions-view.jsx:230
 msgid "Installed products"
