@@ -11,13 +11,14 @@
 # Jérôme Fenal <jfenal@free.fr>, 2022.
 # Transtats <suanand@redhat.com>, 2022.
 # blutch112 <vincent.lefebvre59@gmail.com>, 2022.
+# Léane GRASSER <leane.grasser@proton.me>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2022-11-06 13:19+0000\n"
-"Last-Translator: blutch112 <vincent.lefebvre59@gmail.com>\n"
+"PO-Revision-Date: 2024-11-15 19:38+0000\n"
+"Last-Translator: Léane GRASSER <leane.grasser@proton.me>\n"
 "Language-Team: French <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/fr/>\n"
 "Language: fr\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.8.2\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -154,7 +155,7 @@ msgid ""
 "Content Access Mode is set to Simple Content Access. This host has access to "
 "content, regardless of subscription status."
 msgstr ""
-"Le mode d'accès au contenu est réglé sur Simple Content Access. Cet hôte a "
+"Le mode d'accès au contenu est défini sur Simple Content Access. Cet hôte a "
 "accès au contenu, quel que soit l'état de l'abonnement."
 
 #: src/subscriptions-view.jsx:307
@@ -162,8 +163,8 @@ msgid ""
 "Content Access Mode is set to Simple Content Access. This host has access to "
 "content, regardless of system purpose status."
 msgstr ""
-"Le mode d'accès au contenu est réglé sur Simple Content Access. Cet hôte a "
-"accès au contenu, quel que soit l'état de l'objet du système."
+"Le mode d'accès au contenu est défini sur Simple Content Access. Cet hôte a "
+"accès au contenu, quel que soit l'état de la finalité du système."
 
 #: src/subscriptions-client.js:529
 msgid "Corrupted JSON with status"
@@ -279,7 +280,7 @@ msgstr "Non connectée"
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author samfreemanz
 #: src/subscriptions-view.jsx:406
 msgid "Not registered"
-msgstr "Non inscrit"
+msgstr "Non enregistré"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: src/subscriptions-view.jsx:121
@@ -362,20 +363,20 @@ msgstr "Gestionnaire des abonnements Red Hat"
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: src/subscriptions-view.jsx:408 src/index.js:64
 msgid "Register"
-msgstr "Inscrire"
+msgstr "Enregistrer"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: src/index.js:100
 msgid "Register System"
-msgstr "Inscrire le système"
+msgstr "Enregistrer le système"
 
 #: src/subscriptions-client.js:340
 msgid "Registering using activation key ..."
-msgstr "Inscription à l'aide de la clé d'activation ..."
+msgstr "Enregistrement à l'aide d'une clé d'activation ..."
 
 #: src/subscriptions-client.js:362
 msgid "Registering using username and password ..."
-msgstr "S'inscrire en utilisant le nom d'utilisateur et le mot de passe ..."
+msgstr "Enregistrement à l'aide d'un nom d'utilisateur et d'un mot de passe ..."
 
 #: src/insights.jsx:188
 msgid "Removals:"
@@ -451,7 +452,7 @@ msgstr "Informations sur les abonnements"
 
 #: src/subscriptions-view.jsx:392
 msgid "System purpose"
-msgstr "Objet du système"
+msgstr "Finalité du système"
 
 #: src/insights.jsx:158
 msgid "The $0 package and $1 other package will be installed."
@@ -527,11 +528,11 @@ msgstr "Statut inconnu"
 
 #: src/subscriptions-view.jsx:415
 msgid "Unregister"
-msgstr "Désinscrire"
+msgstr "Désenregistrer"
 
 #: src/subscriptions-view.jsx:415 src/subscriptions-client.js:453
 msgid "Unregistering"
-msgstr "Désinscrire"
+msgstr "Désenregistrement"
 
 #: src/subscriptions-view.jsx:506
 msgid "Updating"
