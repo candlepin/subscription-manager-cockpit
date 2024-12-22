@@ -2,13 +2,14 @@
 # ljanda <ljanda@redhat.com>, 2018. #zanata
 # John Sefler <jsefler@redhat.com>, 2019. #zanata
 # Pino Toscano <toscano.pino@tiscali.it>, 2021, 2022, 2023.
+# Salvatore Cocuzza <info@salvatorecocuzza.it>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2023-05-03 06:01+0000\n"
-"Last-Translator: Pino Toscano <toscano.pino@tiscali.it>\n"
+"PO-Revision-Date: 2024-12-22 16:38+0000\n"
+"Last-Translator: Salvatore Cocuzza <info@salvatorecocuzza.it>\n"
 "Language-Team: Italian <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/it/>\n"
 "Language: it\n"
@@ -16,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.2\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
 msgid_plural "$0 hits, including critical"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Colpo critico di $ 0"
+msgstr[1] "Risultati a $ 0, compresi quelli critici"
 
 #: src/insights.jsx:549
 msgid "$0 hit"
@@ -141,30 +142,22 @@ msgid "Connecting to Insights"
 msgstr "Connessione a Insights"
 
 #: src/subscriptions-view.jsx:422
-#, fuzzy
-#| msgid ""
-#| "Content Access Mode is set to Organization/Environment Access. This host "
-#| "has access to content, regardless of subscription status.\n"
 msgid ""
 "Content Access Mode is set to Simple Content Access. This host has access to "
 "content, regardless of subscription status."
 msgstr ""
-"La modalità di accesso al contenuto è impostata su Organizzazione / Accesso "
-"all'ambiente. Questo host ha accesso ai contenuti, indipendentemente dallo "
-"stato dell'abbonamento.\n"
+"La modalità di accesso al contenuto è impostata su Accesso semplice al "
+"contenuto. Questo host ha accesso ai contenuti, indipendentemente dallo "
+"stato dell'abbonamento."
 
 #: src/subscriptions-view.jsx:307
-#, fuzzy
-#| msgid ""
-#| "Content Access Mode is set to Organization/Environment Access. This host "
-#| "has access to content, regardless of subscription status.\n"
 msgid ""
 "Content Access Mode is set to Simple Content Access. This host has access to "
 "content, regardless of system purpose status."
 msgstr ""
-"La modalità di accesso al contenuto è impostata su Organizzazione / Accesso "
-"all'ambiente. Questo host ha accesso ai contenuti, indipendentemente dallo "
-"stato dell'abbonamento.\n"
+"La modalità di accesso al contenuto è impostata su Accesso semplice al "
+"contenuto. Questo host ha accesso al contenuto, indipendentemente dallo "
+"stato dello scopo del sistema."
 
 #: src/subscriptions-client.js:529
 msgid "Corrupted JSON with status"
@@ -207,6 +200,8 @@ msgid ""
 "If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
 msgstr ""
+"Se disconnetti questo sistema da Insights, non riporterà più il suo stato "
+"Insights in Red Hat Cloud o Satellite."
 
 #: src/insights.jsx:579 src/subscriptions-register.jsx:85
 msgid "Insights"
@@ -265,7 +260,7 @@ msgstr "Non è stato rilevato alcun prodotto installato"
 
 #: src/insights.jsx:520
 msgid "No rule hits"
-msgstr ""
+msgstr "Nessuna regola trovata"
 
 #: src/subscriptions-view.jsx:381
 msgid "No system purpose attributes set"
@@ -320,7 +315,7 @@ msgstr "Password"
 
 #: src/subscriptions-view.jsx:313 src/subscriptions-view.jsx:428
 msgid "Popover with explanation of SCA mode"
-msgstr ""
+msgstr "Popover con spiegazione della modalità SCA"
 
 #: src/insights.jsx:138
 msgid ""
@@ -328,6 +323,10 @@ msgid ""
 "availability, and stability with Red Hat Insights — with predictive "
 "analytics, avoid problems and unplanned downtime in your Red Hat environment."
 msgstr ""
+"Identifica e risolvi in modo proattivo le minacce alla sicurezza, alle "
+"prestazioni, alla disponibilità e alla stabilità con Red Hat Insights: con "
+"analisi predittive, evita problemi e tempi di inattività non pianificati nel "
+"tuo ambiente Red Hat."
 
 #: src/subscriptions-view.jsx:179
 msgid "Product ID"
@@ -427,10 +426,8 @@ msgstr "Gestore sottoscrizioni"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:6
-#, fuzzy
-#| msgid "Subscription Manager - Facts"
 msgid "Subscription Manager in Cockpit"
-msgstr "Gestore sottoscrizioni - Eventi"
+msgstr "Gestore abbonamenti nel Cockpit"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author fvalen
 #: src/subscriptions-view.jsx:455
