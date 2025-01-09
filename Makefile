@@ -55,10 +55,10 @@ po/$(PACKAGE_NAME).js.pot:
 		--from-code=UTF-8 $$(find src/ \( -name '*.js' -o -name '*.jsx' \) \! -path 'src/lib/*')
 
 po/$(PACKAGE_NAME).html.pot: $(NODE_MODULES_TEST) $(LIB_TEST)
-	src/lib/html2po -o $@ $$(find src -name '*.html' \! -path 'src/lib/*')
+	src/lib/html2po.js -o $@ $$(find src -name '*.html' \! -path 'src/lib/*')
 
 po/$(PACKAGE_NAME).manifest.pot: $(NODE_MODULES_TEST) $(LIB_TEST)
-	src/lib/manifest2po src/manifest.json -o $@
+	src/lib/manifest2po.js src/manifest.json -o $@
 
 po/$(PACKAGE_NAME).metainfo.pot: $(APPSTREAMFILE)
 	xgettext --default-domain=$(PACKAGE_NAME) --output=$@ $<

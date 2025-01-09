@@ -6,3 +6,4 @@ set -eu
 
 export RUN_TESTS_OPTIONS=--track-naughties
 make check
+make po/subscription-manager.pot
