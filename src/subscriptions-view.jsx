@@ -54,6 +54,7 @@ class InstalledProducts extends React.Component {
         }
 
         let card_actions;
+        let is_registered = (this.props.status !== 'unknown');
         let entries = this.props.products.map(function (itm) {
             let status_color;
             let status_text;
@@ -98,7 +99,7 @@ class InstalledProducts extends React.Component {
                 end_date_text = new Date(Date.parse(itm.ends)).toLocaleDateString();
             }
 
-            if (sca_mode) {
+            if (sca_mode || ! is_registered) {
                 columns = [
                     {
                         title: (<Split>
@@ -146,7 +147,7 @@ class InstalledProducts extends React.Component {
                 </DescriptionListGroup>
             ];
 
-            if (! sca_mode) {
+            if (! sca_mode && is_registered) {
                 attr_list.push(
                     <DescriptionListGroup key="product_status">
                         <DescriptionListTerm>{_("Status")}</DescriptionListTerm>
