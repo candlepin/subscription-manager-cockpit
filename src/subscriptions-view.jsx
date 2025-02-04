@@ -358,7 +358,6 @@ class SubscriptionStatus extends React.Component {
 
         let status_text;
         let action;
-        let status_element;
 
         if (this.props.status === 'unknown') {
             status_text = _("Not registered");
@@ -367,37 +366,11 @@ class SubscriptionStatus extends React.Component {
             );
         } else {
             const isUnregistering = (this.props.status === "unregistering");
-            status_text = this.props.status_msg;
+            status_text = sca_mode ? _("Registered") : this.props.status_msg;
             action = (
                 <Button isDisabled={isUnregistering} isLoading={isUnregistering}
                               onClick={this.handleUnregisterSystem}>{isUnregistering ? _("Unregistering"): _("Unregister")}</Button>
             );
-        }
-
-        // Display tooltip over "Disabled" with simple explanation, when SCA mode is used
-        if (sca_mode) {
-            const status_tooltip = (
-                <div>{_("Content Access Mode is set to Simple Content Access. This host has access to content, regardless of subscription status.")}</div>
-            );
-            status_element = (
-                <div>
-                    <span> {status_text} </span>
-                    <Popover
-                        aria-label={_("Popover with explanation of SCA mode")}
-                        showClose={false}
-                        bodyContent={status_tooltip}
-                        withFocusTrap={false}
-                    >
-                        <button className="pf-c-form__group-label-help ct-icon-info-circle"
-                                type="button"
-                                aria-label={_("Subscriptions information")}>
-                            <InfoCircleIcon />
-                        </button>
-                    </Popover>
-                </div>
-            );
-        } else {
-            status_element = status_text;
         }
 
         return (
@@ -410,9 +383,9 @@ class SubscriptionStatus extends React.Component {
                     <CardBody>
                         <DescriptionList isHorizontal>
                             <DescriptionListGroup>
-                                <DescriptionListTerm>{_("Subscription status")}</DescriptionListTerm>
+                                <DescriptionListTerm>{_("Status")}</DescriptionListTerm>
                                 <DescriptionListDescription>
-                                    {status_element}
+                                    {status_text}
                                 </DescriptionListDescription>
                             </DescriptionListGroup>
                             {org_name &&
