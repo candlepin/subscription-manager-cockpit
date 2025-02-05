@@ -23,12 +23,12 @@ import subscriptionsClient from './subscriptions-client';
 import { InsightsStatus } from './insights.jsx';
 import { EmptyStatePanel } from "cockpit-components-empty-state.jsx";
 import { ListingTable } from "cockpit-components-table.jsx";
-import { InfoCircleIcon, ExclamationCircleIcon } from '@patternfly/react-icons';
+import { ExclamationCircleIcon } from '@patternfly/react-icons';
 import {
     Alert, AlertGroup, AlertActionCloseButton, Button,
     Card, CardActions, CardBody, CardHeader, CardHeaderMain, CardTitle,
     DescriptionList, DescriptionListDescription, DescriptionListGroup, DescriptionListTerm,
-    Gallery, Label, Page, PageSection, Split, SplitItem, Text, TextVariants, Popover, Divider,
+    Gallery, Label, Page, PageSection, Split, SplitItem, Text, TextVariants,
     EmptyState, EmptyStateVariant, EmptyStateBody
 } from '@patternfly/react-core';
 
@@ -259,45 +259,10 @@ class SubscriptionStatus extends React.Component {
         let syspurpose = null;
         let syspurpose_card_body;
 
-        let syspurpose_status_element;
-        if (sca_mode) {
-            const syspurpose_status_tooltip = (
-                <div>{_("Content Access Mode is set to Simple Content Access. This host has access to content, regardless of system purpose status.")}</div>
-            );
-            syspurpose_status_element = (
-                <div>
-                    <span> { this.props.syspurpose_status } </span>
-                    <Popover
-                        aria-label={_("Popover with explanation of SCA mode")}
-                        showClose={false}
-                        bodyContent={syspurpose_status_tooltip}
-                        withFocusTrap={false}
-                    >
-                        <button className="pf-c-form__group-label-help ct-icon-info-circle"
-                                type="button"
-                                aria-label={_("Subscriptions information")}>
-                            <InfoCircleIcon />
-                        </button>
-                    </Popover>
-                </div>
-            );
-        } else {
-            syspurpose_status_element = (
-                <div>
-                    <span> { this.props.syspurpose_status } </span>
-                </div>
-            );
-        }
-
         const p = this.props.syspurpose;
         if ( p["service_level_agreement"] || p["usage"] || p["role"] || p["addons"] ) {
             syspurpose_card_body = (
                 <DescriptionList isHorizontal>
-                    <DescriptionListGroup>
-                        <DescriptionListTerm>{_("Status")}</DescriptionListTerm>
-                        <DescriptionListDescription>{ syspurpose_status_element }</DescriptionListDescription>
-                    </DescriptionListGroup>
-                    <Divider />
                     {p["service_level_agreement"] &&
                         <DescriptionListGroup>
                             <DescriptionListTerm>{_("Service level")}</DescriptionListTerm>
@@ -327,13 +292,6 @@ class SubscriptionStatus extends React.Component {
         } else {
             syspurpose_card_body = (
                 <div>
-                    <DescriptionList isHorizontal>
-                        <DescriptionListGroup>
-                            <DescriptionListTerm>{_("Status")}</DescriptionListTerm>
-                            <DescriptionListDescription>{ syspurpose_status_element }</DescriptionListDescription>
-                        </DescriptionListGroup>
-                        <Divider />
-                    </DescriptionList>
                     <EmptyState variant={EmptyStateVariant.small}>
                         <EmptyStateBody>
                             {_("No system purpose attributes set")}
