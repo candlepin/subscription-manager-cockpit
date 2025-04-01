@@ -4,7 +4,7 @@
 __pycache__/
 node_modules/
 dist/
-src/lib/
+/pkg/
 package-lock.json
 /bots/
 /subscription-manager/

@@ -23,9 +23,9 @@ SMBEXT_TAR=$(CURDIR)/dist/subscription-manager-build-extra.tar.gz
 # stamp file to check for node_modules/
 NODE_MODULES_TEST=package-lock.json
 # one example file in dist/ from webpack to check if that already ran
-WEBPACK_TEST=dist/manifest.json
-# one example file in src/lib to check if it was already checked out
-LIB_TEST=src/lib/cockpit-po-plugin.js
+DIST_TEST=dist/manifest.json
+# one example file in pkg/lib to check if it was already checked out
+LIB_TEST=pkg/lib/cockpit-po-plugin.js
 # common arguments for tar, mostly to make the generated tarballs reproducible
 TAR_ARGS = --sort=name --mtime "@$(shell git show --no-patch --format='%at')" --mode=go=rX,u+rw,a-s --numeric-owner --owner=0 --group=0
 
@@ -37,7 +37,7 @@ IMAGE_CUSTOMIZE_DEPENDS = $(SUBMAN_TAR) $(SMBEXT_TAR) test/vm.install-sub-man
 IMAGE_CUSTOMIZE_INSTALL = --upload $(SUBMAN_TAR):/var/tmp/ --upload $(SMBEXT_TAR):/var/tmp/ --script $(CURDIR)/test/vm.install-sub-man
 endif
 
-all: $(WEBPACK_TEST)
+all: $(DIST_TEST)
 
 #
 # i18n
@@ -52,13 +52,13 @@ po/$(PACKAGE_NAME).js.pot:
 		--keyword=gettext:1,1t --keyword=gettext:1c,2,2t \
 		--keyword=ngettext:1,2,3t --keyword=ngettext:1c,2,3,4t \
 		--keyword=gettextCatalog.getString:1,3c --keyword=gettextCatalog.getPlural:2,3,4c \
-		--from-code=UTF-8 $$(find src/ \( -name '*.js' -o -name '*.jsx' \) \! -path 'src/lib/*')
+		--from-code=UTF-8 $$(find src/ -name '*.js' -o -name '*.jsx')
 
 po/$(PACKAGE_NAME).html.pot: $(NODE_MODULES_TEST) $(LIB_TEST)
-	src/lib/html2po.js -o $@ $$(find src -name '*.html' \! -path 'src/lib/*')
+	pkg/lib/html2po.js -o $@ $$(find src -name '*.html')
 
 po/$(PACKAGE_NAME).manifest.pot: $(NODE_MODULES_TEST) $(LIB_TEST)
-	src/lib/manifest2po.js src/manifest.json -o $@
+	pkg/lib/manifest2po.js src/manifest.json -o $@
 
 po/$(PACKAGE_NAME).metainfo.pot: $(APPSTREAMFILE)
 	xgettext --default-domain=$(PACKAGE_NAME) --output=$@ $<
@@ -79,11 +79,11 @@ po/LINGUAS:
 %.spec: %.spec.tmpl
 	sed -e 's/%{VERSION}/$(VERSION)/g' $< > $@
 
-$(WEBPACK_TEST): $(NODE_MODULES_TEST) $(LIB_TEST) $(shell find src/ -type f) package.json webpack.config.js
-	NODE_ENV=$(NODE_ENV) node_modules/.bin/webpack
+$(DIST_TEST): $(NODE_MODULES_TEST) $(LIB_TEST) $(shell find src/ -type f) package.json build.js
+	NODE_ENV=$(NODE_ENV) node build.js
 
 watch: $(NODE_MODULES_TEST) $(LIB_TEST)
-	NODE_ENV=$(NODE_ENV) node_modules/.bin/webpack --watch
+	NODE_ENV=$(NODE_ENV) node build.js --watch
 
 clean:
 	rm -rf dist/
@@ -93,7 +93,7 @@ clean:
 clean-all:
 	git clean -fdx
 
-install: $(WEBPACK_TEST) po/LINGUAS
+install: $(DIST_TEST) po/LINGUAS
 	mkdir -p $(DESTDIR)$(PREFIX)/share/cockpit/$(PACKAGE_NAME)
 	cp -r dist/* $(DESTDIR)$(PREFIX)/share/cockpit/$(PACKAGE_NAME)
 	mkdir -p $(DESTDIR)$(PREFIX)/share/metainfo/
@@ -108,7 +108,7 @@ install: $(WEBPACK_TEST) po/LINGUAS
 	cp -r data/icons/hicolor $(DESTDIR)$(PREFIX)/share/icons/
 
 # this requires a built source tree and avoids having to install anything system-wide
-devel-install: $(WEBPACK_TEST)
+devel-install: $(DIST_TEST)
 	mkdir -p ~/.local/share/cockpit
 	ln -s `pwd`/dist ~/.local/share/cockpit/$(PACKAGE_NAME)
 
@@ -123,17 +123,17 @@ print-version:
 dist: $(TARFILE)
 	@ls -1 $(TARFILE)
 
-# when building a distribution tarball, call webpack with a 'production' environment
+# when building a distribution tarball, call build.js with a 'production' environment
 # we don't ship node_modules for license and compactness reasons; we ship a
 # pre-built dist/ (so it's not necessary) and ship packge-lock.json (so that
 # node_modules/ can be reconstructed if necessary)
 $(TARFILE): export NODE_ENV=production
-$(TARFILE): $(WEBPACK_TEST) $(SPEC)
+$(TARFILE): $(DIST_TEST) $(SPEC)
 	if type appstream-util >/dev/null 2>&1; then appstream-util validate-relax --nonet data/*.metainfo.xml; fi
 	if type desktop-file-validate >/dev/null 2>&1; then desktop-file-validate data/*.desktop; fi
 	tar --xz $(TAR_ARGS) -cf $(TARFILE) --transform 's,^,$(RPM_NAME)/,' \
 		--exclude $(SPEC).tmpl --exclude node_modules \
-		$$(git ls-files) src/lib package-lock.json $(SPEC) dist/
+		$$(git ls-files) pkg/lib package-lock.json $(SPEC) dist/
 
 $(NODE_CACHE): $(NODE_MODULES_TEST)
 	tar --xz $(TAR_ARGS) -cf $@ node_modules
@@ -151,6 +151,7 @@ srpm: $(TARFILE) $(NODE_CACHE) $(SPEC)
 rpm: $(TARFILE) $(NODE_CACHE) $(SPEC)
 	mkdir -p "`pwd`/output"
 	mkdir -p "`pwd`/rpmbuild"
+	mkdir -p "`pwd`/build"
 	rpmbuild -bb \
 	  --define "_sourcedir `pwd`" \
 	  --define "_specdir `pwd`" \
@@ -232,7 +233,6 @@ $(LIB_TEST):
 	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 290; \
 	    git checkout --force FETCH_HEAD -- pkg/lib; \
 	    git reset -- pkg/lib'
-	mv pkg/lib src/ && rmdir -p pkg
 
 # checkout subscription-manager at the branch we want
 subscription-manager:
