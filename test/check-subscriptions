@@ -251,7 +251,7 @@ class TestSubscriptions(SubscriptionsCase):
         self.machine.execute("useradd junior; echo junior:foobar | chpasswd")
         self.login_and_go("/subscriptions", user="junior")
         self.browser.wait_in_text(
-            ".pf-c-empty-state__body", "current user isn't allowed to access system subscription"
+            ".pf-v6-c-empty-state__body", "current user isn't allowed to access system subscription"
         )
         self.allow_journal_messages("junior is not in the sudoers file.  This incident will be reported.")
 
@@ -280,10 +280,10 @@ class TestSubscriptions(SubscriptionsCase):
             b.wait_not_present(dialog_register_button_sel)
 
         b.click("button:contains('Not connected')")
-        b.wait_visible('.pf-c-modal-box__body:contains("This system is not connected")')
+        b.wait_visible('.pf-v6-c-modal-box__body:contains("This system is not connected")')
         b.click("footer button.apply")
         with b.wait_timeout(600):
-            b.wait_not_present(".pf-c-modal-box")
+            b.wait_not_present(".pf-v6-c-modal-box")
 
         b.wait_visible("#overview a[href='https://console.redhat.com/insights/inventory/123-nice-id']")
         b.wait_visible("#overview a:contains('3 hits, including important')")
@@ -299,11 +299,11 @@ class TestSubscriptions(SubscriptionsCase):
         b.wait_in_text("#syspurpose", "Red Hat Enterprise Linux Workstation")
 
         b.click("button:contains('Connected to Insights')")
-        b.wait_visible('.pf-c-modal-box__body:contains("Next Insights data upload")')
-        b.wait_visible('.pf-c-modal-box__body:contains("Last Insights data upload")')
-        b.click("button.pf-c-expandable-section__toggle:contains('Disconnect from Insights')")
+        b.wait_visible('.pf-v6-c-modal-box__body:contains("Next Insights data upload")')
+        b.wait_visible('.pf-v6-c-modal-box__body:contains("Last Insights data upload")')
+        b.click(".pf-v6-c-expandable-section__toggle button.pf-m-link:contains('Disconnect from Insights')")
         b.click("button.pf-m-danger:contains('Disconnect from Insights')")
-        b.wait_not_present(".pf-c-modal-box")
+        b.wait_not_present(".pf-v6-c-modal-box")
 
         b.wait_visible("button:contains('Not connected')")
 
@@ -346,10 +346,10 @@ class TestSubscriptions(SubscriptionsCase):
         m.execute(["systemctl", "start", "insights-client"])
 
         with b.wait_timeout(60):
-            b.wait_visible("button .pf-c-button__icon svg[fill='orange']")
+            b.wait_visible("#overview button.pf-m-link .pf-v6-c-icon .pf-m-warning")
 
         b.click("button:contains('Connected to Insights')")
-        b.wait_visible('.pf-c-modal-box__body:contains("The last Insights data upload has failed")')
+        b.wait_visible('.pf-v6-c-modal-box__body:contains("The last Insights data upload has failed")')
         b.click("button.cancel")
 
         # Unbreak it and retry.
@@ -360,7 +360,7 @@ class TestSubscriptions(SubscriptionsCase):
             timeout=360,
         )
 
-        b.wait_not_present("button .pf-c-button__icon svg[fill='orange']")
+        b.wait_not_present("#overview button.pf-m-link .pf-v6-c-icon .pf-m-warning")
 
         b.click("button:contains('Unregister')")
         with b.wait_timeout(60):
@@ -391,15 +391,17 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
         b.set_input_text("#subscription-register-password", "password")
         b.set_input_text("#subscription-register-org", "donaldduck")
         b.set_checked("#subscription-insights", True)
-        b.wait_visible('.pf-c-modal-box__body:contains("The insights-client package will be installed")')
+        b.wait_visible(
+            '.pf-v6-c-form__group-control:contains("The insights-client package will be installed")'
+        )
         b.click("footer button.apply")
         with b.wait_timeout(360):
-            b.wait_not_present(".pf-c-modal-box")
+            b.wait_not_present(".pf-v6-c-modal-box")
 
         # Connecting to Insights will not have worked because the
         # insights-client binary is not actually there.
 
-        b.wait_visible("body > div:last-child .pf-c-alert:contains('not-found')")
+        b.wait_visible("body > div:last-child .pf-v6-c-alert:contains('not-found')")
 
         # Try again with the connection dialog.
 
@@ -408,11 +410,11 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
         m.execute(["pkcon", "refresh"])
 
         b.click("button:contains('Not connected')")
-        b.wait_visible('.pf-c-modal-box__body:contains("This system is not connected")')
-        b.wait_visible('.pf-c-modal-box__body:contains("The insights-client package will be installed")')
+        b.wait_visible('.pf-v6-c-modal-box__body:contains("This system is not connected")')
+        b.wait_visible('.pf-v6-c-modal-box__body:contains("The insights-client package will be installed")')
         b.click("footer button.apply")
         with b.wait_timeout(360):
-            b.wait_visible('.pf-c-modal-box__body:contains("not-found")')
+            b.wait_visible('.pf-v6-c-modal-box__body:contains("not-found")')
         b.click("footer button.cancel")
 
         m.execute(["test", "-f", "/stamp-insights-client-999-1"])

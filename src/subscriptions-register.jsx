@@ -47,7 +47,7 @@ class SubscriptionRegisterDialog extends React.Component {
             customURL = (
                 <TextInput
                     id="subscription-register-url-custom"
-                    value={this.props.server_url} onChange={value => this.props.onChange('server_url', value)}
+                    value={this.props.server_url} onChange={(_event, value) => this.props.onChange('server_url', value)}
                 />
             );
         }
@@ -58,14 +58,14 @@ class SubscriptionRegisterDialog extends React.Component {
                     <FormGroup fieldId="subscription-proxy-server" label={_("Proxy Location")}>
                         <TextInput id="subscription-proxy-server"
                             placeholder="hostname:port" value={this.props.proxy_server}
-                            onChange={value => this.props.onChange('proxy_server', value)}
+                            onChange={(_event, value) => this.props.onChange('proxy_server', value)}
                         />
                     </FormGroup>
 
                     <FormGroup fieldId="subscription-proxy-user" label={_("Proxy Username")}>
                         <TextInput id="subscription-proxy-user"
                             value={this.props.proxy_user}
-                            onChange={value => this.props.onChange('proxy_user', value)}
+                            onChange={(_event, value) => this.props.onChange('proxy_user', value)}
                         />
                     </FormGroup>
 
@@ -74,7 +74,7 @@ class SubscriptionRegisterDialog extends React.Component {
                             type="password"
                             autoComplete="current-password"
                             value={this.props.proxy_password}
-                            onChange={value => this.props.onChange('proxy_password', value)}
+                            onChange={(_event, value) => this.props.onChange('proxy_password', value)}
                         />
                     </FormGroup>
                 </>
@@ -86,7 +86,7 @@ class SubscriptionRegisterDialog extends React.Component {
                     isChecked={this.props.insights}
                     label={ Insights.arrfmt(_("Connect this system to $0."), Insights.link) }
                     isDisabled={ false }
-                    onChange={value => this.props.onChange('insights', value)}
+                    onChange={(_event, value) => this.props.onChange('insights', value)}
                 />
                 {(this.props.insights && !this.props.insights_detected) &&
                     <p>
@@ -107,7 +107,7 @@ class SubscriptionRegisterDialog extends React.Component {
                     <FormGroup fieldId="subscription-register-username" label={_("Username")}>
                         <TextInput id="subscription-register-username"
                             value={this.props.user}
-                            onChange={value => this.props.onChange('user', value)}
+                            onChange={(_event, value) => this.props.onChange('user', value)}
                         />
                     </FormGroup>
                     <FormGroup fieldId="subscription-register-password" label={_("Password")}>
@@ -115,13 +115,13 @@ class SubscriptionRegisterDialog extends React.Component {
                             type="password"
                             autoComplete="current-password"
                             value={this.props.password}
-                            onChange={value => this.props.onChange('password', value)}
+                            onChange={(_event, value) => this.props.onChange('password', value)}
                         />
                     </FormGroup>
                     <FormGroup fieldId="subscription-register-org" label={_("Organization")}>
                         <TextInput id="subscription-register-org"
                             value={this.props.org}
-                            onChange={value => this.props.onChange('org', value)}
+                            onChange={(_event, value) => this.props.onChange('org', value)}
                         />
                     </FormGroup>
                 </>
@@ -132,13 +132,13 @@ class SubscriptionRegisterDialog extends React.Component {
                     <FormGroup fieldId="subscription-register-key" label={_("Activation Key")}>
                         <TextInput id="subscription-register-key"
                             placeholder="key_one,key_two" value={this.props.activation_keys}
-                            onChange={value => this.props.onChange('activation_keys', value)}
+                            onChange={(_event, value) => this.props.onChange('activation_keys', value)}
                         />
                     </FormGroup>
                     <FormGroup fieldId="subscription-register-org" label={_("Organization ID")}>
                         <TextInput id="subscription-register-org"
                             value={this.props.org}
-                            onChange={value => this.props.onChange('org', value)}
+                            onChange={(_event, value) => this.props.onChange('org', value)}
                         />
                     </FormGroup>
                 </>
@@ -153,7 +153,7 @@ class SubscriptionRegisterDialog extends React.Component {
             <Form isHorizontal>
                 <FormGroup fieldId="subscription-register-url" label={_("URL")} isStack>
                     <FormSelect key='urlSource'
-                        onChange={value => this.props.onChange('url', value)}
+                        onChange={(_event, value) => this.props.onChange('url', value)}
                         id="subscription-register-url" value={this.props.url}
                     >
                         <FormSelectOption value="default" label={urlEntries.default} />
@@ -163,7 +163,7 @@ class SubscriptionRegisterDialog extends React.Component {
                     <Checkbox id="subscription-proxy-use"
                         isChecked={this.props.proxy}
                         label={_("Use proxy server")}
-                        onChange={value => this.props.onChange('proxy', value)}
+                        onChange={(_event, value) => this.props.onChange('proxy', value)}
                     />
                     {proxy}
                 </FormGroup>

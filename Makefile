@@ -55,10 +55,10 @@ po/$(PACKAGE_NAME).js.pot:
 		--from-code=UTF-8 $$(find src/ -name '*.js' -o -name '*.jsx')
 
 po/$(PACKAGE_NAME).html.pot: $(NODE_MODULES_TEST) $(LIB_TEST)
-	pkg/lib/html2po.js -o $@ $$(find src -name '*.html')
+	pkg/lib/html2po -o $@ $$(find src -name '*.html')
 
 po/$(PACKAGE_NAME).manifest.pot: $(NODE_MODULES_TEST) $(LIB_TEST)
-	pkg/lib/manifest2po.js src/manifest.json -o $@
+	pkg/lib/manifest2po -o $@ src/manifest.json
 
 po/$(PACKAGE_NAME).metainfo.pot: $(APPSTREAMFILE)
 	xgettext --default-domain=$(PACKAGE_NAME) --output=$@ $<
@@ -223,14 +223,14 @@ bots:
 # 327
 test/common:
 	flock Makefile sh -ec '\
-	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git bfc4a81e06a66695892e99b90661e0af7c533975; \
+	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 3fac9ac3c253075101e3ce5d0437d643f29194ef; \
 	    git checkout --force FETCH_HEAD -- test/common; \
 	    git reset test/common'
 
 # checkout Cockpit's PF/React/build library; again this has no API stability guarantee, so check out a stable tag
 $(LIB_TEST):
 	flock Makefile sh -ec '\
-	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 290; \
+	    git fetch --depth=1 https://github.com/cockpit-project/cockpit.git 3fac9ac3c253075101e3ce5d0437d643f29194ef; \
 	    git checkout --force FETCH_HEAD -- pkg/lib; \
 	    git reset -- pkg/lib'
 

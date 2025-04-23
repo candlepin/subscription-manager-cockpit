@@ -26,9 +26,9 @@ import { ListingTable } from "cockpit-components-table.jsx";
 import { ExclamationCircleIcon } from '@patternfly/react-icons';
 import {
     Alert, AlertGroup, AlertActionCloseButton, Button,
-    Card, CardActions, CardBody, CardHeader, CardHeaderMain, CardTitle,
+    Card, CardBody, CardHeader, CardTitle,
     DescriptionList, DescriptionListDescription, DescriptionListGroup, DescriptionListTerm,
-    Gallery, Label, Page, PageSection, Split, SplitItem, Text, TextVariants,
+    Gallery, Label, Page, PageSection, Split, SplitItem,
     EmptyState, EmptyStateVariant, EmptyStateBody
 } from '@patternfly/react-core';
 
@@ -49,7 +49,6 @@ class InstalledProducts extends React.Component {
             }
         }
 
-        let card_actions;
         const is_registered = (this.props.status !== 'unknown');
         const entries = this.props.products.map(function (itm) {
             let status_color;
@@ -178,8 +177,7 @@ class InstalledProducts extends React.Component {
         return (
             <Card id="products" className="products" key="products">
                 <CardHeader>
-                    <CardTitle><Text component={TextVariants.h2}>{_("Installed products")}</Text></CardTitle>
-                    { card_actions }
+                    <CardTitle>{_("Installed products")}</CardTitle>
                 </CardHeader>
                 <CardBody className="contains-list">
                     <ListingTable aria-label={_("Installed products")}
@@ -286,7 +284,7 @@ class SubscriptionStatus extends React.Component {
         } else {
             syspurpose_card_body = (
                 <div>
-                    <EmptyState variant={EmptyStateVariant.small}>
+                    <EmptyState variant={EmptyStateVariant.sm}>
                         <EmptyStateBody>
                             {_("No system purpose attributes set")}
                         </EmptyStateBody>
@@ -297,11 +295,7 @@ class SubscriptionStatus extends React.Component {
 
         syspurpose = (
             <Card id="syspurpose" key="syspurpose" className="ct-card-info">
-                <CardHeader>
-                    <CardHeaderMain>
-                        <Text className="purpose-header" component={TextVariants.h2}>{_("System purpose")}</Text>
-                    </CardHeaderMain>
-                </CardHeader>
+                <CardTitle>{_("System purpose")}</CardTitle>
                 <CardBody>
                     {syspurpose_card_body}
                 </CardBody>
@@ -332,9 +326,8 @@ class SubscriptionStatus extends React.Component {
         return (
             <>
                 <Card id="overview" key="overview" className={ syspurpose !== null ? "ct-card-info" : "" }>
-                    <CardHeader>
-                        <CardTitle><Text component={TextVariants.h2}>{_("Overview")}</Text></CardTitle>
-                        <CardActions>{action}</CardActions>
+                    <CardHeader actions={{ actions: action, hasNoOffset: false }}>
+                        <CardTitle>{_("Overview")}</CardTitle>
                     </CardHeader>
                     <CardBody>
                         <DescriptionList isHorizontal>
@@ -422,8 +415,8 @@ class SubscriptionsView extends React.Component {
         }
 
         return (
-            <Page>
-                <PageSection>
+            <Page className='no-masthead-sidebar'>
+                <PageSection hasBodyWrapper={false}>
                     {error}
                     <Gallery className='ct-cards-grid' hasGutter>
                         <SubscriptionStatus { ...this.props } />

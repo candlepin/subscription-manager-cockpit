@@ -31,6 +31,7 @@ import {
     Button,
     DescriptionListDescription, DescriptionListGroup, DescriptionListTerm,
     ExpandableSection,
+    Icon,
     Spinner,
     Stack, StackItem,
 } from '@patternfly/react-core';
@@ -291,7 +292,7 @@ function show_connect_dialog() {
                     disabled: checking_install,
                 }
             ],
-            idle_message: progress_message && <div><Spinner isSVG className="dialog-wait-ct-spinner" size="md" /><span>{ progress_message }</span></div>,
+            idle_message: progress_message && <div><Spinner className="dialog-wait-ct-spinner" size="md" /><span>{ progress_message }</span></div>,
             static_error: error_message,
             dialog_done: f => { if (!f && cancel) cancel(); }
         };
@@ -418,25 +419,23 @@ function show_status_dialog() {
                         <table>
                             <tbody>
                                 <tr>
-                                    <th style={{ textAlign: "right", paddingRight: "1em" }}>{_("Next Insights data upload")}</th>
+                                    <th>{_("Next Insights data upload")}</th>
                                     <td>{next_elapse}</td>
                                 </tr>
-                                { lastupload
-                                    ? (
-                                        <tr>
-                                            <th style={{ textAlign: "right", paddingRight: "1em" }}>{_("Last Insights data upload")}</th>
-                                            <td>{moment(lastupload * 1000).calendar()}</td>
-                                        </tr>)
-                                    : null}
+                                { lastupload &&
+                                    <tr>
+                                        <th>{_("Last Insights data upload")}</th>
+                                        <td>{moment(lastupload * 1000).calendar()}</td>
+                                    </tr>}
                             </tbody>
                         </table>
                         <br />
                         { insights_timer.state === "failed" &&
-                        <Alert variant='warning'>
+                        <Alert variant='warning' isInline>
                             <Button variant='link' isInline onClick={left(jump_to_timer)}>{_("Details")}</Button>
                         </Alert>}
                         { (insights_service.state === "failed" || (insights_service.state === "starting" && insights_service.details.Result !== "success")) && failed_text &&
-                        <Alert variant='warning' title={failed_text}>
+                        <Alert variant='warning' title={failed_text} isInline>
                             <Button variant='link' isInline onClick={left(jump_to_service)}>{_("Details")}</Button>
                         </Alert>}
                         <ExpandableSection toggleText={_("Disconnect from Insights")}>
@@ -463,7 +462,7 @@ function show_status_dialog() {
                 {
                     cancel_caption: _("Cancel"),
                     actions: [],
-                    idle_message: <Spinner isSVG className="dialog-wait-ct-spinner" size="md" />,
+                    idle_message: <Spinner className="dialog-wait-ct-spinner" size="md" />,
                 });
             unregister().then(
                 () => {
@@ -575,7 +574,7 @@ export class InsightsStatus extends React.Component {
                     <StackItem>
                         <Button isInline
                             variant="link"
-                            icon={warn ? <WarningTriangleIcon color="orange" /> : null}
+                            icon={warn ? <Icon status="warning"><WarningTriangleIcon /></Icon> : null}
                             onClick={left(show_status_dialog)}
                         >
                             {_("Connected to Insights")}
