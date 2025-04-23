@@ -32,11 +32,11 @@ import * as Dialog from 'cockpit-components-dialog.jsx';
 
 import './subscriptions.scss';
 
-let _ = cockpit.gettext;
+const _ = cockpit.gettext;
 
-let dataStore = { };
+const dataStore = { };
 
-let registerDialogDetails = {
+const registerDialogDetails = {
     user: '',
     password: '',
     activation_keys: '',
@@ -59,11 +59,12 @@ function registerSystem (update_progress) {
     });
 }
 
-let footerProps = {
-    'actions': [
-        { 'clicked': registerSystem,
-          'caption': _("Register"),
-          'style': 'primary',
+const footerProps = {
+    actions: [
+        {
+            clicked: registerSystem,
+            caption: _("Register"),
+            style: 'primary',
         },
     ]
 };
@@ -88,17 +89,17 @@ function openRegisterDialog() {
 
             // show dialog to register
             let renderDialog;
-            let updatedData = function(prop, value) {
+            const updatedData = function(prop, value) {
                 if (prop) {
                     registerDialogDetails[prop] = value;
                 }
 
                 registerDialogDetails.onChange = updatedData;
 
-                let dialogProps = {
-                    'id': 'register_dialog',
-                    'title': _("Register System"),
-                    'body': React.createElement(SubscriptionRegisterDialog, registerDialogDetails),
+                const dialogProps = {
+                    id: 'register_dialog',
+                    title: _("Register System"),
+                    body: React.createElement(SubscriptionRegisterDialog, registerDialogDetails),
                 };
 
                 if (renderDialog)
@@ -112,7 +113,8 @@ function openRegisterDialog() {
 }
 
 function unregisterSystem() {
-    Insights.unregister().catch(() => true).then(subscriptionsClient.unregisterSystem);
+    Insights.unregister().catch(() => true)
+            .then(subscriptionsClient.unregisterSystem);
 }
 
 function initStore(rootElement) {

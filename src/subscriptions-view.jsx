@@ -32,15 +32,11 @@ import {
     EmptyState, EmptyStateVariant, EmptyStateBody
 } from '@patternfly/react-core';
 
-let _ = cockpit.gettext;
+const _ = cockpit.gettext;
 
 class InstalledProducts extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-        let columnTitles = [_("Product name")];
+        const columnTitles = [_("Product name")];
 
         let sca_mode;
 
@@ -54,14 +50,13 @@ class InstalledProducts extends React.Component {
         }
 
         let card_actions;
-        let is_registered = (this.props.status !== 'unknown');
-        let entries = this.props.products.map(function (itm) {
+        const is_registered = (this.props.status !== 'unknown');
+        const entries = this.props.products.map(function (itm) {
             let status_color;
             let status_text;
             let label_status_text;
             let start_date_text;
             let end_date_text;
-            let body;
             let columns;
 
             if (itm.status === 'subscribed') {
@@ -99,36 +94,38 @@ class InstalledProducts extends React.Component {
                 end_date_text = new Date(Date.parse(itm.ends)).toLocaleDateString();
             }
 
-            if (sca_mode || ! is_registered) {
+            if (sca_mode || !is_registered) {
                 columns = [
                     {
-                        title: (<Split>
-                            <SplitItem isFilled>
-                                {itm.productName}
-                            </SplitItem>
-                        </Split>),
+                        title: (
+                            <Split>
+                                <SplitItem isFilled>
+                                    {itm.productName}
+                                </SplitItem>
+                            </Split>),
                         header: true,
                     }
                 ];
             } else {
                 columns = [
                     {
-                        title: (<Split>
-                            <SplitItem isFilled>
-                                {itm.productName}
-                            </SplitItem>
-                            <SplitItem>
-                                <Label
-                                    color={status_color}>{label_status_text}</Label>
-                            </SplitItem>
-                        </Split>),
+                        title: (
+                            <Split>
+                                <SplitItem isFilled>
+                                    {itm.productName}
+                                </SplitItem>
+                                <SplitItem>
+                                    <Label color={status_color}>
+                                        {label_status_text}
+                                    </Label>
+                                </SplitItem>
+                            </Split>),
                         header: true,
                     }
                 ];
             }
 
-            let attr_list;
-            attr_list = [
+            const attr_list = [
                 <DescriptionListGroup key="product_name">
                     <DescriptionListTerm>{_("Product name")}</DescriptionListTerm>
                     <DescriptionListDescription>{itm.productName}</DescriptionListDescription>
@@ -147,7 +144,7 @@ class InstalledProducts extends React.Component {
                 </DescriptionListGroup>
             ];
 
-            if (! sca_mode && is_registered) {
+            if (!sca_mode && is_registered) {
                 attr_list.push(
                     <DescriptionListGroup key="product_status">
                         <DescriptionListTerm>{_("Status")}</DescriptionListTerm>
@@ -164,7 +161,7 @@ class InstalledProducts extends React.Component {
                 );
             }
 
-            body = (
+            const body = (
                 <DescriptionList isHorizontal>
                     {attr_list}
                 </DescriptionList>
@@ -186,11 +183,12 @@ class InstalledProducts extends React.Component {
                 </CardHeader>
                 <CardBody className="contains-list">
                     <ListingTable aria-label={_("Installed products")}
-                      variant='compact'
-                      showHeader={false}
-                      emptyCaption={_("No installed products detected")}
-                      columns={columnTitles}
-                      rows={entries} />
+                        variant='compact'
+                        showHeader={false}
+                        emptyCaption={_("No installed products detected")}
+                        columns={columnTitles}
+                        rows={entries}
+                    />
                 </CardBody>
             </Card>
         );
@@ -243,13 +241,13 @@ class SubscriptionStatus extends React.Component {
         } else {
             // Organization name
             if ('displayName' in this.props.org) {
-                org_name = this.props.org['displayName'];
+                org_name = this.props.org.displayName;
             } else {
                 org_name = '';
             }
             // SCA mode tooltip
             if ('contentAccessMode' in this.props.org) {
-                if (this.props.org['contentAccessMode'] === 'org_environment') {
+                if (this.props.org.contentAccessMode === 'org_environment') {
                     sca_mode = true;
                 }
             }
@@ -260,33 +258,29 @@ class SubscriptionStatus extends React.Component {
         let syspurpose_card_body;
 
         const p = this.props.syspurpose;
-        if ( p["service_level_agreement"] || p["usage"] || p["role"] || p["addons"] ) {
+        if (p.service_level_agreement || p.usage || p.role || p.addons) {
             syspurpose_card_body = (
                 <DescriptionList isHorizontal>
-                    {p["service_level_agreement"] &&
+                    {p.service_level_agreement &&
                         <DescriptionListGroup>
                             <DescriptionListTerm>{_("Service level")}</DescriptionListTerm>
-                            <DescriptionListDescription>{p["service_level_agreement"]}</DescriptionListDescription>
-                        </DescriptionListGroup>
-                    }
-                    {p["usage"] &&
+                            <DescriptionListDescription>{p.service_level_agreement}</DescriptionListDescription>
+                        </DescriptionListGroup>}
+                    {p.usage &&
                         <DescriptionListGroup>
                             <DescriptionListTerm>{_("Usage")}</DescriptionListTerm>
-                            <DescriptionListDescription>{p["usage"]}</DescriptionListDescription>
-                        </DescriptionListGroup>
-                    }
-                    {p["role"] &&
+                            <DescriptionListDescription>{p.usage}</DescriptionListDescription>
+                        </DescriptionListGroup>}
+                    {p.role &&
                         <DescriptionListGroup>
                             <DescriptionListTerm>{_("Role")}</DescriptionListTerm>
-                            <DescriptionListDescription>{p["role"]}</DescriptionListDescription>
-                        </DescriptionListGroup>
-                    }
-                    {p["addons"] &&
+                            <DescriptionListDescription>{p.role}</DescriptionListDescription>
+                        </DescriptionListGroup>}
+                    {p.addons &&
                         <DescriptionListGroup>
                             <DescriptionListTerm>{_("Add-ons")}</DescriptionListTerm>
-                            <DescriptionListDescription>{p["addons"]}</DescriptionListDescription>
-                        </DescriptionListGroup>
-                    }
+                            <DescriptionListDescription>{p.addons}</DescriptionListDescription>
+                        </DescriptionListGroup>}
                 </DescriptionList>
             );
         } else {
@@ -326,8 +320,12 @@ class SubscriptionStatus extends React.Component {
             const isUnregistering = (this.props.status === "unregistering");
             status_text = sca_mode ? _("Registered") : this.props.status_msg;
             action = (
-                <Button isDisabled={isUnregistering} isLoading={isUnregistering}
-                              onClick={this.handleUnregisterSystem}>{isUnregistering ? _("Unregistering"): _("Unregister")}</Button>
+                <Button isDisabled={isUnregistering}
+                    isLoading={isUnregistering}
+                    onClick={this.handleUnregisterSystem}
+                >
+                    {isUnregistering ? _("Unregistering") : _("Unregister")}
+                </Button>
             );
         }
 
@@ -350,8 +348,7 @@ class SubscriptionStatus extends React.Component {
                                 <DescriptionListGroup>
                                     <DescriptionListTerm>{_("Organization")}</DescriptionListTerm>
                                     <DescriptionListDescription>{org_name}</DescriptionListDescription>
-                                </DescriptionListGroup>
-                            }
+                                </DescriptionListGroup>}
                             {(this.props.insights_available && this.props.status !== 'unknown') && <InsightsStatus />}
                         </DescriptionList>
                     </CardBody>
@@ -377,8 +374,8 @@ class SubscriptionsView extends React.Component {
      * Render a "loading" view.
      */
     renderLoading() {
-        let message = _("Updating");
-        let description = _("Retrieving subscription status...");
+        const message = _("Updating");
+        const description = _("Retrieving subscription status...");
         return <EmptyStatePanel paragraph={description} loading title={message} />;
     }
 
@@ -390,9 +387,7 @@ class SubscriptionsView extends React.Component {
         let message;
 
         if (status === "service-unavailable") {
-            message = _("The rhsm service is unavailable. Make sure subscription-manager is installed \
-and try reloading the page. Additionally, make sure that you have checked the \
-'Reuse my password for privileged tasks' checkbox on the login page.");
+            message = _("The rhsm service is unavailable. Make sure subscription-manager is installed and try reloading the page. Additionally, make sure that you have checked the 'Reuse my password for privileged tasks' checkbox on the login page.");
             description = _("Unable to the reach the rhsm service.");
         } else if (status === 'access-denied') {
             message = _("Access denied");
@@ -400,8 +395,7 @@ and try reloading the page. Additionally, make sure that you have checked the \
         } else {
             message = _("Unable to connect");
             description = cockpit.format(
-                _("Couldn't get system subscription status. Please ensure subscription-manager \
-is installed. Reported status: $0 ($1)"),
+                _("Couldn't get system subscription status. Please ensure subscription-manager is installed. Reported status: $0 ($1)"),
                 status_msg,
                 status,
             );
@@ -418,8 +412,11 @@ is installed. Reported status: $0 ($1)"),
                 severity = "danger";
             error = (
                 <AlertGroup isToast>
-                    <Alert isLiveRegion variant={severity} title={this.props.error.msg}
-                        actionClose={<AlertActionCloseButton onClose={this.props.dismissError} />} />
+                    <Alert isLiveRegion
+                        variant={severity}
+                        title={this.props.error.msg}
+                        actionClose={<AlertActionCloseButton onClose={this.props.dismissError} />}
+                    />
                 </AlertGroup>
             );
         }
@@ -438,9 +435,9 @@ is installed. Reported status: $0 ($1)"),
     }
 
     render() {
-        let status = this.props.status;
-        let status_msg = this.props.status_msg;
-        let loaded = subscriptionsClient.config.loaded;
+        const status = this.props.status;
+        const status_msg = this.props.status_msg;
+        const loaded = subscriptionsClient.config.loaded;
         if (status === 'not-found' ||
             status === 'access-denied' ||
             status === 'service-unavailable') {

@@ -23,7 +23,7 @@ import * as PK from "packagekit";
 const _ = cockpit.gettext;
 
 function createProxy(name) {
-    let service = cockpit.dbus('com.redhat.RHSM1', {'superuser': 'require'});
+    const service = cockpit.dbus('com.redhat.RHSM1', { superuser: 'require' });
     return service.proxy(`com.redhat.RHSM1.${name}`, `/com/redhat/RHSM1/${name}`);
 }
 
@@ -55,13 +55,13 @@ client.config = {
 };
 
 client.syspurposeStatus = {
-    info : {
-        "service_level_agreement" : null,
-        "usage" : null,
-        "role" : null,
-        "addons" : null,
+    info: {
+        service_level_agreement: null,
+        usage: null,
+        role: null,
+        addons: null,
     },
-    status : null,
+    status: null,
 };
 
 client.insightsAvailable = false;
@@ -77,7 +77,7 @@ const RHSM_DEFAULTS = { // TODO get these from a d-bus service instead
 // we trigger an event called "dataChanged" when the data has changed
 
 function needRender() {
-    let event = document.createEvent("Event");
+    const event = document.createEvent("Event");
     event.initEvent("dataChanged", false, false);
     client.dispatchEvent(event);
 }
@@ -90,14 +90,14 @@ function parseProducts(text) {
     const products = JSON.parse(text);
     return products.map(function(product) {
         return {
-            'productName': product[0],
-            'productId': product[1],
-            'version': product[2],
-            'arch': product[3],
-            'status': product[4],
-            'status_details': product[5],
-            'starts': product[6],
-            'ends': product[7]
+            productName: product[0],
+            productId: product[1],
+            version: product[2],
+            arch: product[3],
+            status: product[4],
+            status_details: product[5],
+            starts: product[6],
+            ends: product[7]
         };
     });
 }
@@ -169,8 +169,8 @@ function getSubscriptionDetails() {
                 })
                 .catch(error => {
                     client.subscriptionStatus.error = {
-                        'severity': parseErrorSeverity(error),
-                        'msg': parseErrorMessage(error)
+                        severity: parseErrorSeverity(error),
+                        msg: parseErrorMessage(error)
                     };
                 })
                 .then(() => {
@@ -232,6 +232,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
 
     if (subscriptionDetails.url !== 'default') {
         /*  parse url into host, port, handler; sorry about the ugly regex */
+        /* eslint-disable no-multi-spaces */
         const pattern = new RegExp(
             '^' +
             '(?:https?://)?' +              // protocol (optional)
@@ -241,6 +242,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
             '(?:(/.+))?' +                  // path (optional)
             '$'
         );
+        /* eslint-enable no-multi-spaces */
         const match = pattern.exec(subscriptionDetails.server_url); // TODO handle failure
         const ipv6Address = match[1];
         const address = match[2];
@@ -268,13 +270,15 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
     // proxy is optional
     if (subscriptionDetails.proxy) {
         if (subscriptionDetails.proxy_server) {
+            /* eslint-disable no-multi-spaces */
             const pattern = new RegExp(
                 '^' +
-                '(?:\\[([^\\]]+)\\])?' +    // ipv6 address (optional)
-                '(?:([^/:]+))?' +           // hostname/ipv4 address (optional)
-                '(?::(?=[0-9])([0-9]+))?' + // port (optional)
+                '(?:\\[([^\\]]+)\\])?' +        // ipv6 address (optional)
+                '(?:([^/:]+))?' +               // hostname/ipv4 address (optional)
+                '(?::(?=[0-9])([0-9]+))?' +     // port (optional)
                 '$'
             );
+            /* eslint-enable no-multi-spaces */
             const match = pattern.exec(subscriptionDetails.proxy_server);
             const ipv6Address = match[1];
             const address = match[2];
@@ -338,7 +342,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
                         if (update_progress)
                             update_progress(_("Registering using activation key ..."), null);
                         console.debug('registering using activation key');
-                        let result = registerService.call(
+                        const result = registerService.call(
                             'RegisterWithActivationKeys',
                             [
                                 subscriptionDetails.org,
@@ -350,16 +354,15 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
                         );
                         registered = true;
                         return result;
-                    }
-                    else {
+                    } else {
                         console.debug('registering using username and password');
                         const registration_options = {
-                            "enable_content": dbus_bool(true)
+                            enable_content: dbus_bool(true)
                         };
                         console.log('registration_options:', registration_options);
                         if (update_progress)
                             update_progress(_("Registering using username and password ..."), null);
-                        let result = registerService.call(
+                        const result = registerService.call(
                             'Register',
                             [
                                 subscriptionDetails.org,
@@ -383,7 +386,7 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
                 .then(result => {
                     console.debug('Result of registration: ', result);
                     if (result) {
-                        let consumer = JSON.parse(result);
+                        const consumer = JSON.parse(result);
                         client.org = consumer.owner;
                     }
                     if (update_progress)
@@ -401,14 +404,14 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
                     // Dictionary (key: client.config / rhsm.conf options, value are
                     // attributes of connection_options) ... ('handler' and 'host' are different)
                     // Note: only options from [server] section are supported
-                        let dict = {
-                            'hostname': 'host',
-                            'port': 'port',
-                            'prefix': 'handler',
-                            'proxy_hostname': 'proxy_hostname',
-                            'proxy_port': 'proxy_port',
-                            'proxy_user': 'proxy_user',
-                            'proxy_password': 'proxy_password',
+                        const dict = {
+                            hostname: 'host',
+                            port: 'port',
+                            prefix: 'handler',
+                            proxy_hostname: 'proxy_hostname',
+                            proxy_port: 'proxy_port',
+                            proxy_user: 'proxy_user',
+                            proxy_password: 'proxy_password',
                         };
                         if (update_progress)
                             update_progress(_("Saving configuration ..."), null);
@@ -435,9 +438,9 @@ client.registerSystem = (subscriptionDetails, update_progress) => new Promise((r
                     client.closeRegisterDialog = true;
                     isRegistering = false;
                     console.debug('requesting update of subscription status');
-                    requestSubscriptionStatusUpdate().finally(resolve)
+                    requestSubscriptionStatusUpdate().finally(resolve);
                     console.debug('requesting update of syspurpose status');
-                    requestSyspurposeStatusUpdate().finally(resolve)
+                    requestSyspurposeStatusUpdate().finally(resolve);
                 });
     });
 });
@@ -451,8 +454,8 @@ client.unregisterSystem = () => {
                 .catch(error => {
                     console.error('error unregistering system', error);
                     client.subscriptionStatus.error = {
-                        'severity': parseErrorSeverity(error),
-                        'msg': parseErrorMessage(error)
+                        severity: parseErrorSeverity(error),
+                        msg: parseErrorMessage(error)
                     };
                 })
                 .finally(() => {
@@ -553,8 +556,8 @@ client.getCurrentOrg = function () {
                 })
                 .catch(error => {
                     client.subscriptionStatus.error = {
-                        'severity': parseErrorSeverity(error),
-                        'msg': parseErrorMessage(error)
+                        severity: parseErrorSeverity(error),
+                        msg: parseErrorMessage(error)
                     };
                 });
     });
@@ -611,20 +614,20 @@ client.readConfig = function() {
 
             const maybePort = port === '443' ? '' : `:${port}`;
             const maybePrefix = prefix === '/subscription' ? '' : prefix;
-            const hostnamePart = hostname.includes(':') ? `[${hostname}]`: hostname;
+            const hostnamePart = hostname.includes(':') ? `[${hostname}]` : hostname;
             const serverUrl = usingDefaultUrl ? '' : `${hostnamePart}${maybePort}${maybePrefix}`;
             const proxyHostnamePart = proxyHostname.includes(':') ? `[${proxyHostname}]` : proxyHostname;
             const usingProxy = proxyHostname !== '';
-            const maybeProxyPort = proxyPort ? `:${proxyPort}`: '';
-            const proxyServer = usingProxy ? `${proxyHostnamePart}${maybeProxyPort}`: '';
+            const maybeProxyPort = proxyPort ? `:${proxyPort}` : '';
+            const proxyServer = usingProxy ? `${proxyHostnamePart}${maybeProxyPort}` : '';
 
             // Note: we don't use camelCase, because we keep naming convention of rhsm.conf
             // Thus we can do some simplification of code
             Object.assign(client.config, {
                 url: usingDefaultUrl ? 'default' : 'custom',
-                hostname: hostname,
-                port: port,
-                prefix: prefix,
+                hostname,
+                port,
+                prefix,
                 server_url: serverUrl,
                 proxy: usingProxy,
                 proxy_server: proxyServer,
@@ -635,7 +638,8 @@ client.readConfig = function() {
                 loaded: true,
             });
             console.debug('loaded client config', client.config);
-        }).catch(ex => console.debug(ex));
+        })
+                .catch(ex => console.debug(ex));
     });
 };
 
@@ -651,14 +655,14 @@ client.toArray = obj => {
     if (typeof obj === 'string') {
         return [obj];
     }
-    if (typeof obj[Symbol.iterator] === 'function' ) {
+    if (typeof obj[Symbol.iterator] === 'function') {
         return Array.from(obj);
     }
 };
 
 const detectInsights = () => {
     return cockpit.script("type insights-client", { err: "ignore" }).then(
-        () => client.insightsAvailable = true,
+        () => { client.insightsAvailable = true },
         () => {
             PK.detect().then(pk_available => {
                 client.insightsAvailable = pk_available && client.insightsPackage;
@@ -667,12 +671,13 @@ const detectInsights = () => {
 };
 
 const updateConfig = () => {
-    return client.readConfig().then(detectInsights).then(needRender);
+    return client.readConfig().then(detectInsights)
+            .then(needRender);
 };
 
 client.setError = (severity, message) => {
     client.subscriptionStatus.error = {
-        severity: severity,
+        severity,
         msg: message
     };
     needRender();
