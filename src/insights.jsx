@@ -37,7 +37,7 @@ import {
 
 import subscriptionsClient from './subscriptions-client';
 
-let _ = cockpit.gettext;
+const _ = cockpit.gettext;
 
 moment.locale(cockpit.language);
 
@@ -79,11 +79,11 @@ export function catch_error(err, data) {
         // is displayed in the same format of what insights-client outputs
         if (msg.indexOf("\n") > 0) {
             msg = msg.split("\n").map(line => {
-                return <p>{line}</p>;
+                return <p key={line}>{line}</p>;
             });
         }
     } else {
-        msg = "Unable to get any error message."
+        msg = "Unable to get any error message.";
     }
     subscriptionsClient.setError("error", msg);
 }
@@ -91,7 +91,7 @@ export function catch_error(err, data) {
 function ensure_installed(update_progress) {
     return detect().then(installed => {
         if (!installed)
-            return PK.check_missing_packages([ subscriptionsClient.insightsPackage ], update_checking_progress(update_progress))
+            return PK.check_missing_packages([subscriptionsClient.insightsPackage], update_checking_progress(update_progress))
                     .then(data => {
                         if (data.unavailable_names.length > 0)
                             return Promise.reject(cockpit.format(_("The $0 package is not available from any repository."),
@@ -108,7 +108,7 @@ function ensure_installed(update_progress) {
 
 export function register(update_progress) {
     return ensure_installed(update_progress).then(() => {
-        const proc = cockpit.spawn([ "insights-client", "--register" ], { superuser: true, err: "out" });
+        const proc = cockpit.spawn(["insights-client", "--register"], { superuser: true, err: "out" });
         if (update_progress)
             update_progress(_("Connecting to Insights"), () => { proc.close() });
         return proc;
@@ -117,7 +117,7 @@ export function register(update_progress) {
 
 export function unregister() {
     if (insights_timer.enabled) {
-        return cockpit.spawn([ "insights-client", "--unregister" ], { superuser: true, err: "out" })
+        return cockpit.spawn(["insights-client", "--unregister"], { superuser: true, err: "out" })
                 .catch(catch_error);
     } else {
         return Promise.resolve();
@@ -129,7 +129,7 @@ export function arrfmt(fmt) {
     const args = Array.prototype.slice.call(arguments, 1);
 
     function replace(part) {
-        if (part[0] == "$") {
+        if (part[0] === "$") {
             return args[parseInt(part.slice(1))];
         } else
             return part;
@@ -152,21 +152,22 @@ export const blurb =
 
 export const link = (
     <Button variant="link"
-            key="link-to-redhat-insights-web-page"
-            isInline
-            component='a'
-            href="https://www.redhat.com/en/technologies/management/insights" target="_blank" rel="noopener noreferrer"
-            icon={<ExternalLinkAltIcon />} iconPosition="right">
+        key="link-to-redhat-insights-web-page"
+        isInline
+        component='a'
+        href="https://www.redhat.com/en/technologies/management/insights" target="_blank" rel="noopener noreferrer"
+        icon={<ExternalLinkAltIcon />} iconPosition="right"
+    >
         Red Hat Insights
     </Button>
 );
 
 function install_data_summary(data) {
-    if (!data || data.missing_names.length == 0)
+    if (!data || data.missing_names.length === 0)
         return null;
 
     let summary;
-    if (data.extra_names.length == 0)
+    if (data.extra_names.length === 0)
         summary = arrfmt(_("The $0 package will be installed."), <strong>{data.missing_names[0]}</strong>);
     else
         summary = arrfmt(cockpit.ngettext("The $0 package and $1 other package will be installed.",
@@ -174,9 +175,9 @@ function install_data_summary(data) {
                                           data.extra_names.length), <strong>{data.missing_names[0]}</strong>, data.extra_names.length);
     if (data.remove_names.length > 0) {
         summary = [
-            {summary},
-            <br />,
-            <ExclamationTriangleIcon className="ct-exclamation-triangle" />, "\n",
+            { summary },
+            <br key="summary-br" />,
+            <ExclamationTriangleIcon className="ct-exclamation-triangle" key="summary-warn" />, "\n",
             cockpit.format(cockpit.ngettext("$0 package needs to be removed.",
                                             "$0 packages need to be removed.",
                                             data.remove_names.length),
@@ -204,8 +205,9 @@ function install_data_summary(data) {
                 </div>
             );
 
-        summary = [ <p>{summary}</p>,
-            <ExpandableSection toggleText={_("Details")}>{extra_details}{remove_details}</ExpandableSection>
+        summary = [
+            <p key="summary-p">{summary}</p>,
+            <ExpandableSection key="summary-expand" toggleText={_("Details")}>{extra_details}{remove_details}</ExpandableSection>
         ];
     }
 
@@ -225,14 +227,14 @@ function update_checking_progress(update_progress) {
 
 function update_install_progress(update_progress) {
     return p => {
-        var text = null;
+        let text = null;
         if (p.waiting) {
             text = _("Waiting for other software management operations to finish");
         } else if (p.package) {
-            var fmt;
-            if (p.info == PK.Enum.INFO_DOWNLOADING)
+            let fmt;
+            if (p.info === PK.Enum.INFO_DOWNLOADING)
                 fmt = _("Downloading $0");
-            else if (p.info == PK.Enum.INFO_REMOVING)
+            else if (p.info === PK.Enum.INFO_REMOVING)
                 fmt = _("Removing $0");
             else
                 fmt = _("Installing $0");
@@ -273,17 +275,17 @@ function show_connect_dialog() {
                                 register(update_progress)
                                         .then(() => resolve())
                                         .catch((err, data) => {
-                                            let msg = spawn_error_to_string(err, data);
+                                            const msg = spawn_error_to_string(err, data);
                                             // create a fake error object good enough
                                             // to be caught by the catch() handler of
                                             // actions of cockpit.DialogFooter
-                                            let new_err = { };
+                                            const new_err = { };
                                             new_err.message = msg;
                                             new_err.toString = function() {
                                                 return this.message;
                                             };
                                             reject(new Error(new_err));
-                                        })
+                                        });
                             }));
                     },
                     disabled: checking_install,
@@ -307,14 +309,14 @@ function show_connect_dialog() {
         if (!installed) {
             checking_install = true;
             update();
-            PK.check_missing_packages([ subscriptionsClient.insightsPackage ], p => {
+            PK.check_missing_packages([subscriptionsClient.insightsPackage], p => {
                 cancel = p.cancel;
                 let pm = null;
                 if (p.waiting)
                     pm = _("Waiting for other software management operations to finish");
                 else
                     pm = _("Checking installed software");
-                if (pm != progress_message) {
+                if (pm !== progress_message) {
                     progress_message = pm;
                     update();
                 }
@@ -339,19 +341,19 @@ function show_connect_dialog() {
 }
 
 const get_monotonic_start = cockpit.spawn(
-    [ "/usr/libexec/platform-python", "-c",
+    ["/usr/libexec/platform-python", "-c",
         "import time; print(time.clock_gettime(time.CLOCK_REALTIME) - time.clock_gettime(time.CLOCK_MONOTONIC))"
     ]).then(data => {
     return parseFloat(data);
 });
 
 function calc_next_elapse(monotonic_start, timer) {
-    let next_mono = Infinity, next_real = Infinity;
+    let next_mono = Infinity; let next_real = Infinity;
     if (timer.NextElapseUSecMonotonic && monotonic_start)
         next_mono = timer.NextElapseUSecMonotonic / 1e6 + monotonic_start;
     if (timer.NextElapseUSecRealtime)
         next_real = timer.NextElapseUSecRealtime / 1e6;
-    let next = Math.min(next_mono, next_real);
+    const next = Math.min(next_mono, next_real);
     if (next !== Infinity)
         return moment(next * 1000).calendar();
     else
@@ -367,17 +369,16 @@ function jump_to_timer() {
 }
 
 function monitor_last_upload() {
-    let self = {
+    const self = {
         timestamp: 0,
-
-        close: close
+        close
     };
 
     cockpit.event_target(self);
 
-    let results_file = cockpit.file("/etc/insights-client/.lastupload");
+    const results_file = cockpit.file("/etc/insights-client/.lastupload");
     results_file.watch(() => {
-        cockpit.spawn([ "stat", "-c", "%Y", "/etc/insights-client/.lastupload" ], { err: "message" })
+        cockpit.spawn(["stat", "-c", "%Y", "/etc/insights-client/.lastupload"], { err: "message" })
                 .then(ts => {
                     self.timestamp = parseInt(ts);
                     self.dispatchEvent("changed");
@@ -400,7 +401,7 @@ const last_upload_monitor = monitor_last_upload();
 function show_status_dialog() {
     function show(monotonic_start) {
         let lastupload = last_upload_monitor.timestamp;
-        let next_elapse = calc_next_elapse(monotonic_start, insights_timer.details);
+        const next_elapse = calc_next_elapse(monotonic_start, insights_timer.details);
 
         let failed_text = null;
         if (insights_service.unit.ActiveExitTimestamp &&
@@ -409,7 +410,7 @@ function show_status_dialog() {
             failed_text = _("The last Insights data upload has failed.");
         }
 
-        let dlg = show_modal_dialog(
+        const dlg = show_modal_dialog(
             {
                 title: _("Connected to Red Hat Insights"),
                 body: (
@@ -420,28 +421,29 @@ function show_status_dialog() {
                                     <th style={{ textAlign: "right", paddingRight: "1em" }}>{_("Next Insights data upload")}</th>
                                     <td>{next_elapse}</td>
                                 </tr>
-                                { lastupload ?
-                                    <tr>
-                                        <th style={{ textAlign: "right", paddingRight: "1em" }}>{_("Last Insights data upload")}</th>
-                                        <td>{moment(lastupload * 1000).calendar()}</td>
-                                    </tr> : null
-                                }
+                                { lastupload
+                                    ? (
+                                        <tr>
+                                            <th style={{ textAlign: "right", paddingRight: "1em" }}>{_("Last Insights data upload")}</th>
+                                            <td>{moment(lastupload * 1000).calendar()}</td>
+                                        </tr>)
+                                    : null}
                             </tbody>
                         </table>
                         <br />
-                        { insights_timer.state == "failed" &&
+                        { insights_timer.state === "failed" &&
                         <Alert variant='warning'>
                             <Button variant='link' isInline onClick={left(jump_to_timer)}>{_("Details")}</Button>
-                        </Alert>
-                        }
-                        { (insights_service.state == "failed" || (insights_service.state == "starting" && insights_service.details.Result != "success")) && failed_text &&
+                        </Alert>}
+                        { (insights_service.state === "failed" || (insights_service.state === "starting" && insights_service.details.Result !== "success")) && failed_text &&
                         <Alert variant='warning' title={failed_text}>
                             <Button variant='link' isInline onClick={left(jump_to_service)}>{_("Details")}</Button>
-                        </Alert>
-                        }
+                        </Alert>}
                         <ExpandableSection toggleText={_("Disconnect from Insights")}>
-                            <Alert isInline variant='warning'
-                                   title={_("If you disconnect this system from Insights, it will no longer report its Insights status in Red Hat Cloud or Satellite.")}>
+                            <Alert isInline
+                                variant='warning'
+                                title={_("If you disconnect this system from Insights, it will no longer report its Insights status in Red Hat Cloud or Satellite.")}
+                            >
                                 <Button variant='danger' onClick={left(disconnect)}>
                                     {_("Disconnect from Insights")}
                                 </Button>
@@ -452,7 +454,7 @@ function show_status_dialog() {
             },
             {
                 cancel_caption: _("Close"),
-                actions: [ ]
+                actions: []
             }
         );
 
@@ -460,7 +462,7 @@ function show_status_dialog() {
             dlg.setFooterProps(
                 {
                     cancel_caption: _("Cancel"),
-                    actions: [ ],
+                    actions: [],
                     idle_message: <Spinner isSVG className="dialog-wait-ct-spinner" size="md" />,
                 });
             unregister().then(
@@ -471,10 +473,10 @@ function show_status_dialog() {
                     dlg.setFooterProps(
                         {
                             cancel_caption: _("Close"),
-                            actions: [ ],
+                            actions: [],
                             static_error: error.toString()
                         });
-                })
+                });
         }
     }
 
@@ -514,7 +516,7 @@ export class InsightsStatus extends React.Component {
         let status;
 
         if (insights_timer.enabled) {
-            let warn = ((insights_service.state == "failed" || (insights_service.state == "starting" && insights_service.details.Result != "success")) &&
+            const warn = ((insights_service.state === "failed" || (insights_service.state === "starting" && insights_service.details.Result !== "success")) &&
                         insights_service.unit.ActiveExitTimestamp &&
                         insights_service.unit.ActiveExitTimestamp / 1e6 > last_upload_monitor.timestamp);
 
@@ -527,12 +529,12 @@ export class InsightsStatus extends React.Component {
 
             let text;
             try {
-                let n_rule_hits = this.state.insights_details.length;
-                if (n_rule_hits == 0) {
+                const n_rule_hits = this.state.insights_details.length;
+                if (n_rule_hits === 0) {
                     text = _("No rule hits");
                 } else {
                     try {
-                        let max_risk = Math.max(...this.state.insights_details.map(h => h.rule.total_risk));
+                        const max_risk = Math.max(...this.state.insights_details.map(h => h.rule.total_risk));
                         // We do this all explicitly and in a long
                         // winded way so that the translation
                         // machinery gets to see all the strings.
@@ -571,12 +573,20 @@ export class InsightsStatus extends React.Component {
             status = (
                 <Stack hasGutter>
                     <StackItem>
-                        <Button variant="link" isInline icon={warn ? <WarningTriangleIcon color="orange" /> : null} onClick={left(show_status_dialog)}>{_("Connected to Insights")}</Button>
+                        <Button isInline
+                            variant="link"
+                            icon={warn ? <WarningTriangleIcon color="orange" /> : null}
+                            onClick={left(show_status_dialog)}
+                        >
+                            {_("Connected to Insights")}
+                        </Button>
                     </StackItem>
                     <StackItem>
-                        <Button variant="link" isInline component="a" href={url}
-                                target="_blank" rel="noopener noreferrer"
-                                icon={<ExternalLinkAltIcon />}>
+                        <Button isInline
+                            variant="link" component="a" href={url}
+                            target="_blank" rel="noopener noreferrer"
+                            icon={<ExternalLinkAltIcon />}
+                        >
                             { text }
                         </Button>
                     </StackItem>
