@@ -22,7 +22,7 @@ import cockpit from 'cockpit';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import 'patternfly/patternfly-4-cockpit.scss';
+import 'patternfly/patternfly-6-cockpit.scss';
 
 import subscriptionsClient from './subscriptions-client.js';
 import SubscriptionRegisterDialog from './subscriptions-register.jsx';

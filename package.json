@@ -32,8 +32,8 @@
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-standard": "^4.0.1",
-    "gettext-parser": "^2.0.0",
-    "glob": "^7.2.3",
+    "gettext-parser": "^8.0.0",
+    "glob": "^11.0.1",
     "htmlparser": "^1.7.7",
     "jed": "^1.1.1",
     "popper.js": "^1.14.7",
@@ -43,11 +43,12 @@
     "sizzle": "^2.3.10"
   },
   "dependencies": {
-    "@patternfly/patternfly": "4.224.2",
-    "@patternfly/react-core": "4.276.6",
-    "@patternfly/react-icons": "4.93.6",
-    "@patternfly/react-styles": "4.92.6",
-    "@patternfly/react-table": "4.112.39",
+    "@patternfly/patternfly": "6.2.3",
+    "@patternfly/react-core": "6.2.2",
+    "@patternfly/react-icons": "6.2.2",
+    "@patternfly/react-styles": "6.2.2",
+    "@patternfly/react-table": "6.2.2",
+    "@patternfly/react-tokens": "6.2.2",
     "moment": "^2.19.3"
   },
   "engines": {

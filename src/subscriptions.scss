@@ -20,11 +20,15 @@
 @use'page.scss';
 @use'ct-card.scss';
 
-#app .pf-c-card {
+#app .pf-v6-c-card {
     @extend .ct-card;
 }
 
 .purpose-header {
     display: inline-block;
     padding-right: 0.5rem;
+}
+
+.modal-body th {
+    padding-inline-end: 1.5rem;
 }
