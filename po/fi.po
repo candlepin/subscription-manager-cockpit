@@ -4,7 +4,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2024.
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2024.
-# Ricky Tigg <ricky.tigg@gmail.com>, 2024.
+# Ricky Tigg <ricky.tigg@gmail.com>, 2024, 2025.
 #
 # #-#-#-#-#  subscription-manager.metainfo.pot (PACKAGE VERSION)  #-#-#-#-#
 # SOME DESCRIPTIVE TITLE.
@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2024-12-18 19:38+0000\n"
+"PO-Revision-Date: 2025-03-21 13:53+0000\n"
 "Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/fi/>\n"
@@ -30,37 +30,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.1\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
 msgid_plural "$0 hits, including critical"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "$0 osuma"
+msgstr[1] "$0 osumaa, mukaan lukien kriittiset"
 
 #: src/insights.jsx:549
 msgid "$0 hit"
 msgid_plural "$0 hits"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "$0 osuma"
+msgstr[1] "$0 osumaa"
 
 #: src/insights.jsx:533
 msgid "$0 important hit"
 msgid_plural "$0 hits, including important"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "$0 tärkeä osuma"
+msgstr[1] "$0 osumaa, mukaan lukien tärkeät"
 
 #: src/insights.jsx:543
 msgid "$0 low severity hit"
 msgid_plural "$0 low severity hits"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "$0 matalan vakavuuden osuma"
+msgstr[1] "$0 matalan vakavuuden osumaa"
 
 #: src/insights.jsx:538
 msgid "$0 moderate hit"
 msgid_plural "$0 hits, including moderate"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "$0 kohtalainen osuma"
+msgstr[1] "$0 osumaa, mukaan lukien kohtalaiset"
 
 #: src/insights.jsx:166
 msgid "$0 package needs to be removed."
@@ -70,7 +70,7 @@ msgstr[1] "$0 pakettia täytyy poistaa."
 
 #: src/subscriptions-client.js:229
 msgid "'Organization' is required when using activation keys"
-msgstr ""
+msgstr "\"Organisaatio\" vaaditaan käytettäessä aktivointiavaimia"
 
 #: src/subscriptions-view.jsx:514
 msgid "Access denied"
@@ -154,22 +154,29 @@ msgid ""
 "Content Access Mode is set to Simple Content Access. This host has access to "
 "content, regardless of subscription status."
 msgstr ""
+"Sisällön käyttötilaksi on asetettu Yksinkertainen sisällön käyttö. Tällä "
+"isännällä on pääsy sisältöön tilauksen tilasta riippumatta."
 
 #: src/subscriptions-view.jsx:307
 msgid ""
 "Content Access Mode is set to Simple Content Access. This host has access to "
 "content, regardless of system purpose status."
 msgstr ""
+"Sisällön käyttötilaksi on asetettu Yksinkertainen sisällön käyttö. Tällä "
+"isännällä on pääsy sisältöön järjestelmän käyttötarkoituksen tilasta "
+"riippumatta."
 
 #: src/subscriptions-client.js:529
 msgid "Corrupted JSON with status"
-msgstr ""
+msgstr "Vioittunut JSON tilalla"
 
 #: src/subscriptions-view.jsx:519
 msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
 "is installed. Reported status: $0 ($1)"
 msgstr ""
+"Järjestelmän tilauksen tilaa ei voitu saada. Varmista, että tilausten "
+"hallintaohjelma on asennettu. Raportoitu tila: $0 ($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -217,34 +224,38 @@ msgstr "Asennetaan $0"
 
 #: src/insights.jsx:413
 msgid "Last Insights data upload"
-msgstr ""
+msgstr "Viimeinen Insights-tietojen lataus ulospäin"
 
 #: src/subscriptions-client.js:284
 msgid ""
 "Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"
 msgstr ""
+"Väärin muotoiltu välityspalvelimen URL-osoite; IPv6-osoitteen syntaksi ja "
+"isäntänimi ovat toisensa poissulkevia"
 
 #: src/subscriptions-client.js:251
 msgid ""
 "Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"
 msgstr ""
+"Väärin muotoiltu palvelimen URL-osoite; IPv6-osoitteen syntaksi ja "
+"isäntänimi ovat toisensa poissulkevia"
 
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:8
 msgid ""
 "Manage subscriptions to a Candlepin backend, such as for Red Hat products."
-msgstr ""
+msgstr "Hallinnoi Candlepinin taustapään tilauksia, kuten Red Hat -tuotteita."
 
 #: src/manifest.json:0
 msgid "Managing subscriptions"
-msgstr ""
+msgstr "Tilausten hallinta"
 
 #: src/subscriptions-register.jsx:159
 msgid "Method"
-msgstr ""
+msgstr "Menetelmä"
 
 #: src/insights.jsx:408
 msgid "Next Insights data upload"
-msgstr ""
+msgstr "Seuraava Insights-tietojen lataus ulospäin"
 
 #: src/subscriptions-view.jsx:233
 msgid "No installed products detected"
@@ -252,11 +263,11 @@ msgstr "Asennettuja tuotteita ei havaittu"
 
 #: src/insights.jsx:520
 msgid "No rule hits"
-msgstr ""
+msgstr "Ei sääntöosumia"
 
 #: src/subscriptions-view.jsx:381
 msgid "No system purpose attributes set"
-msgstr ""
+msgstr "Ei järjestelmän käyttötarkoituksen määritteitä asetettu"
 
 #: src/insights.jsx:574
 msgid "Not connected"
@@ -284,7 +295,7 @@ msgstr "Organisaatiotunniste"
 
 #: src/subscriptions-view.jsx:449
 msgid "Overview"
-msgstr ""
+msgstr "Yleiskatsaus"
 
 #: src/subscriptions-view.jsx:115
 msgid "Partially subscribed"
@@ -300,7 +311,7 @@ msgstr "Salasana"
 
 #: src/subscriptions-view.jsx:313 src/subscriptions-view.jsx:428
 msgid "Popover with explanation of SCA mode"
-msgstr ""
+msgstr "Ponnahdusikkuna SCA-tilan selityksellä"
 
 #: src/insights.jsx:138
 msgid ""
@@ -308,6 +319,10 @@ msgid ""
 "availability, and stability with Red Hat Insights — with predictive "
 "analytics, avoid problems and unplanned downtime in your Red Hat environment."
 msgstr ""
+"Tunnista ja korjaa ennakoivasti turvallisuutta, suorituskykyä, saatavuutta "
+"ja vakautta koskevat uhat Red Hat Insightsin avulla – ennakoivan analytiikan "
+"avulla vältät ongelmat ja suunnittelemattomat seisokit Red Hat "
+"-ympäristössäsi."
 
 #: src/subscriptions-view.jsx:179
 msgid "Product ID"
@@ -319,23 +334,23 @@ msgstr "Tuotenimi"
 
 #: src/subscriptions-register.jsx:55
 msgid "Proxy Location"
-msgstr ""
+msgstr "Välityspalvelimen sijainti"
 
 #: src/subscriptions-register.jsx:67
 msgid "Proxy Password"
-msgstr ""
+msgstr "Välityspalvelimen salasana"
 
 #: src/subscriptions-register.jsx:61
 msgid "Proxy Username"
-msgstr ""
+msgstr "Välityspalvelimen käyttäjänimi"
 
 #: data/subscription-manager-cockpit.desktop:3
 msgid "Red Hat Subscription Manager"
-msgstr ""
+msgstr "Red Hat -tilaushallinta"
 
 #: src/subscriptions-view.jsx:408 src/index.js:64
 msgid "Register"
-msgstr ""
+msgstr "Rekisteröidy"
 
 #: src/index.js:100
 msgid "Register System"
@@ -351,7 +366,7 @@ msgstr "Rekisteröidään käyttäen käyttäjätunnusta ja salasanaa..."
 
 #: src/insights.jsx:188
 msgid "Removals:"
-msgstr ""
+msgstr "Poistot:"
 
 #: src/insights.jsx:222
 msgid "Removing $0"
@@ -379,7 +394,7 @@ msgstr "Käynnistetään rekisteröintipalvelua..."
 
 #: src/subscriptions-view.jsx:199
 msgid "Starts"
-msgstr ""
+msgstr "Alkaa"
 
 #: src/subscriptions-view.jsx:195 src/subscriptions-view.jsx:339
 #: src/subscriptions-view.jsx:374
@@ -396,11 +411,11 @@ msgstr "Tilattu"
 
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:5
 msgid "Subscription Manager"
-msgstr ""
+msgstr "Tilaushallinta"
 
 #: data/org.candlepinproject.subscription_manager.metainfo.xml:6
 msgid "Subscription Manager in Cockpit"
-msgstr ""
+msgstr "Tilaushallinta Cockpitissa"
 
 #: src/subscriptions-view.jsx:455
 msgid "Subscription status"
@@ -421,24 +436,25 @@ msgstr "Järjestelmän tarkoitus"
 #: src/insights.jsx:158
 msgid "The $0 package and $1 other package will be installed."
 msgid_plural "The $0 package and $1 other packages will be installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Paketti $0 ja $1 muu paketti asennetaan."
+msgstr[1] "Paketti $0 ja $1 muuta pakettia asennetaan."
 
 #: src/insights.jsx:84 src/insights.jsx:310
 msgid "The $0 package is not available from any repository."
-msgstr ""
+msgstr "Paketti $0 ei ole saatavilla mistään tietovarastosta."
 
 #: src/insights.jsx:156 src/subscriptions-register.jsx:94
 msgid "The $0 package will be installed."
-msgstr ""
+msgstr "Paketti $0 asennetaan."
 
 #: src/subscriptions-view.jsx:515
 msgid "The current user isn't allowed to access system subscription status."
 msgstr ""
+"Nykyisellä käyttäjällä ei ole oikeutta päästää järjestelmän tilaustilaan."
 
 #: src/insights.jsx:397
 msgid "The last Insights data upload has failed."
-msgstr ""
+msgstr "Viimeisin Insights-tietojen lataus ulospäin epäonnistui."
 
 #: src/subscriptions-view.jsx:509
 msgid ""
@@ -446,20 +462,26 @@ msgid ""
 "and try reloading the page. Additionally, make sure that you have checked "
 "the 'Reuse my password for privileged tasks' checkbox on the login page."
 msgstr ""
+"rhsm-palvelu ei ole saatavilla. Varmista, että tilausten hallintaohjelma on "
+"asennettu, ja yritä ladata sivu uudelleen. Varmista lisäksi, että olet "
+"valinnut kirjautumissivun 'Käytä salasanaani uudelleen etuoikeutettuihin "
+"tehtäviin' -valintaruudun."
 
 #: src/insights.jsx:87
 msgid ""
 "The system could not be connected to Insights because installing the $0 "
 "package requires the unexpected removal of other packages."
 msgstr ""
+"Järjestelmää ei voitu yhdistää Insightsiin, koska paketin $0 asentaminen "
+"edellyttää muiden pakettien odottamatonta poistamista."
 
 #: src/insights.jsx:244
 msgid "This system is not connected to $0."
-msgstr ""
+msgstr "Tämä järjestelmä ei ole kytketty $0:iin."
 
 #: src/subscriptions-register.jsx:147
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: src/subscriptions-view.jsx:517
 msgid "Unable to connect"
@@ -467,7 +489,7 @@ msgstr "Yhdistäminen ei onnistu"
 
 #: src/subscriptions-view.jsx:512
 msgid "Unable to the reach the rhsm service."
-msgstr ""
+msgstr "rhsm-palveluun ei saada yhteyttä."
 
 #: src/subscriptions-view.jsx:133 src/subscriptions-view.jsx:139
 #: src/subscriptions-client.js:545
@@ -500,7 +522,7 @@ msgstr "Käyttö"
 
 #: src/subscriptions-register.jsx:155
 msgid "Use proxy server"
-msgstr ""
+msgstr "Käytä välityspalvelinta"
 
 #: src/subscriptions-register.jsx:107
 msgid "Username"
@@ -516,20 +538,20 @@ msgstr "Näytä Insights-tulokset"
 
 #: src/insights.jsx:205 src/insights.jsx:216 src/insights.jsx:300
 msgid "Waiting for other software management operations to finish"
-msgstr ""
+msgstr "Odotetaan muiden ohjelmistonhallintatoimintojen valmistumista"
 
 #: src/manifest.json:0
 msgid "candlepin"
-msgstr ""
+msgstr "candlepin"
 
 #: src/subscriptions-client.js:492
 msgid "not-found"
-msgstr ""
+msgstr "ei-löytynyt"
 
 #: src/manifest.json:0
 msgid "subscriptions"
-msgstr ""
+msgstr "tilaukset"
 
 #: src/insights.jsx:344
 msgid "unknown"
-msgstr ""
+msgstr "tuntematon"
