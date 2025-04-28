@@ -2,13 +2,13 @@
 # ljanda <ljanda@redhat.com>, 2018. #zanata
 # John Sefler <jsefler@redhat.com>, 2019. #zanata
 # Pino Toscano <toscano.pino@tiscali.it>, 2021, 2022, 2023.
-# Salvatore Cocuzza <info@salvatorecocuzza.it>, 2024.
+# Salvatore Cocuzza <info@salvatorecocuzza.it>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2024-12-22 16:38+0000\n"
+"PO-Revision-Date: 2025-04-28 13:53+0000\n"
 "Last-Translator: Salvatore Cocuzza <info@salvatorecocuzza.it>\n"
 "Language-Team: Italian <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -146,8 +146,8 @@ msgid ""
 "Content Access Mode is set to Simple Content Access. This host has access to "
 "content, regardless of subscription status."
 msgstr ""
-"La modalità di accesso al contenuto è impostata su Accesso semplice al "
-"contenuto. Questo host ha accesso ai contenuti, indipendentemente dallo "
+"La modalità di accesso al contenuto è impostata su Organizzazione / Accesso "
+"all'ambiente. Questo host ha accesso ai contenuti, indipendentemente dallo "
 "stato dell'abbonamento."
 
 #: src/subscriptions-view.jsx:307
