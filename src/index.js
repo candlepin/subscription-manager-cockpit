@@ -25,123 +25,17 @@ import { createRoot } from 'react-dom/client';
 import 'patternfly/patternfly-6-cockpit.scss';
 
 import subscriptionsClient from './subscriptions-client.js';
-import SubscriptionRegisterDialog from './subscriptions-register.jsx';
 import SubscriptionsView from './subscriptions-view.jsx';
-import * as Insights from './insights.jsx';
-import * as Dialog from 'cockpit-components-dialog.jsx';
 
 import './subscriptions.scss';
 
-const _ = cockpit.gettext;
-
 const dataStore = { };
 
-const registerDialogDetails = {
-    user: '',
-    password: '',
-    activation_keys: '',
-    org: '',
-    proxy_server: '',
-    proxy_user: '',
-    proxy_password: '',
-    insights: true
-};
-
-function dismissStatusError() {
-    subscriptionsClient.subscriptionStatus.error = undefined;
-    dataStore.render();
-}
-
-function registerSystem (update_progress) {
-    return subscriptionsClient.registerSystem(registerDialogDetails, update_progress).then(() => {
-        if (registerDialogDetails.insights)
-            return Insights.register(update_progress).catch(Insights.catch_error);
-    });
-}
-
-const footerProps = {
-    actions: [
-        {
-            clicked: registerSystem,
-            caption: _("Register"),
-            style: 'primary',
-        },
-    ]
-};
-
-function openRegisterDialog() {
-    // Read configuration file before opening register dialog
-    subscriptionsClient.readConfig().then(() => {
-        // set config to what was loaded and clean previous credential information
-        Object.assign(registerDialogDetails, subscriptionsClient.config, {
-            user: '',
-            password: '',
-            activation_keys: '',
-            org: '',
-            insights: true,
-            insights_available: subscriptionsClient.insightsAvailable,
-            insights_detected: false,
-            register_method: 'account'
-        });
-
-        Insights.detect().then(installed => {
-            registerDialogDetails.insights_detected = installed;
-
-            // show dialog to register
-            let renderDialog;
-            const updatedData = function(prop, value) {
-                if (prop) {
-                    registerDialogDetails[prop] = value;
-                }
-
-                registerDialogDetails.onChange = updatedData;
-
-                const dialogProps = {
-                    id: 'register_dialog',
-                    title: _("Register System"),
-                    body: React.createElement(SubscriptionRegisterDialog, registerDialogDetails),
-                };
-
-                if (renderDialog)
-                    renderDialog.setProps(dialogProps);
-                else
-                    renderDialog = Dialog.show_modal_dialog(dialogProps, footerProps);
-            };
-            updatedData();
-        });
-    });
-}
-
-function unregisterSystem() {
-    Insights.unregister().catch(() => true)
-            .then(subscriptionsClient.unregisterSystem);
-}
-
 function initStore(rootElement) {
-    subscriptionsClient.addEventListener("dataChanged",
-                                         () => {
-                                             dataStore.render();
-                                         }
-    );
+    const root = createRoot(rootElement);
 
     dataStore.render = () => {
-        const root = createRoot(rootElement);
-        root.render(React.createElement(
-            SubscriptionsView,
-            {
-                status: subscriptionsClient.subscriptionStatus.status,
-                status_msg: subscriptionsClient.subscriptionStatus.status_msg,
-                products:subscriptionsClient.subscriptionStatus.products,
-                error: subscriptionsClient.subscriptionStatus.error,
-                syspurpose: subscriptionsClient.syspurposeStatus.info,
-                syspurpose_status: subscriptionsClient.syspurposeStatus.status,
-                insights_available: subscriptionsClient.insightsAvailable,
-                org: subscriptionsClient.org,
-                dismissError: dismissStatusError,
-                register: openRegisterDialog,
-                unregister: unregisterSystem,
-            }),
-        );
+        root.render(<SubscriptionsView />);
     };
     subscriptionsClient.init();
 }
