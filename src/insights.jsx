@@ -72,7 +72,7 @@ function spawn_error_to_string(err, data) {
     console.debug(">>>> returning undefined");
 }
 
-export function catch_error(err, data) {
+export function catch_error(err, data, addAlert) {
     let msg = spawn_error_to_string(err, data);
     if (msg) {
         // usually the output of insights-client contains more than a single
@@ -87,6 +87,7 @@ export function catch_error(err, data) {
         msg = "Unable to get any error message.";
     }
     subscriptionsClient.setError("error", msg);
+    addAlert(_("Error"), "danger", msg);
 }
 
 function ensure_installed(update_progress) {
@@ -116,10 +117,10 @@ export function register(update_progress) {
     });
 }
 
-export function unregister() {
+export function unregister(addAlert) {
     if (insights_timer.enabled) {
         return cockpit.spawn(["insights-client", "--unregister"], { superuser: true, err: "out" })
-                .catch(catch_error);
+                .catch((err, data) => catch_error(err, data, addAlert));
     } else {
         return Promise.resolve();
     }
