@@ -20,17 +20,27 @@
 import cockpit from 'cockpit';
 import React from 'react';
 import subscriptionsClient from './subscriptions-client';
+
+import { Alert, AlertActionCloseButton, AlertGroup } from '@patternfly/react-core/dist/esm/components/Alert/index.js';
+import { Button } from "@patternfly/react-core/dist/esm/components/Button/index.js";
+import { Card, CardBody, CardHeader, CardTitle } from "@patternfly/react-core/dist/esm/components/Card/index.js";
+import {
+    DescriptionList, DescriptionListDescription, DescriptionListGroup, DescriptionListTerm
+} from "@patternfly/react-core/dist/esm/components/DescriptionList/index.js";
+import { EmptyState, EmptyStateBody, EmptyStateVariant } from "@patternfly/react-core/dist/esm/components/EmptyState/index.js";
+import { ExclamationCircleIcon } from '@patternfly/react-icons';
+import { Gallery } from "@patternfly/react-core/dist/esm/layouts/Gallery/index.js";
+import { Label } from "@patternfly/react-core/dist/esm/components/Label/index.js";
+import { Split, SplitItem } from "@patternfly/react-core/dist/esm/layouts/Split/index.js";
+import { Page, PageSection } from '@patternfly/react-core/dist/esm/components/Page/index.js';
+
 import { InsightsStatus } from './insights.jsx';
+import SubscriptionRegisterDialog from './subscriptions-register.jsx';
 import { EmptyStatePanel } from "cockpit-components-empty-state.jsx";
 import { ListingTable } from "cockpit-components-table.jsx";
-import { ExclamationCircleIcon } from '@patternfly/react-icons';
-import {
-    Alert, AlertGroup, AlertActionCloseButton, Button,
-    Card, CardBody, CardHeader, CardTitle,
-    DescriptionList, DescriptionListDescription, DescriptionListGroup, DescriptionListTerm,
-    Gallery, Label, Page, PageSection, Split, SplitItem,
-    EmptyState, EmptyStateVariant, EmptyStateBody
-} from '@patternfly/react-core';
+
+import * as Insights from './insights.jsx';
+import * as Dialog from 'cockpit-components-dialog.jsx';
 
 const _ = cockpit.gettext;
 
@@ -225,7 +235,7 @@ class SubscriptionStatus extends React.Component {
         if (!e || e.button !== 0)
             return;
         if (this.props.unregister)
-            this.props.unregister();
+            this.props.unregister(this.addAlert);
         e.stopPropagation();
     }
 
@@ -363,6 +373,152 @@ class SubscriptionStatus extends React.Component {
  * unregister   callback, triggered when user clicks on unregister
  */
 class SubscriptionsView extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.registerDialogDetails = {
+            user: '',
+            password: '',
+            activation_keys: '',
+            org: '',
+            proxy_server: '',
+            proxy_user: '',
+            proxy_password: '',
+            insights: true
+        };
+
+        this.state = {
+            alerts: [],
+
+            status: subscriptionsClient.subscriptionStatus.status,
+            status_msg: subscriptionsClient.subscriptionStatus.status_msg,
+            products:subscriptionsClient.subscriptionStatus.products,
+            error: subscriptionsClient.subscriptionStatus.error,
+            syspurpose: subscriptionsClient.syspurposeStatus.info,
+            syspurpose_status: subscriptionsClient.syspurposeStatus.status,
+            insights_available: subscriptionsClient.insightsAvailable,
+            org: subscriptionsClient.org,
+        };
+
+        this.dismissStatusError = this.dismissStatusError.bind(this);
+        this.registerSystem = this.registerSystem.bind(this);
+        this.openRegisterDialog = this.openRegisterDialog.bind(this);
+        this.unregisterSystem = this.unregisterSystem.bind(this);
+        this.addAlert = this.addAlert.bind(this);
+        this.removeAlert = this.removeAlert.bind(this);
+        this.handleDataChanged = this.handleDataChanged.bind(this);
+
+        this.footerProps = {
+            actions: [
+                {
+                    clicked: this.registerSystem,
+                    caption: _("Register"),
+                    style: 'primary',
+                },
+            ]
+        };
+    }
+
+    handleDataChanged() {
+        this.setState({
+            status: subscriptionsClient.subscriptionStatus.status,
+            status_msg: subscriptionsClient.subscriptionStatus.status_msg,
+            products: subscriptionsClient.subscriptionStatus.products,
+            error: subscriptionsClient.subscriptionStatus.error,
+            syspurpose: subscriptionsClient.syspurposeStatus.info,
+            syspurpose_status: subscriptionsClient.syspurposeStatus.status,
+            insights_available: subscriptionsClient.insightsAvailable,
+            org: subscriptionsClient.org
+        });
+    }
+
+    componentDidMount() {
+        subscriptionsClient.addEventListener("dataChanged", this.handleDataChanged);
+    }
+
+    componentWillUnmount() {
+        subscriptionsClient.removeEventListener("dataChanged", this.handleDataChanged);
+    }
+
+    dismissStatusError() {
+        subscriptionsClient.subscriptionStatus.error = undefined;
+        subscriptionsClient.dispatchEvent("dataChanged");
+    }
+
+    registerSystem(update_progress) {
+        return subscriptionsClient.registerSystem(this.registerDialogDetails, update_progress).then(() => {
+            if (this.registerDialogDetails.insights)
+                return Insights.register(update_progress)
+                        .catch((err, data) => Insights.catch_error(err, data, this.addAlert));
+        });
+    }
+
+    openRegisterDialog() {
+        // Read configuration file before opening register dialog
+        subscriptionsClient.readConfig().then(() => {
+            // set config to what was loaded and clean previous credential information
+            Object.assign(this.registerDialogDetails, subscriptionsClient.config, {
+                user: '',
+                password: '',
+                activation_keys: '',
+                org: '',
+                insights: true,
+                insights_available: subscriptionsClient.insightsAvailable,
+                insights_detected: false,
+                register_method: 'account'
+            });
+
+            Insights.detect().then(installed => {
+                this.registerDialogDetails.insights_detected = installed;
+
+                // show dialog to register
+                let renderDialog;
+                const updatedData = (prop, value) => {
+                    if (prop) {
+                        this.registerDialogDetails[prop] = value;
+                    }
+
+                    this.registerDialogDetails.onChange = updatedData;
+
+                    const dialogProps = {
+                        id: 'register_dialog',
+                        title: _("Register System"),
+                        body: React.createElement(SubscriptionRegisterDialog, this.registerDialogDetails),
+                    };
+
+                    if (renderDialog)
+                        renderDialog.setProps(dialogProps);
+                    else
+                        renderDialog = Dialog.show_modal_dialog(dialogProps, this.footerProps);
+                };
+                updatedData();
+            });
+        });
+    }
+
+    unregisterSystem() {
+        Insights.unregister(this.addAlert).catch(() => true)
+                .then(subscriptionsClient.unregisterSystem);
+    }
+
+    addAlert(title, variant, detail) {
+        const newAlert = { title, variant, detail };
+
+        this.setState((prevState) => {
+            return { alerts: [...prevState.alerts, newAlert] };
+        });
+    }
+
+    removeAlert(key) {
+        this.setState((prevState) => {
+            const alerts = prevState.alerts.filter((alert, idx) => {
+                return key !== (alert.title + idx);
+            });
+
+            return { alerts };
+        });
+    }
+
     /*
      * Render a "loading" view.
      */
@@ -398,29 +554,54 @@ class SubscriptionsView extends React.Component {
     }
 
     renderSubscriptions() {
-        let error = null;
-        if (this.props.error) {
-            let severity = this.props.error.severity || "danger";
-            if (severity === "error")
-                severity = "danger";
-            error = (
-                <AlertGroup isToast>
-                    <Alert isLiveRegion
-                        variant={severity}
-                        title={this.props.error.msg}
-                        actionClose={<AlertActionCloseButton onClose={this.props.dismissError} />}
-                    />
-                </AlertGroup>
+        const alerts = this.state.alerts.map((alert, idx) => {
+            const title = alert.title + idx;
+            return (
+                <Alert key={title}
+                    variant={alert.variant}
+                    title={alert.title}
+                    actionClose={
+                        <AlertActionCloseButton onClose={() => this.removeAlert(title)} />
+                    }
+                >
+                    {alert.detail}
+                </Alert>
             );
-        }
+        });
 
         return (
             <Page className='no-masthead-sidebar'>
                 <PageSection hasBodyWrapper={false}>
-                    {error}
+                    <AlertGroup isToast>
+                        {alerts}
+                    </AlertGroup>
                     <Gallery className='ct-cards-grid' hasGutter>
-                        <SubscriptionStatus { ...this.props } />
-                        <InstalledProducts { ...this.props } />
+                        <SubscriptionStatus status={this.state.status}
+                            status_msg={this.state.status_msg}
+                            products={this.state.products}
+                            error={this.state.error}
+                            syspurpose={this.state.syspurpose}
+                            syspurpose_status={this.state.syspurpose_status}
+                            insights_available={this.state.insights_available}
+                            org={this.state.org}
+                            dismissError={this.dismissStatusError}
+                            register={this.openRegisterDialog}
+                            unregister={this.unregisterSystem}
+                            addAlert={this.addAlert}
+                        />
+                        <InstalledProducts status={this.state.status}
+                            status_msg={this.state.status_msg}
+                            products={this.state.products}
+                            error={this.state.error}
+                            syspurpose={this.state.syspurpose}
+                            syspurpose_status={this.state.syspurpose_status}
+                            insights_available={this.state.insights_available}
+                            org={this.state.org}
+                            dismissError={this.dismissStatusError}
+                            register={this.openRegisterDialog}
+                            unregister={this.unregisterSystem}
+                            addAlert={this.addAlert}
+                        />
                     </Gallery>
                 </PageSection>
             </Page>
@@ -428,8 +609,8 @@ class SubscriptionsView extends React.Component {
     }
 
     render() {
-        const status = this.props.status;
-        const status_msg = this.props.status_msg;
+        const status = this.state.status;
+        const status_msg = this.state.status_msg;
         const loaded = subscriptionsClient.config.loaded;
         if (status === 'not-found' ||
             status === 'access-denied' ||

@@ -401,7 +401,11 @@ class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
         # Connecting to Insights will not have worked because the
         # insights-client binary is not actually there.
 
-        b.wait_visible("body > div:last-child .pf-v6-c-alert:contains('not-found')")
+        b.wait_in_text(".pf-v6-c-alert.pf-m-danger .pf-v6-c-alert__description", "not-found")
+        # Error can be dismissed, after dismissing there is no other error
+        # checks that error was displayed exactly once
+        b.click(".pf-v6-c-alert.pf-m-danger .pf-v6-c-alert__action button")
+        b.wait_not_present(".pf-v6-c-alert.pf-m-danger")
 
         # Try again with the connection dialog.
 
