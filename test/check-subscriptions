@@ -286,7 +286,7 @@ class TestSubscriptions(SubscriptionsCase):
             b.wait_not_present(".pf-v6-c-modal-box")
 
         b.wait_visible("#overview a[href='https://console.redhat.com/insights/inventory/123-nice-id']")
-        b.wait_visible("#overview a:contains('3 hits, including important')")
+        b.wait_visible("#overview a:contains('View your Insights results')")
 
         # test system purpose
         m.execute(
