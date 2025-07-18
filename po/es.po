@@ -4,13 +4,14 @@
 # ljanda <ljanda@redhat.com>, 2019. #zanata
 # Emilio Herrera <ehespinosa57@gmail.com>, 2021.
 # Javier Francisco <fserrador@gmail.com>, 2025.
+# "Fco. Javier F. Serrador" <fserrador@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2025-07-16 19:53+0000\n"
-"Last-Translator: John Sefler <jsefler@redhat.com>\n"
+"PO-Revision-Date: 2025-07-17 00:53+0000\n"
+"Last-Translator: \"Fco. Javier F. Serrador\" <fserrador@gmail.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/es/>\n"
 "Language: es\n"
@@ -41,8 +42,8 @@ msgstr[1] "$0 golpes, incluyendo importante"
 #: src/insights.jsx:543
 msgid "$0 low severity hit"
 msgid_plural "$0 low severity hits"
-msgstr[0] "$0 golpe de baja gravedad"
-msgstr[1] "$0 golpes de baja gravedad"
+msgstr[0] "$0 golpe de gravedad baja"
+msgstr[1] "$0 golpes de gravedad baja"
 
 #: src/insights.jsx:538
 msgid "$0 moderate hit"
@@ -127,24 +128,20 @@ msgid "Connect this system to $0."
 msgstr "Conectar este sistema a $0."
 
 #: src/insights.jsx:241
-#, fuzzy
 msgid "Connect to Red Hat Insights"
-msgstr "Conectar a Conocimientos de Red Hat"
+msgstr "Conectar a Insights de Red Hat"
 
 #: src/insights.jsx:562
-#, fuzzy
 msgid "Connected to Insights"
-msgstr "Conectando a Conocimientos"
+msgstr "Conectando a Insights"
 
 #: src/insights.jsx:402
-#, fuzzy
 msgid "Connected to Red Hat Insights"
-msgstr "Conectado a Conocimientos de Red Hat"
+msgstr "Conectado a Insights de Red Hat"
 
 #: src/insights.jsx:100
-#, fuzzy
 msgid "Connecting to Insights"
-msgstr "Conectando a Conocimientos"
+msgstr "Conectando a Insights"
 
 #: src/subscriptions-view.jsx:422
 msgid ""
@@ -189,9 +186,8 @@ msgid "Details"
 msgstr "Detalles"
 
 #: src/insights.jsx:430 src/insights.jsx:434
-#, fuzzy
 msgid "Disconnect from Insights"
-msgstr "Desconectar desde Conocimientos"
+msgstr "Desconectar desde Insights"
 
 #: src/insights.jsx:220
 msgid "Downloading $0"
@@ -202,18 +198,16 @@ msgid "Ends"
 msgstr "Termina"
 
 #: src/insights.jsx:432
-#, fuzzy
 msgid ""
 "If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
 msgstr ""
-"Si desconecta este sistema de Conocimientos, ya no informará su estado de "
-"Conocimientos en Red Hat Cloud o Satellite."
+"Si desconecta este sistema de Insights, ya no informará su estado de "
+"Insights en Red Hat Cloud o Satellite."
 
 #: src/insights.jsx:579 src/subscriptions-register.jsx:85
-#, fuzzy
 msgid "Insights"
-msgstr "Conocimientos"
+msgstr "Insights"
 
 #: src/subscriptions-view.jsx:226 src/subscriptions-view.jsx:230
 msgid "Installed products"
@@ -224,9 +218,8 @@ msgid "Installing $0"
 msgstr "Instalando $0"
 
 #: src/insights.jsx:413
-#, fuzzy
 msgid "Last Insights data upload"
-msgstr "Últimos datos subidos a Conocimientos"
+msgstr "Últimos datos subidos a Insights"
 
 #: src/subscriptions-client.js:284
 msgid ""
@@ -258,9 +251,8 @@ msgid "Method"
 msgstr "Método"
 
 #: src/insights.jsx:408
-#, fuzzy
 msgid "Next Insights data upload"
-msgstr "Siguiente subida de datos a Conocimientos"
+msgstr "Siguiente subida de datos a Insights"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys
 #: src/subscriptions-view.jsx:233
@@ -327,15 +319,14 @@ msgid "Popover with explanation of SCA mode"
 msgstr "Popover con explicación de modo SCA"
 
 #: src/insights.jsx:138
-#, fuzzy
 msgid ""
 "Proactively identify and remediate threats to security, performance, "
 "availability, and stability with Red Hat Insights — with predictive "
 "analytics, avoid problems and unplanned downtime in your Red Hat environment."
 msgstr ""
 "Identifique y repare de forma proactiva las amenazas a la seguridad, el "
-"rendimiento, la disponibilidad y la estabilidad con Conocimientos Red Hat — "
-"con los análisis predictivos, evite problemas y tiempos de inactividad no "
+"rendimiento, la disponibilidad y la estabilidad con Insights Red Hat — con "
+"los análisis predictivos, evite problemas y tiempos de inactividad no "
 "planeados en su entorno Red Hat."
 
 #: src/subscriptions-view.jsx:179
@@ -478,9 +469,8 @@ msgstr ""
 "sistema."
 
 #: src/insights.jsx:397
-#, fuzzy
 msgid "The last Insights data upload has failed."
-msgstr "Ha fallado la última subida de datos a Conocimientos."
+msgstr "Ha fallado la última subida de datos a Insights."
 
 #: src/subscriptions-view.jsx:509
 msgid ""
@@ -494,13 +484,12 @@ msgstr ""
 "privilegiadas' en la página de acceso."
 
 #: src/insights.jsx:87
-#, fuzzy
 msgid ""
 "The system could not be connected to Insights because installing the $0 "
 "package requires the unexpected removal of other packages."
 msgstr ""
-"El sistema podría no estar conectado a Conocimientos puesto que la "
-"instalación del paquete $0 requiere el borrado inesperado de otros paquetes."
+"El sistema podría no estar conectado a Insights puesto que la instalación "
+"del paquete $0 requiere el borrado inesperado de otros paquetes."
 
 #: src/insights.jsx:244
 msgid "This system is not connected to $0."
@@ -566,9 +555,8 @@ msgid "Version"
 msgstr "Versión"
 
 #: src/insights.jsx:556
-#, fuzzy
 msgid "View your Insights results"
-msgstr "Visualizar sus resultados de Conocimientos"
+msgstr "Visualizar sus resultados de Insights"
 
 #: src/insights.jsx:205 src/insights.jsx:216 src/insights.jsx:300
 msgid "Waiting for other software management operations to finish"
