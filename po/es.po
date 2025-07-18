@@ -1,6 +1,6 @@
 # ljanda <ljanda@redhat.com>, 2017. #zanata
 # ljanda <ljanda@redhat.com>, 2018. #zanata
-# John Sefler <jsefler@redhat.com>, 2019. #zanata, 2021.
+# John Sefler <jsefler@redhat.com>, 2019. #zanata, 2021, 2025.
 # ljanda <ljanda@redhat.com>, 2019. #zanata
 # Emilio Herrera <ehespinosa57@gmail.com>, 2021.
 # Javier Francisco <fserrador@gmail.com>, 2025.
@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2025-04-14 19:53+0000\n"
-"Last-Translator: Javier Francisco <fserrador@gmail.com>\n"
+"PO-Revision-Date: 2025-07-16 19:53+0000\n"
+"Last-Translator: John Sefler <jsefler@redhat.com>\n"
 "Language-Team: Spanish <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/es/>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -127,18 +127,22 @@ msgid "Connect this system to $0."
 msgstr "Conectar este sistema a $0."
 
 #: src/insights.jsx:241
+#, fuzzy
 msgid "Connect to Red Hat Insights"
 msgstr "Conectar a Conocimientos de Red Hat"
 
 #: src/insights.jsx:562
+#, fuzzy
 msgid "Connected to Insights"
 msgstr "Conectando a Conocimientos"
 
 #: src/insights.jsx:402
+#, fuzzy
 msgid "Connected to Red Hat Insights"
 msgstr "Conectado a Conocimientos de Red Hat"
 
 #: src/insights.jsx:100
+#, fuzzy
 msgid "Connecting to Insights"
 msgstr "Conectando a Conocimientos"
 
@@ -185,6 +189,7 @@ msgid "Details"
 msgstr "Detalles"
 
 #: src/insights.jsx:430 src/insights.jsx:434
+#, fuzzy
 msgid "Disconnect from Insights"
 msgstr "Desconectar desde Conocimientos"
 
@@ -197,6 +202,7 @@ msgid "Ends"
 msgstr "Termina"
 
 #: src/insights.jsx:432
+#, fuzzy
 msgid ""
 "If you disconnect this system from Insights, it will no longer report its "
 "Insights status in Red Hat Cloud or Satellite."
@@ -205,6 +211,7 @@ msgstr ""
 "Conocimientos en Red Hat Cloud o Satellite."
 
 #: src/insights.jsx:579 src/subscriptions-register.jsx:85
+#, fuzzy
 msgid "Insights"
 msgstr "Conocimientos"
 
@@ -217,6 +224,7 @@ msgid "Installing $0"
 msgstr "Instalando $0"
 
 #: src/insights.jsx:413
+#, fuzzy
 msgid "Last Insights data upload"
 msgstr "Últimos datos subidos a Conocimientos"
 
@@ -250,6 +258,7 @@ msgid "Method"
 msgstr "Método"
 
 #: src/insights.jsx:408
+#, fuzzy
 msgid "Next Insights data upload"
 msgstr "Siguiente subida de datos a Conocimientos"
 
@@ -318,6 +327,7 @@ msgid "Popover with explanation of SCA mode"
 msgstr "Popover con explicación de modo SCA"
 
 #: src/insights.jsx:138
+#, fuzzy
 msgid ""
 "Proactively identify and remediate threats to security, performance, "
 "availability, and stability with Red Hat Insights — with predictive "
@@ -468,6 +478,7 @@ msgstr ""
 "sistema."
 
 #: src/insights.jsx:397
+#, fuzzy
 msgid "The last Insights data upload has failed."
 msgstr "Ha fallado la última subida de datos a Conocimientos."
 
@@ -483,6 +494,7 @@ msgstr ""
 "privilegiadas' en la página de acceso."
 
 #: src/insights.jsx:87
+#, fuzzy
 msgid ""
 "The system could not be connected to Insights because installing the $0 "
 "package requires the unexpected removal of other packages."
@@ -554,6 +566,7 @@ msgid "Version"
 msgstr "Versión"
 
 #: src/insights.jsx:556
+#, fuzzy
 msgid "View your Insights results"
 msgstr "Visualizar sus resultados de Conocimientos"
 
