@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the rhsm package.
-# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022, 2023, 2024.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2024-02-03 23:36+0000\n"
+"PO-Revision-Date: 2025-07-21 06:53+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/ka/>\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
 msgid_plural "$0 hits, including critical"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "$0 კრიტიკული დამთხვევა"
+msgstr[1] "$0 დამთხვევა კრიტიკულის ჩათვლით"
 
 #: src/insights.jsx:549
 msgid "$0 hit"
@@ -33,20 +33,20 @@ msgstr[1] "$0 მოხვედრა"
 #: src/insights.jsx:533
 msgid "$0 important hit"
 msgid_plural "$0 hits, including important"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "$0 მნიშვნელოვანი დამთხვევა"
+msgstr[1] "$0 დამთხვევა მნიშვნელოვნის ჩათვლით"
 
 #: src/insights.jsx:543
 msgid "$0 low severity hit"
 msgid_plural "$0 low severity hits"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "$0 დაბალი სიმძიმის დამთხვევა"
+msgstr[1] "$0 დაბალი სიმძიმის დამთხვევა"
 
 #: src/insights.jsx:538
 msgid "$0 moderate hit"
 msgid_plural "$0 hits, including moderate"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "$0 საშუალო დამთხვევა"
+msgstr[1] "$0 დამთხვევა საშუალოს ჩათვლთ"
 
 #: src/insights.jsx:166
 msgid "$0 package needs to be removed."
@@ -171,7 +171,7 @@ msgstr "დეტალები"
 
 #: src/insights.jsx:430 src/insights.jsx:434
 msgid "Disconnect from Insights"
-msgstr ""
+msgstr "გათიშვა Insights-დან"
 
 #: src/insights.jsx:220
 msgid "Downloading $0"
@@ -256,7 +256,7 @@ msgstr "არაა გამოწერილი"
 
 #: src/subscriptions-view.jsx:123
 msgid "Not subscribed ($0)"
-msgstr ""
+msgstr "გამოწერილი არაა ($0)"
 
 #: src/subscriptions-view.jsx:462 src/subscriptions-register.jsx:117
 msgid "Organization"
@@ -343,7 +343,7 @@ msgstr "$0-ის წაშლა"
 
 #: src/subscriptions-view.jsx:507
 msgid "Retrieving subscription status..."
-msgstr ""
+msgstr "გამოწერის სტატუსის მიღება..."
 
 #: src/subscriptions-view.jsx:357
 msgid "Role"
@@ -351,7 +351,7 @@ msgstr "როლი"
 
 #: src/subscriptions-client.js:415
 msgid "Saving configuration ..."
-msgstr ""
+msgstr "კონფიგურაციის შენახვა..."
 
 #: src/subscriptions-view.jsx:345
 msgid "Service level"
@@ -405,8 +405,8 @@ msgstr "სისტემის დანიშნულება"
 #: src/insights.jsx:158
 msgid "The $0 package and $1 other package will be installed."
 msgid_plural "The $0 package and $1 other packages will be installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "მოხდება $0 პაკეტის და $1 დამატებითი პაკეტის დაყენება."
+msgstr[1] "მოხდება $0 პაკეტის და $1 დამატებითი პაკეტის დაყენება."
 
 #: src/insights.jsx:84 src/insights.jsx:310
 msgid "The $0 package is not available from any repository."
@@ -484,7 +484,7 @@ msgstr "გამოყენება"
 
 #: src/subscriptions-register.jsx:155
 msgid "Use proxy server"
-msgstr ""
+msgstr "პროქსი სერვერის გამოყენება"
 
 #: src/subscriptions-register.jsx:107
 msgid "Username"
@@ -504,7 +504,7 @@ msgstr "პროგრამების მართვის სხვა ო
 
 #: src/manifest.json:0
 msgid "candlepin"
-msgstr ""
+msgstr "candlepin"
 
 #: src/subscriptions-client.js:492
 msgid "not-found"
