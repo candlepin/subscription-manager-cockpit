@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2025-07-16 19:53+0000\n"
-"Last-Translator: John Sefler <jsefler@redhat.com>\n"
+"PO-Revision-Date: 2025-07-18 15:53+0000\n"
+"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/fi/>\n"
 "Language: fi\n"
@@ -172,13 +172,12 @@ msgid "Corrupted JSON with status"
 msgstr "Vioittunut JSON tilalla"
 
 #: src/subscriptions-view.jsx:519
-#, fuzzy
 msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
 "is installed. Reported status: $0 ($1)"
 msgstr ""
-"Järjestelmän tilauksen tilaa ei voitu saada. Varmista, että tilausten "
-"hallintaohjelma on asennettu. Raportoitu tila: $0 ($1)"
+"Järjestelmän tilauksen tilaa ei voitu saada. Varmista, että subscription-"
+"manager on asennettu. Raportoitu tila: $0 ($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -328,7 +327,7 @@ msgstr ""
 
 #: src/subscriptions-view.jsx:179
 msgid "Product ID"
-msgstr "Tuotetunniste"
+msgstr "Tuotetunnus"
 
 #: src/subscriptions-view.jsx:74 src/subscriptions-view.jsx:175
 msgid "Product name"
@@ -459,13 +458,12 @@ msgid "The last Insights data upload has failed."
 msgstr "Viimeisin Insights-tietojen lataus ulospäin epäonnistui."
 
 #: src/subscriptions-view.jsx:509
-#, fuzzy
 msgid ""
 "The rhsm service is unavailable. Make sure subscription-manager is installed "
 "and try reloading the page. Additionally, make sure that you have checked "
 "the 'Reuse my password for privileged tasks' checkbox on the login page."
 msgstr ""
-"rhsm-palvelu ei ole saatavilla. Varmista, että tilausten hallintaohjelma on "
+"rhsm-palvelu ei ole saatavilla. Varmista, että subscription-manager on "
 "asennettu, ja yritä ladata sivu uudelleen. Varmista lisäksi, että olet "
 "valinnut kirjautumissivun 'Käytä salasanaani uudelleen etuoikeutettuihin "
 "tehtäviin' -valintaruudun."
@@ -488,7 +486,7 @@ msgstr "URL"
 
 #: src/subscriptions-view.jsx:517
 msgid "Unable to connect"
-msgstr "Yhdistäminen ei onnistu"
+msgstr "Yhteyttä ei voi muodostaa"
 
 #: src/subscriptions-view.jsx:512
 msgid "Unable to the reach the rhsm service."
