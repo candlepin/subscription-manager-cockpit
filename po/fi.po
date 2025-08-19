@@ -3,8 +3,9 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2024.
-# Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2024.
+# Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2024, 2025.
 # Ricky Tigg <ricky.tigg@gmail.com>, 2024, 2025.
+# John Sefler <jsefler@redhat.com>, 2025.
 #
 # #-#-#-#-#  subscription-manager.metainfo.pot (PACKAGE VERSION)  #-#-#-#-#
 # SOME DESCRIPTIVE TITLE.
@@ -21,8 +22,9 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2025-03-21 13:53+0000\n"
-"Last-Translator: Ricky Tigg <ricky.tigg@gmail.com>\n"
+"PO-Revision-Date: 2025-07-18 15:53+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/fi/>\n"
 "Language: fi\n"
@@ -30,7 +32,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -175,8 +177,8 @@ msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
 "is installed. Reported status: $0 ($1)"
 msgstr ""
-"Järjestelmän tilauksen tilaa ei voitu saada. Varmista, että tilausten "
-"hallintaohjelma on asennettu. Raportoitu tila: $0 ($1)"
+"Järjestelmän tilauksen tilaa ei voitu saada. Varmista, että subscription-"
+"manager on asennettu. Raportoitu tila: $0 ($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
@@ -291,7 +293,7 @@ msgstr "Organisaatio"
 
 #: src/subscriptions-register.jsx:132
 msgid "Organization ID"
-msgstr "Organisaatiotunniste"
+msgstr "Organisaatiotunnus"
 
 #: src/subscriptions-view.jsx:449
 msgid "Overview"
@@ -326,11 +328,11 @@ msgstr ""
 
 #: src/subscriptions-view.jsx:179
 msgid "Product ID"
-msgstr "Tuotetunniste"
+msgstr "Tuotetunnus"
 
 #: src/subscriptions-view.jsx:74 src/subscriptions-view.jsx:175
 msgid "Product name"
-msgstr "Tuotenimi"
+msgstr "Tuotteen nimi"
 
 #: src/subscriptions-register.jsx:55
 msgid "Proxy Location"
@@ -462,7 +464,7 @@ msgid ""
 "and try reloading the page. Additionally, make sure that you have checked "
 "the 'Reuse my password for privileged tasks' checkbox on the login page."
 msgstr ""
-"rhsm-palvelu ei ole saatavilla. Varmista, että tilausten hallintaohjelma on "
+"rhsm-palvelu ei ole saatavilla. Varmista, että subscription-manager on "
 "asennettu, ja yritä ladata sivu uudelleen. Varmista lisäksi, että olet "
 "valinnut kirjautumissivun 'Käytä salasanaani uudelleen etuoikeutettuihin "
 "tehtäviin' -valintaruudun."
@@ -485,7 +487,7 @@ msgstr "URL"
 
 #: src/subscriptions-view.jsx:517
 msgid "Unable to connect"
-msgstr "Yhdistäminen ei onnistu"
+msgstr "Yhteyttä ei voi muodostaa"
 
 #: src/subscriptions-view.jsx:512
 msgid "Unable to the reach the rhsm service."
@@ -514,7 +516,7 @@ msgstr "Päivitetään"
 
 #: src/subscriptions-client.js:435
 msgid "Updating status ..."
-msgstr "Päivitetään tila..."
+msgstr "Päivitetään tilaa ..."
 
 #: src/subscriptions-view.jsx:351
 msgid "Usage"
@@ -526,7 +528,7 @@ msgstr "Käytä välityspalvelinta"
 
 #: src/subscriptions-register.jsx:107
 msgid "Username"
-msgstr "Käyttäjätunnus"
+msgstr "Käyttäjänimi"
 
 #: src/subscriptions-view.jsx:183
 msgid "Version"
