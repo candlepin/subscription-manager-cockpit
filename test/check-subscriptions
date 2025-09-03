@@ -367,6 +367,38 @@ class TestSubscriptions(SubscriptionsCase):
             b.wait_not_in_text("#overview", "Insights")
         m.execute(["test", "-f", "/etc/insights-client/.unregistered"])
 
+    def testTranslations(self):
+        b = self.browser
+
+        self.login_and_go("/subscriptions")
+
+        b.switch_to_top()
+        b.open_session_menu()
+        b.click("button.display-language-menu")
+        b.wait_visible("#display-language-modal")
+        b.click("#display-language-modal li[data-value=de-de] button")
+        b.click("#display-language-modal footer button.pf-m-primary")
+        b.wait_language("de-de")
+
+        # Wait for the shell to be fully loaded
+        b.enter_page("/subscriptions")
+
+        # Check that the subscriptions page is translated.
+        b.click("#overview button:contains('Registrieren')")
+        b.wait_visible("#register_dialog")
+        b.wait_in_text("#register_dialog .pf-v6-c-modal-box__header", "System registrieren")
+
+        b.switch_to_top()
+        b.open_session_menu()
+        b.click("button.display-language-menu")
+        b.wait_visible("#display-language-modal")
+        b.click("#display-language-modal li[data-value=en-us] button")
+        b.click("#display-language-modal footer button.pf-m-primary")
+        b.wait_language("en-us")
+
+        b.enter_page("/subscriptions")
+        b.wait_visible("#overview button:contains('Register')")
+
 
 class TestSubscriptionsPackages(SubscriptionsCase, PackageCase):
     def testMissingPackages(self):
