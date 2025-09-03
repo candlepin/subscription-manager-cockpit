@@ -57,7 +57,7 @@ class SubscriptionRegisterDialog extends React.Component {
                 <>
                     <FormGroup fieldId="subscription-proxy-server" label={_("Proxy Location")}>
                         <TextInput id="subscription-proxy-server"
-                            placeholder="hostname:port" value={this.props.proxy_server}
+                            placeholder={_("hostname:port")} value={this.props.proxy_server}
                             onChange={(_event, value) => this.props.onChange('proxy_server', value)}
                         />
                     </FormGroup>
@@ -131,7 +131,7 @@ class SubscriptionRegisterDialog extends React.Component {
                 <>
                     <FormGroup fieldId="subscription-register-key" label={_("Activation Key")}>
                         <TextInput id="subscription-register-key"
-                            placeholder="key_one,key_two" value={this.props.activation_keys}
+                            placeholder={_("key_one,key_two")} value={this.props.activation_keys}
                             onChange={(_event, value) => this.props.onChange('activation_keys', value)}
                         />
                     </FormGroup>
