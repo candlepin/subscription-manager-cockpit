@@ -1,15 +1,15 @@
 # ljanda <ljanda@redhat.com>, 2017. #zanata
 # Chris Snyder <csnyder@redhat.com>, 2018. #zanata
 # ljanda <ljanda@redhat.com>, 2018. #zanata
-# John Sefler <jsefler@redhat.com>, 2019. #zanata, 2021.
+# John Sefler <jsefler@redhat.com>, 2019. #zanata, 2021, 2025.
 # ljanda <ljanda@redhat.com>, 2019. #zanata
-# Aleksey Fedorov <aleksejfedorov963@gmail.com>, 2024.
+# Aleksey Fedorov <aleksejfedorov963@gmail.com>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-30 11:07+0200\n"
-"PO-Revision-Date: 2024-03-21 20:35+0000\n"
+"PO-Revision-Date: 2025-07-17 22:53+0000\n"
 "Last-Translator: Aleksey Fedorov <aleksejfedorov963@gmail.com>\n"
 "Language-Team: Russian <https://translate.fedoraproject.org/projects/"
 "subscription-manager/cockpit-main/ru/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: src/insights.jsx:528
 msgid "$0 critical hit"
@@ -174,8 +174,8 @@ msgid ""
 "Couldn't get system subscription status. Please ensure subscription-manager "
 "is installed. Reported status: $0 ($1)"
 msgstr ""
-"Не удалось получить статус подписки в системе. Убедитесь, что установлен "
-"менеджер подписок. Сообщаемый статус: $0 ($1)"
+"Не удалось получить статус подписки в системе. Убедитесь, что пакет "
+"subscription-manager установлен. Сообщаемый статус: $0 ($1)"
 
 #: src/subscriptions-register.jsx:143
 msgid "Custom URL"
