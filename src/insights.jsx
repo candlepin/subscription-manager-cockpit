@@ -498,9 +498,6 @@ export class InsightsStatus extends React.Component {
         this.hosts_details_file = cockpit.file("/var/lib/insights/host-details.json",
                                                { syntax: JSON, superuser: true });
         this.hosts_details_file.watch(data => this.setState({ host_details: data }));
-        this.insights_details_file = cockpit.file("/var/lib/insights/insights-details.json",
-                                                  { syntax: JSON, superuser: true });
-        this.insights_details_file.watch(data => this.setState({ insights_details: data }));
     }
 
     componentWillUnmount() {
@@ -509,7 +506,6 @@ export class InsightsStatus extends React.Component {
         last_upload_monitor.removeEventListener("changed", this.on_changed);
 
         this.hosts_details_file.close();
-        this.insights_details_file.close();
     }
 
     render() {
@@ -525,49 +521,6 @@ export class InsightsStatus extends React.Component {
                 url = "https://console.redhat.com/insights/inventory/" + this.state.host_details.results[0].id;
             } catch (err) {
                 url = "https://console.redhat.com/insights";
-            }
-
-            let text;
-            try {
-                const n_rule_hits = this.state.insights_details.length;
-                if (n_rule_hits === 0) {
-                    text = _("No rule hits");
-                } else {
-                    try {
-                        const max_risk = Math.max(...this.state.insights_details.map(h => h.rule.total_risk));
-                        // We do this all explicitly and in a long
-                        // winded way so that the translation
-                        // machinery gets to see all the strings.
-                        if (max_risk >= 4) {
-                            text = cockpit.format(cockpit.ngettext("$0 critical hit",
-                                                                   "$0 hits, including critical",
-                                                                   n_rule_hits),
-                                                  n_rule_hits);
-                        } else if (max_risk >= 3) {
-                            text = cockpit.format(cockpit.ngettext("$0 important hit",
-                                                                   "$0 hits, including important",
-                                                                   n_rule_hits),
-                                                  n_rule_hits);
-                        } else if (max_risk >= 2) {
-                            text = cockpit.format(cockpit.ngettext("$0 moderate hit",
-                                                                   "$0 hits, including moderate",
-                                                                   n_rule_hits),
-                                                  n_rule_hits);
-                        } else {
-                            text = cockpit.format(cockpit.ngettext("$0 low severity hit",
-                                                                   "$0 low severity hits",
-                                                                   n_rule_hits),
-                                                  n_rule_hits);
-                        }
-                    } catch (err) {
-                        text = cockpit.format(cockpit.ngettext("$0 hit",
-                                                               "$0 hits",
-                                                               n_rule_hits),
-                                              n_rule_hits);
-                    }
-                }
-            } catch (err) {
-                text = _("View your Insights results");
             }
 
             status = (
@@ -587,7 +540,7 @@ export class InsightsStatus extends React.Component {
                             target="_blank" rel="noopener noreferrer"
                             icon={<ExternalLinkAltIcon />}
                         >
-                            { text }
+                            { _("View your Insights results") }
                         </Button>
                     </StackItem>
                 </Stack>
