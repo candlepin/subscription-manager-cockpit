@@ -519,14 +519,6 @@ export class InsightsStatus extends React.Component {
             const warn = ((insights_service.state === "failed" || (insights_service.state === "starting" && insights_service.details.Result !== "success")) &&
                         insights_service.unit.ActiveExitTimestamp &&
                         insights_service.unit.ActiveExitTimestamp / 1e6 > last_upload_monitor.timestamp);
-
-            let url;
-            try {
-                url = "https://console.redhat.com/insights/inventory/" + this.state.host_details.results[0].id;
-            } catch (err) {
-                url = "https://console.redhat.com/insights";
-            }
-
             let text;
             try {
                 const n_rule_hits = this.state.insights_details.length;
@@ -566,32 +558,34 @@ export class InsightsStatus extends React.Component {
                                               n_rule_hits);
                     }
                 }
-            } catch (err) {
-                text = _("View your Insights results");
-            }
 
-            status = (
-                <Stack hasGutter>
-                    <StackItem>
-                        <Button isInline
-                            variant="link"
-                            icon={warn ? <Icon status="warning"><WarningTriangleIcon /></Icon> : null}
-                            onClick={left(show_status_dialog)}
-                        >
-                            {_("Connected to Insights")}
-                        </Button>
-                    </StackItem>
-                    <StackItem>
-                        <Button isInline
-                            variant="link" component="a" href={url}
-                            target="_blank" rel="noopener noreferrer"
-                            icon={<ExternalLinkAltIcon />}
-                        >
+                status = (
+                    <Stack hasGutter>
+                        <StackItem>
+                            <Button isInline
+                                variant="link"
+                                icon={warn ? <Icon status="warning"><WarningTriangleIcon /></Icon> : null}
+                                onClick={left(show_status_dialog)}
+                            >
+                                {_("Connected to Insights")}
+                            </Button>
+                        </StackItem>
+                        <StackItem>
                             { text }
-                        </Button>
-                    </StackItem>
-                </Stack>
-            );
+                        </StackItem>
+                    </Stack>
+                );
+            } catch (err) {
+                status = (
+                    <Button isInline
+                        variant="link"
+                        icon={warn ? <Icon status="warning"><WarningTriangleIcon /></Icon> : null}
+                        onClick={left(show_status_dialog)}
+                    >
+                        {_("Connected to Insights")}
+                    </Button>
+                );
+            }
         } else {
             status = <Button variant="link" isInline onClick={left(show_connect_dialog)}>{_("Not connected")}</Button>;
         }
