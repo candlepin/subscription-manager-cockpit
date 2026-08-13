@@ -1,7 +1,11 @@
 #!/bin/sh
 set -eux
 
-dnf install -y cockpit-ws python3-devel python3-setuptools openssl-devel intltool gcc
+# HACK: temporarily install dependencies on Fedora until the images have them
+# https://github.com/cockpit-project/bots/pull/9297
+if grep -q '^ID=.*fedora' /usr/lib/os-release; then
+    dnf install -y cockpit-ws python3-devel python3-setuptools openssl-devel intltool gcc
+fi
 
 rm -f /usr/*bin/subscription-manager
 
