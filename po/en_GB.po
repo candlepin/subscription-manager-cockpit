@@ -1,0 +1,486 @@
+# #-#-#-#-#  subscription-manager.js.pot (PACKAGE VERSION)  #-#-#-#-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# #-#-#-#-#  subscription-manager.metainfo.pot (PACKAGE VERSION)  #-#-#-#-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# #-#-#-#-#  subscription-manager.desktop.pot (PACKAGE VERSION)  #-#-#-#-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-23 03:36+0000\n"
+"PO-Revision-Date: 2026-08-23 19:19+0000\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>\n"
+"Language-Team: English (United Kingdom) <https://translate.fedoraproject.org/"
+"projects/cockpit/subscription-manager-cockpit/en_GB/>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#: src/insights.jsx:162
+msgid "$0 package needs to be removed."
+msgid_plural "$0 packages need to be removed."
+msgstr[0] "$0 package needs to be removed."
+msgstr[1] "$0 packages need to be removed."
+
+#: src/subscriptions-client.js:213
+msgid "'Organization' is required when using activation keys"
+msgstr "'Organisation' is required when using activation keys"
+
+#: src/subscriptions-view.jsx:523
+msgid "Access denied"
+msgstr "Access denied"
+
+#: src/subscriptions-register.jsx:161
+msgid "Account"
+msgstr "Account"
+
+#: src/subscriptions-register.jsx:119
+msgid "Activation Key"
+msgstr "Activation Key"
+
+#: src/subscriptions-register.jsx:167
+msgid "Activation key"
+msgstr "Activation key"
+
+#: src/subscriptions-view.jsx:268
+msgid "Add-ons"
+msgstr "Add-ons"
+
+#: src/insights.jsx:176
+msgid "Additional packages:"
+msgstr "Additional packages:"
+
+#: src/subscriptions-view.jsx:131
+msgid "Arch"
+msgstr "Arch"
+
+#: src/insights.jsx:443
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/insights.jsx:204 src/insights.jsx:299
+msgid "Checking installed software"
+msgstr "Checking installed software"
+
+#: src/insights.jsx:435 src/insights.jsx:454
+msgid "Close"
+msgstr "Close"
+
+#: src/insights.jsx:251
+msgid "Connect"
+msgstr "Connect"
+
+#: src/subscriptions-register.jsx:74
+msgid "Connect this system to $0."
+msgstr "Connect this system to $0."
+
+#: src/insights.jsx:238
+msgid "Connect to Red Hat Insights"
+msgstr "Connect to Red Hat Insights"
+
+#: src/insights.jsx:497
+msgid "Connected to Insights"
+msgstr "Connected to Insights"
+
+#: src/insights.jsx:396
+msgid "Connected to Red Hat Insights"
+msgstr "Connected to Red Hat Insights"
+
+#: src/insights.jsx:108
+msgid "Connecting to Insights"
+msgstr "Connecting to Insights"
+
+#: src/subscriptions-client.js:490
+msgid "Corrupted JSON with status"
+msgstr "Corrupted JSON with status"
+
+#: src/subscriptions-view.jsx:528
+msgid ""
+"Couldn't get system subscription status. Please ensure subscription-manager "
+"is installed. Reported status: $0 ($1)"
+msgstr ""
+"Couldn't get system subscription status. Please ensure subscription-manager "
+"is installed. Reported status: $0 ($1)"
+
+#: src/subscriptions-register.jsx:137
+msgid "Custom URL"
+msgstr "Custom URL"
+
+#: src/subscriptions-register.jsx:136
+msgid "Default"
+msgstr "Default"
+
+#: src/insights.jsx:191 src/insights.jsx:415 src/insights.jsx:419
+msgid "Details"
+msgstr "Details"
+
+#: src/insights.jsx:421 src/insights.jsx:427
+msgid "Disconnect from Insights"
+msgstr "Disconnect from Insights"
+
+#: src/insights.jsx:217
+msgid "Downloading $0"
+msgstr "Downloading $0"
+
+#: src/subscriptions-view.jsx:147
+msgid "Ends"
+msgstr "Ends"
+
+#: src/insights.jsx:76
+msgid "Error"
+msgstr "Error"
+
+#: src/insights.jsx:424
+msgid ""
+"If you disconnect this system from Insights, it will no longer report its "
+"Insights status in Red Hat Cloud or Satellite."
+msgstr ""
+"If you disconnect this system from Insights, it will no longer report its "
+"Insights status in Red Hat Cloud or Satellite."
+
+#: src/insights.jsx:506 src/subscriptions-register.jsx:71
+msgid "Insights"
+msgstr "Insights"
+
+#: src/subscriptions-view.jsx:170 src/subscriptions-view.jsx:173
+msgid "Installed products"
+msgstr "Installed products"
+
+#: src/insights.jsx:221
+msgid "Installing $0"
+msgstr "Installing $0"
+
+#: src/insights.jsx:407
+msgid "Last Insights data upload"
+msgstr "Last Insights data upload"
+
+#: src/subscriptions-client.js:272
+msgid ""
+"Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"
+msgstr ""
+"Malformed proxy URL; IPv6 address syntax and hostname are mutually exclusive"
+
+#: src/subscriptions-client.js:237
+msgid ""
+"Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"
+msgstr ""
+"Malformed server URL; IPv6 address syntax and hostname are mutually exclusive"
+
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:8
+msgid ""
+"Manage subscriptions to a Candlepin backend, such as for Red Hat products."
+msgstr ""
+"Manage subscriptions to a Candlepin backend, such as for Red Hat products."
+
+#: src/manifest.json:0
+msgid "Managing subscriptions"
+msgstr "Managing subscriptions"
+
+#: src/subscriptions-register.jsx:157
+msgid "Method"
+msgstr "Method"
+
+#: src/insights.jsx:402
+msgid "Next Insights data upload"
+msgstr "Next Insights data upload"
+
+#: src/subscriptions-view.jsx:176
+msgid "No installed products detected"
+msgstr "No installed products detected"
+
+#: src/subscriptions-view.jsx:278
+msgid "No system purpose attributes set"
+msgstr "No system purpose attributes set"
+
+#: src/insights.jsx:501
+msgid "Not connected"
+msgstr "Not connected"
+
+#: src/subscriptions-view.jsx:298
+msgid "Not registered"
+msgstr "Not registered"
+
+#: src/subscriptions-view.jsx:63
+msgid "Not subscribed"
+msgstr "Not subscribed"
+
+#: src/subscriptions-view.jsx:65
+msgid "Not subscribed ($0)"
+msgstr "Not subscribed ($0)"
+
+#: src/subscriptions-view.jsx:331 src/subscriptions-register.jsx:108
+msgid "Organization"
+msgstr "Organisation"
+
+#: src/subscriptions-register.jsx:125
+msgid "Organization ID"
+msgstr "Organisation ID"
+
+#: src/subscriptions-view.jsx:319
+msgid "Overview"
+msgstr "Overview"
+
+#: src/subscriptions-view.jsx:57
+msgid "Partially subscribed"
+msgstr "Partially subscribed"
+
+#: src/subscriptions-view.jsx:59
+msgid "Partially subscribed ($0)"
+msgstr "Partially subscribed ($0)"
+
+#: src/subscriptions-register.jsx:100
+msgid "Password"
+msgstr "Password"
+
+#: src/insights.jsx:132
+msgid ""
+"Proactively identify and remediate threats to security, performance, "
+"availability, and stability with Red Hat Insights — with predictive "
+"analytics, avoid problems and unplanned downtime in your Red Hat environment."
+msgstr ""
+"Proactively identify and remediate threats to security, performance, "
+"availability, and stability with Red Hat Insights — with predictive "
+"analytics, avoid problems and unplanned downtime in your Red Hat environment."
+
+#: src/subscriptions-view.jsx:123
+msgid "Product ID"
+msgstr "Product ID"
+
+#: src/subscriptions-view.jsx:39 src/subscriptions-view.jsx:119
+msgid "Product name"
+msgstr "Product name"
+
+#: src/subscriptions-register.jsx:45
+msgid "Proxy Location"
+msgstr "Proxy Location"
+
+#: src/subscriptions-register.jsx:59
+msgid "Proxy Password"
+msgstr "Proxy Password"
+
+#: src/subscriptions-register.jsx:52
+msgid "Proxy Username"
+msgstr "Proxy Username"
+
+#: data/subscription-manager-cockpit.desktop:3
+msgid "Red Hat Subscription Manager"
+msgstr "Red Hat Subscription Manager"
+
+#: src/subscriptions-view.jsx:300 src/subscriptions-view.jsx:394
+msgid "Register"
+msgstr "Register"
+
+#: src/subscriptions-view.jsx:466
+msgid "Register System"
+msgstr "Register System"
+
+#: src/subscriptions-view.jsx:304
+msgid "Registered"
+msgstr "Registered"
+
+#: src/subscriptions-client.js:327
+msgid "Registering using activation key ..."
+msgstr "Registering using activation key ..."
+
+#: src/subscriptions-client.js:348
+msgid "Registering using username and password ..."
+msgstr "Registering using username and password ..."
+
+#: src/insights.jsx:184
+msgid "Removals:"
+msgstr "Removals:"
+
+#: src/insights.jsx:219
+msgid "Removing $0"
+msgstr "Removing $0"
+
+#: src/subscriptions-view.jsx:508
+msgid "Retrieving subscription status..."
+msgstr "Retrieving subscription status..."
+
+#: src/subscriptions-view.jsx:263
+msgid "Role"
+msgstr "Role"
+
+#: src/subscriptions-client.js:401
+msgid "Saving configuration ..."
+msgstr "Saving configuration ..."
+
+#: src/subscriptions-view.jsx:253
+msgid "Service level"
+msgstr "Service level"
+
+#: src/subscriptions-client.js:308
+msgid "Starting registration service ..."
+msgstr "Starting registration service ..."
+
+#: src/subscriptions-view.jsx:143
+msgid "Starts"
+msgstr "Starts"
+
+#: src/subscriptions-view.jsx:139 src/subscriptions-view.jsx:324
+msgid "Status"
+msgstr "Status"
+
+#: src/subscriptions-client.js:377
+msgid "Stopping registration service ..."
+msgstr "Stopping registration service ..."
+
+#: src/subscriptions-view.jsx:53
+msgid "Subscribed"
+msgstr "Subscribed"
+
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:5
+msgid "Subscription Manager"
+msgstr "Subscription Manager"
+
+#: data/org.candlepinproject.subscription_manager.metainfo.xml:6
+msgid "Subscription Manager in Cockpit"
+msgstr "Subscription Manager in Cockpit"
+
+#: src/index.html:9 src/manifest.json:0
+msgid "Subscriptions"
+msgstr "Subscriptions"
+
+#: src/subscriptions-view.jsx:287
+msgid "System purpose"
+msgstr "System purpose"
+
+#: src/insights.jsx:154
+msgid "The $0 package and $1 other package will be installed."
+msgid_plural "The $0 package and $1 other packages will be installed."
+msgstr[0] "The $0 package and $1 other package will be installed."
+msgstr[1] "The $0 package and $1 other packages will be installed."
+
+#: src/insights.jsx:92 src/insights.jsx:307
+msgid "The $0 package is not available from any repository."
+msgstr "The $0 package is not available from any repository."
+
+#: src/insights.jsx:152 src/subscriptions-register.jsx:81
+msgid "The $0 package will be installed."
+msgstr "The $0 package will be installed."
+
+#: src/subscriptions-view.jsx:524
+msgid "The current user isn't allowed to access system subscription status."
+msgstr "The current user isn't allowed to access system subscription status."
+
+#: src/insights.jsx:391
+msgid "The last Insights data upload has failed."
+msgstr "The last Insights data upload has failed."
+
+#: src/subscriptions-view.jsx:520
+msgid ""
+"The rhsm service is unavailable. Make sure subscription-manager is installed "
+"and try reloading the page."
+msgstr ""
+"The rhsm service is unavailable. Make sure subscription-manager is installed "
+"and try reloading the page."
+
+#: src/insights.jsx:95
+msgid ""
+"The system could not be connected to Insights because installing the $0 "
+"package requires the unexpected removal of other packages."
+msgstr ""
+"The system could not be connected to Insights because installing the $0 "
+"package requires the unexpected removal of other packages."
+
+#: src/insights.jsx:241
+msgid "This system is not connected to $0."
+msgstr "This system is not connected to $0."
+
+#: src/subscriptions-register.jsx:141
+msgid "URL"
+msgstr "URL"
+
+#: src/subscriptions-view.jsx:526
+msgid "Unable to connect"
+msgstr "Unable to connect"
+
+#: src/subscriptions-view.jsx:521
+msgid "Unable to the reach the rhsm service."
+msgstr "Unable to the reach the rhsm service."
+
+#: src/subscriptions-client.js:34 src/subscriptions-view.jsx:75
+#: src/subscriptions-view.jsx:81
+msgid "Unknown"
+msgstr "Unknown"
+
+#: src/subscriptions-view.jsx:70
+msgid "Unknown status"
+msgstr "Unknown status"
+
+#: src/subscriptions-view.jsx:310
+msgid "Unregister"
+msgstr "Unregister"
+
+#: src/subscriptions-client.js:433 src/subscriptions-view.jsx:310
+msgid "Unregistering"
+msgstr "Unregistering"
+
+#: src/subscriptions-view.jsx:507
+msgid "Updating"
+msgstr "Updating"
+
+#: src/subscriptions-client.js:421
+msgid "Updating status ..."
+msgstr "Updating status ..."
+
+#: src/subscriptions-view.jsx:258
+msgid "Usage"
+msgstr "Usage"
+
+#: src/subscriptions-register.jsx:152
+msgid "Use proxy server"
+msgstr "Use proxy server"
+
+#: src/subscriptions-register.jsx:94
+msgid "Username"
+msgstr "Username"
+
+#: src/subscriptions-view.jsx:127
+msgid "Version"
+msgstr "Version"
+
+#: src/insights.jsx:202 src/insights.jsx:213 src/insights.jsx:297
+msgid "Waiting for other software management operations to finish"
+msgstr "Waiting for other software management operations to finish"
+
+#: src/manifest.json:0
+msgid "candlepin"
+msgstr "candlepin"
+
+#: src/subscriptions-register.jsx:47
+msgid "hostname:port"
+msgstr "hostname:port"
+
+#: src/subscriptions-register.jsx:121
+msgid "key_one,key_two"
+msgstr "key_one,key_two"
+
+#: src/subscriptions-client.js:454
+msgid "not-found"
+msgstr "not-found"
+
+#: src/manifest.json:0
+msgid "subscriptions"
+msgstr "subscriptions"
+
+#: src/insights.jsx:341
+msgid "unknown"
+msgstr "unknown"
