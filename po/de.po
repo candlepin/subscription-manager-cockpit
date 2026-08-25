@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rhsm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-06 05:36+0000\n"
+"POT-Creation-Date: 2026-08-23 03:36+0000\n"
 "PO-Revision-Date: 2026-06-07 08:01+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://translate.fedoraproject.org/projects/cockpit/"
@@ -228,7 +228,7 @@ msgid "Not subscribed ($0)"
 msgstr "Nicht abonniert ($0)"
 
 # translation auto-copied from project subscription-manager, version 1.9.X, document keys, author hedda
-#: src/subscriptions-register.jsx:108 src/subscriptions-view.jsx:331
+#: src/subscriptions-view.jsx:331 src/subscriptions-register.jsx:108
 msgid "Organization"
 msgstr "Organisation"
 

@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-06 05:36+0000\n"
+"POT-Creation-Date: 2026-08-23 03:36+0000\n"
 "PO-Revision-Date: 2026-08-06 19:17+0000\n"
 "Last-Translator: Jan Kuparinen <copper_fin@hotmail.com>\n"
 "Language-Team: Finnish <https://translate.fedoraproject.org/projects/cockpit/"
@@ -226,7 +226,7 @@ msgstr "Ei tilattu"
 msgid "Not subscribed ($0)"
 msgstr "Ei tilattu ($0)"
 
-#: src/subscriptions-register.jsx:108 src/subscriptions-view.jsx:331
+#: src/subscriptions-view.jsx:331 src/subscriptions-register.jsx:108
 msgid "Organization"
 msgstr "Organisaatio"
 

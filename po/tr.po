@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-06 05:36+0000\n"
+"POT-Creation-Date: 2026-08-23 03:36+0000\n"
 "PO-Revision-Date: 2026-05-16 16:59+0000\n"
 "Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
 "Language-Team: Turkish <https://translate.fedoraproject.org/projects/cockpit/"
@@ -226,7 +226,7 @@ msgstr "Abone olunmadı"
 msgid "Not subscribed ($0)"
 msgstr "Abone olunmadı ($0)"
 
-#: src/subscriptions-register.jsx:108 src/subscriptions-view.jsx:331
+#: src/subscriptions-view.jsx:331 src/subscriptions-register.jsx:108
 msgid "Organization"
 msgstr "Kuruluş"
 
