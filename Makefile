@@ -231,10 +231,8 @@ prepare-check: $(NODE_MODULES_TEST) $(VM_IMAGE) test/common test/reference
 
 # run the browser integration tests;
 # this will run all tests/check-* and format them as TAP.
-# Because the candlepin container uses a lot of available memory in the nondestructive VM
-# we bump the memory limit to 2048MB
 check: prepare-check
-	test/common/run-tests --nondestructive-memory-mb 2048 ${RUN_TESTS_OPTIONS}
+	test/common/run-tests ${RUN_TESTS_OPTIONS}
 
 # checkout Cockpit's bots for standard test VM images and API to launch them
 # must be from main, as only that has current and existing images; but testvm.py API is stable

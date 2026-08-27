@@ -34,6 +34,12 @@ CANDLEPIN_URL = f"https://{CANDLEPIN_HOSTNAME}:8443/candlepin"
 
 
 class SubscriptionsCase(testlib.MachineCase):
+    # Because the candlepin container uses a lot of available memory
+    # we bump the memory limit to 2048MB
+    provision = {  # noqa: RUF012
+        "0": {"memory_mb": 2048 }
+    }
+
 
     def setUp(self):
         super().setUp()
@@ -78,7 +84,6 @@ authmethod=CERT
             m.execute(["subscription-manager", "unregister"])
 
 
-@testlib.nondestructive
 class TestSubscriptions(SubscriptionsCase):
     def testRegister(self):
         b = self.browser
@@ -375,7 +380,6 @@ class TestSubscriptions(SubscriptionsCase):
         b.wait_visible("#overview button:contains('Register')")
 
 
-@testlib.nondestructive
 class TestSubscriptionsPackages(SubscriptionsCase, packagelib.PackageCase):
     def testMissingPackages(self):
         m = self.machine
