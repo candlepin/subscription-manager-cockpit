@@ -41,12 +41,29 @@ class SubscriptionsCase(testlib.MachineCase):
 
         # start the candlepin container
         # see https://github.com/cockpit-project/bots/pull/1768
-        m.execute(["/root/run-candlepin"])
+        try:
+            candlepin_status = m.execute(["podman", "inspect", "candlepin", "--format", "{{.State.Status}}"])
+            if candlepin_status.strip() != "running":
+                m.execute(["/root/run-candlepin"], timeout=360)
+                # Wait for the web service to be accessible, with an initial delay
+                # to give more time to Candlepin to start
+                time.sleep(10)
 
-        # Wait for the web service to be accessible, with an initial delay
-        # to give more time to Candlepin to start
-        time.sleep(10)
-        m.execute(f"until curl --fail --silent --show-error {CANDLEPIN_URL}/status; do sleep 1; done")
+            # Check that candlepin is really running
+            rv = m.execute(
+                f"until curl --fail --silent --show-error {CANDLEPIN_URL}/status; do sleep 1; done"
+            )
+
+            print(f"Candlepin status:\n{rv}")
+        except Exception as e:
+            print(f"exception: {e}")
+            # dump candlepin status
+            podman_ps = m.execute(["podman", "ps", "-a"])
+            print(f"podman ps -a output:\n{podman_ps}")
+            candlepin_systemd = m.execute(["podman", "exec", "candlepin", "systemctl", "--failed"])
+            print(f"candlepin systemd:\n{candlepin_systemd}")
+
+            raise
 
         if m.image.startswith("rhel-"):
             hostname = m.execute(["hostnamectl", "hostname"]).rstrip()
@@ -266,17 +283,10 @@ class TestSubscriptions(SubscriptionsCase):
         b.wait_visible("button:contains('Not connected')")
 
     @testlib.onlyImage("Insights support is specific to RHEL", "rhel-*")
+    @testlib.timeout(1000)
     def testSubAndInAndFail(self):
         m = self.machine
         b = self.browser
-
-        # HACK - https://bugzilla.redhat.com/show_bug.cgi?id=2062136
-        #
-        # We rely on insights-client.service to be working, let's not
-        # get distracted by SELinux.  Denials will still be logged and
-        # tracked as known issues even when not enforcing.
-        #
-        m.execute(["setenforce", "0"])
 
         self.login_and_go("/subscriptions")
 

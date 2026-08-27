@@ -477,8 +477,8 @@ function requestSyspurposeUpdate() {
 
 /* get subscription summary */
 client.getSubscriptionStatus = function() {
-    const promise = safeDBusCall(entitlementService, () => {
-        entitlementService.GetStatus('', userLang)
+    return safeDBusCall(entitlementService, () => {
+        return entitlementService.GetStatus('', userLang)
                 .then(result => {
                     let parsed = false;
                     let system_status;
@@ -499,15 +499,10 @@ client.getSubscriptionStatus = function() {
                         }
                     }
                 });
+    }).then(() => {
+        getSubscriptionDetails();
+        needRender();
     });
-
-    promise
-            .then(() => {
-                getSubscriptionDetails();
-                needRender();
-            });
-
-    return promise;
 };
 
 /**
@@ -575,7 +570,7 @@ client.getSyspurpose = function() {
 client.readConfig = function() {
     return safeDBusCall(configService, () => {
         console.debug('Reading configuration file');
-        configService.GetAll(userLang).then(config => {
+        return configService.GetAll(userLang).then(config => {
             const hostname = config.server.v.hostname;
             const port = config.server.v.port;
             const prefix = config.server.v.prefix;
