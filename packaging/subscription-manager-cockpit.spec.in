@@ -48,8 +48,9 @@ Conflicts: rhsm-gtk < 1.26.7
 Conflicts: subscription-manager-cockpit < 1.26.7
 
 %description -n rhsm-icons
-This package contains the desktop icons for the graphical interfaces provided for management
-of Red Hat subscriptions: subscription-manager-gui, subscription-manager-cockpit-plugin.
+This package contains the desktop icons for the graphical
+interfaces provided for management of Red Hat subscriptions:
+subscription-manager-gui, subscription-manager-cockpit-plugin.
 
 %prep
 %autosetup -n %{name} -a 1
